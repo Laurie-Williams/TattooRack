@@ -105,6 +105,8 @@ GEM
     json (1.8.3)
     launchy (2.4.3)
       addressable (~> 2.3)
+    letter_opener (1.4.1)
+      launchy (~> 2.2)
     loofah (2.0.2)
       nokogiri (>= 1.5.9)
     mail (2.6.3)
@@ -220,6 +222,7 @@ DEPENDENCIES
   email_spec (~> 1.6.0)
   jbuilder (~> 2.0)
   jquery-rails
+  letter_opener (~> 1.4.0)
   rails (= 4.2.1)
   rspec-rails (~> 3.2.3)
   sass-rails (~> 5.0)

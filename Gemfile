@@ -58,6 +58,7 @@ end
 
 group :development do
   gem 'better_errors', '~> 2.1.1'
+  gem 'letter_opener', '~> 1.4.0'
 end
 
 gem 'devise', '~> 3.5.1'
