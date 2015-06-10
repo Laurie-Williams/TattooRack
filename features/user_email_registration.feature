@@ -9,12 +9,17 @@ Feature: User Email Registration
   Scenario: Happy Path - Seccessful Sign Up
     And I fill in the User Registration form correctly
     And I click Register
-    Then I am redirected to the User Edit page
-    And the Username field contains correct Username
-    When I click my User Profile Link
-    Then I am redirected to my User Profile page
-    And I can see my Username on the page
-    And I can see Sign Out Link
+    Then I am redirected to the Home page
+    And I can see email confirmation notification
+    And "John89@example.com" should receive an email with subject "Confirmation instructions"
+    When I open the email with subject "Confirmation instructions"
+    And I follow "Confirm my account" in the email
+    And I am redirected to the Sign In page
+    And I fill in the Sign In form correctly
+    And I click Log In
+    Then I am redirected to the Home page
+    And I can see "Signed in successfully" notification
+
 
   Scenario: Sad Path - Unsuccessful Sign Up
     And I fill in the User Registration form incorrectly

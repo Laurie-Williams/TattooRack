@@ -9,12 +9,26 @@ And(/^I fill in the User Registration form correctly$/) do
   fill_in("Password", with: "secretpassword")
 end
 
+And(/^I fill in the Sign In form correctly$/) do
+  fill_in("Email", with: "John89@example.com")
+  fill_in("Password", with: "secretpassword")
+  fill_in("Password confirmation", with: "secretpassword")
+end
+
 And(/^I click Register$/) do
   click_button("Create Account")
 end
 
+And(/^I click Log In$/) do
+  click_button("commit")
+end
+
 Then(/^I am redirected to the User Edit page$/) do
   expect(current_path).to eq(edit_user_path(1))
+end
+
+Then(/^I am redirected to the Home page$/) do
+  expect(current_path).to eq(root_path)
 end
 
 And(/^the Username field contains correct Username$/) do
@@ -29,8 +43,20 @@ Then(/^I am redirected to my User Profile page$/) do
   expect(current_path).to eq(user_path(1))
 end
 
+Then(/^I am redirected to the Sign In page$/) do
+  expect(current_path).to eq(new_user_session_path)
+end
+
 And(/^I can see my Username on the page$/) do
   within("#main"){ expect(page).to have_content("John")}
+end
+
+And(/^I can see email confirmation notification$/) do
+  within("#flash"){ expect(page).to have_css('div.notice')}
+end
+
+And(/^I can see "Signed in successfully" notification$/) do
+  within("#flash"){ expect(page).to have_css('div.notice')}
 end
 
 And(/^I can see Sign Out Link$/) do
