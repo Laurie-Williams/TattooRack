@@ -31,6 +31,10 @@ Then(/^I am redirected to the Home page$/) do
   expect(current_path).to eq(root_path)
 end
 
+Then(/^I am redirected to the Users index page$/) do
+  expect(current_path).to eq(users_path)
+end
+
 And(/^the Username field contains correct Username$/) do
   withing("#form"){expect(page).to have_field("Name", with: "John")}
 end
@@ -52,11 +56,11 @@ And(/^I can see my Username on the page$/) do
 end
 
 And(/^I can see email confirmation notification$/) do
-  within("#flash"){ expect(page).to have_css('div.notice')}
+  within("#Flash"){ expect(page).to have_css('.notice')}
 end
 
 And(/^I can see "Signed in successfully" notification$/) do
-  within("#flash"){ expect(page).to have_css('div.notice')}
+  within("#Flash"){ expect(page).to have_css('.notice')}
 end
 
 And(/^I can see Sign Out Link$/) do

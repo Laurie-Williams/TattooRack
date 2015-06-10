@@ -9,7 +9,7 @@ Feature: User Email Registration
   Scenario: Happy Path - Seccessful Sign Up
     And I fill in the User Registration form correctly
     And I click Register
-    Then I am redirected to the Home page
+    Then I am redirected to the Users index page
     And I can see email confirmation notification
     And "John89@example.com" should receive an email with subject "Confirmation instructions"
     When I open the email with subject "Confirmation instructions"
