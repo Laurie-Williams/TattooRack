@@ -48,6 +48,7 @@ group :test do
   # database_cleaner is not required, but highly recommended
   gem 'database_cleaner', '~> 1.4.1'
   gem 'capybara', '~> 2.4.4'
+  gem 'email_spec', '~> 1.6.0'
   gem 'shoulda-matchers', '~> 2.8.0'
 end
 
