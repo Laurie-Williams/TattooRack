@@ -1,3 +1,7 @@
+Then(/^show me the page$/) do
+  save_and_open_page
+end
+
 Given(/^I visit the User Registration page$/) do
   visit(new_user_registration_path)
 end
@@ -5,8 +9,9 @@ end
 And(/^I fill in the User Registration form correctly$/) do
   fill_in("Name", with: "John")
   fill_in("Username", with: "John89")
-  fill_in("Email", with: "John89@example.com")
+  fill_in("Email", with: "john89@example.com")
   fill_in("Password", with: "secretpassword")
+  fill_in("Password confirmation", with: "secretpassword")
 end
 
 And(/^I fill in the Sign In form correctly$/) do
