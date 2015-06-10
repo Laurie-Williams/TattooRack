@@ -71,6 +71,10 @@ And(/^I can see Sign Out Link$/) do
   expect(page).to have_link("Sign Out", destroy_user_session_path )
 end
 
+And(/^I can see the registration form$/) do
+  expect(page).to have_css("form#new_user")
+end
+
 And(/^I fill in the User Registration form incorrectly$/) do
   fill_in("Name", with: "John")
 end

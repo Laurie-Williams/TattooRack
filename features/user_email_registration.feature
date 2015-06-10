@@ -25,6 +25,6 @@ Feature: User Email Registration
   Scenario: Sad Path - Unsuccessful Sign Up
     And I fill in the User Registration form incorrectly
     And I click Register
-    Then I am redirected back to the User Registration Page
+    Then I can see the registration form
     And I can see an Error Notification
     And I can see Sign In link
