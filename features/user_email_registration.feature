@@ -10,21 +10,23 @@ Feature: User Email Registration
     And I fill in the User Registration form correctly
     And I click Register
     Then I am redirected to the Home page
-    And I can see email confirmation notification
+    And I can see Notice Flash
     And "john89@example.com" should receive an email with subject "Confirmation instructions"
     When I open the email with subject "Confirmation instructions"
     And I follow "Confirm my account" in the email
     And I am redirected to the Sign In page
-    And I can see email confirmation notification
+    And I can see Notice Flash
     And I fill in the Sign In form correctly
     And I click Log In
     Then I am redirected to the Home page
-    And I can see "Signed in successfully" notification
+    And I can see Notice Flash
 
 
   Scenario: Sad Path - Unsuccessful Sign Up
     And I fill in the User Registration form incorrectly
     And I click Register
     Then I can see the registration form
-    And I can see an Error Notification
+    And I can see an Error Flash
     And I can see Sign In link
+
+
