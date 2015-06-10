@@ -15,6 +15,7 @@ Feature: User Email Registration
     When I open the email with subject "Confirmation instructions"
     And I follow "Confirm my account" in the email
     And I am redirected to the Sign In page
+    And I can see email confirmation notification
     And I fill in the Sign In form correctly
     And I click Log In
     Then I am redirected to the Home page

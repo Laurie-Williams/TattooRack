@@ -15,9 +15,8 @@ And(/^I fill in the User Registration form correctly$/) do
 end
 
 And(/^I fill in the Sign In form correctly$/) do
-  fill_in("Email", with: "John89@example.com")
+  fill_in("Email", with: "john89@example.com")
   fill_in("Password", with: "secretpassword")
-  fill_in("Password confirmation", with: "secretpassword")
 end
 
 And(/^I click Register$/) do
@@ -25,7 +24,7 @@ And(/^I click Register$/) do
 end
 
 And(/^I click Log In$/) do
-  click_button("commit")
+  click_button("Sign In")
 end
 
 Then(/^I am redirected to the User Edit page$/) do
