@@ -59,3 +59,5 @@ group :development do
   gem 'better_errors', '~> 2.1.1'
 end
 
+gem 'devise', '~> 3.5.1'
+
