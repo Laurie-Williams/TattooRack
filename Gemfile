@@ -43,3 +43,19 @@ group :development, :test do
   gem 'spring'
 end
 
+group :test do
+  gem 'cucumber-rails', '~> 1.4.2', :require => false
+  # database_cleaner is not required, but highly recommended
+  gem 'database_cleaner', '~> 1.4.1'
+  gem 'capybara', '~> 2.4.4'
+  gem 'shoulda-matchers', '~> 2.8.0'
+end
+
+group :development, :test do
+  gem 'rspec-rails', '~> 3.2.3'
+end
+
+group :development do
+  gem 'better_errors', '~> 2.1.1'
+end
+
