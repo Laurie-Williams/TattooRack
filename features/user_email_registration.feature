@@ -8,7 +8,7 @@ Feature: User Email Registration
 
   Scenario: Happy Path - Seccessful Sign Up
     And I fill in the User Registration form correctly
-    And I click Register
+    And I press "Create Account"
     Then I am redirected to the Home page
     And I can see Notice Flash
     And "john89@example.com" should receive an email with subject "Confirmation instructions"
@@ -17,14 +17,14 @@ Feature: User Email Registration
     And I am redirected to the Sign In page
     And I can see Notice Flash
     And I fill in the Sign In form correctly
-    And I click Log In
+    And I press "Sign In"
     Then I am redirected to the Home page
     And I can see Notice Flash
 
 
   Scenario: Sad Path - Unsuccessful Sign Up
     And I fill in the User Registration form incorrectly
-    And I click Register
+    And I press "Create Account"
     Then I can see the registration form
     And I can see an Error Flash
     And I can see Sign In link

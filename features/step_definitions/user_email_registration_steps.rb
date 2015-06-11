@@ -36,16 +36,12 @@ end
 
 # Click
 
-And(/^I click Register$/) do
-  click_button("Create Account")
+When /^(?:|I )follow "([^"]*)"$/ do |link|
+  click_link(link)
 end
 
-And(/^I click Log In$/) do
-  click_button("Sign In")
-end
-
-When(/^I click my User Profile Link$/) do
-  click_link("John")
+When /^(?:|I )press "([^"]*)"$/ do |button|
+  click_button(button)
 end
 
 
