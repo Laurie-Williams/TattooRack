@@ -7,13 +7,13 @@ Feature: User Sign In
   Background:
 
   Scenario: Happy Path - Successful Sign In
-    Given I am an existing registred user
+    Given I am an existing registered user
     When I visit the Sign In page
     And I fill in the Sign In form correctly
     And I press "Sign In"
     Then I am redirected to the Home page
     And I can see a Notice Flash
-    And I can see my Username on the page
+    And I can see correct Username on the page
 
   Scenario: Sad Path - Unsuccessful Sign In - Invalid Data
     When I visit the Sign In page

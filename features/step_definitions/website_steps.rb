@@ -7,14 +7,18 @@ end
 
 # Preconditions
 
-Given(/^I am an existing registred user$/) do
+Given(/^I am an existing registered user$/) do
   @john = User.new( name: "John", username: "John89", email: "john89@example.com", password: "secretpassword", password_confirmation: "secretpassword")
   @john.skip_confirmation! #Skip email confirmation step
   @john.save
 end
 
+Given(/^an existing registred user$/) do
+  step "I am an existing registered user"
+end
+
 Given(/^I am a logged in user$/) do
-  step "I am an existing registred user"
+  step "I am an existing registered user"
   step "I visit the Sign In page"
   step "I fill in the Sign In form correctly"
   step "I press \"Sign In\""
@@ -32,6 +36,10 @@ end
 
 When(/^I visit the Home page$/) do
   visit(root_path)
+end
+
+When(/^I visit the User page$/) do
+  visit(user_path(1))
 end
 
 And(/^I leave the site$/) do
@@ -120,7 +128,7 @@ end
 
 # Page Content
 
-And(/^I can see my Username on the page$/) do
+And(/^I can see correct Username on the page$/) do
   within("#main"){ expect(page).to have_content("John")}
 end
 

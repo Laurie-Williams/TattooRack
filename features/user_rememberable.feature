@@ -5,7 +5,7 @@ Feature: User is Remembered
   So I dont have to log in manually again
 
   Scenario:
-    Given I am an existing registred user
+    Given I am an existing registered user
     When I visit the Sign In page
     And I fill in the Sign In form correctly
     And I check "Remember me"
