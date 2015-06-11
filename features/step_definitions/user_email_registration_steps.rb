@@ -3,10 +3,22 @@ Then(/^show me the page$/) do
 end
 
 
+# Preconditions
+
+Given(/^I am an existing registred user$/) do
+  @john = User.new( name: "John", username: "John89", email: "john89@example.com", password: "secretpassword", password_confirmation: "secretpassword")
+  @john.skip_confirmation! #Skip email confirmation step
+  @john.save
+end
+
 # Visit
 
 Given(/^I visit the User Registration page$/) do
   visit(new_user_registration_path)
+end
+
+When(/^I visit the Sign In page$/) do
+  visit(new_user_session_path)
 end
 
 
