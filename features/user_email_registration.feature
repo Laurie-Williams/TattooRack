@@ -10,16 +10,16 @@ Feature: User Email Registration
     And I fill in the User Registration form correctly
     And I press "Create Account"
     Then I am redirected to the Home page
-    And I can see Notice Flash
+    And I can see a Notice Flash
     And "john89@example.com" should receive an email with subject "Confirmation instructions"
     When I open the email with subject "Confirmation instructions"
     And I follow "Confirm my account" in the email
     And I am redirected to the Sign In page
-    And I can see Notice Flash
+    And I can see a Notice Flash
     And I fill in the Sign In form correctly
     And I press "Sign In"
     Then I am redirected to the Home page
-    And I can see Notice Flash
+    And I can see a Notice Flash
 
 
   Scenario: Sad Path - Unsuccessful Sign Up

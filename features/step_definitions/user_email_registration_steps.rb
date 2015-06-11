@@ -94,7 +94,7 @@ end
 
 # Notifications
 
-And(/^I can see Notice Flash$/) do
+And(/^I can see a Notice Flash$/) do
   within("#Flash"){ expect(page).to have_css('.notice')}
 end
 
