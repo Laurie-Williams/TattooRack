@@ -29,10 +29,12 @@ RSpec.describe UsersController, type: :controller do
 
       before :each do
         @user = double("user", update_attributes: true, id: "1")
+        allow(controller).to receive(:current_user).and_return(@user)
+        allow(User).to receive(:find).with("1").and_return(@user)
+
       end
 
       it "returns http success" do
-        allow(User).to receive(:find).with("1").and_return(@user)
         post :update, id: 1, user: {bio: "I am an artist"}
         expect(response).to have_http_status(:redirect)
       end
@@ -43,7 +45,6 @@ RSpec.describe UsersController, type: :controller do
       end
 
       it "assigns @user variable" do
-        allow(User).to receive(:find).with("1").and_return(@user)
         post :update, id: 1, user: {bio: "I am an artist"}
         expect(assigns(:user)).to eq(@user)
       end
@@ -51,12 +52,10 @@ RSpec.describe UsersController, type: :controller do
 
       it "calls update attributes on @user" do
         expect(@user).to receive(:update_attributes).and_return(true)
-        allow(User).to receive(:find).with("1").and_return(@user)
         post :update, id: 1, user: {bio: "I am an artist"}
       end
 
       it "assigns a notice flash" do
-        allow(User).to receive(:find).with("1").and_return(@user)
         post :update, id: 1, user: {bio: "I am an artist"}
         expect(flash[:notice]).to eq("You have updated your settings")
       end
@@ -67,42 +66,77 @@ RSpec.describe UsersController, type: :controller do
 
       before :each do
         @user = double("user", update_attributes: false, id: 1)
+        allow(controller).to receive(:current_user).and_return(@user)
+        allow(User).to receive(:find).with("1").and_return(@user)
       end
 
       it "returns http success" do
-        allow(User).to receive(:find).with("1").and_return(@user)
         post :update, id: 1, user: {bio: "I am an artist"}
         expect(response).to have_http_status(:success)
       end
 
       it "renders Update Settings page" do
-        allow(User).to receive(:find).with("1").and_return(@user)
         post :update, id: 1, user: {bio: "I am an artist"}
         expect(subject).to render_template(:edit)
       end
     end
+
+    it "correctly blocks unauthorized users" do
+
+        @current_user = double("user", id: 2)
+        @owner_of_page = double("user", id: 1)
+        allow(controller).to receive(:current_user).and_return(@current_user)
+        allow(User).to receive(:find).with("1").and_return(@owner_of_page)
+
+        post :update, id: 1, user: {bio: "I am an artist"}
+        expect(response).to have_http_status(:redirect)
+        expect(flash[:alert]).to eq("You do not have permission to view this page")
+    end
   end
 
   describe "GET #edit" do
-    it "returns http success" do
-      user = double("user")
-      allow(User).to receive(:find).with("1").and_return(user)
-      get :edit, id: 1
-      expect(response).to have_http_status(:success)
+
+    context "authorized user signed in" do
+
+      before :each do
+        @user = double("user")
+        allow(controller).to receive(:current_user).and_return(@user)
+        allow(User).to receive(:find).with("1").and_return(@user)
+      end
+
+      it "returns http success" do
+        get :edit, id: 1
+        expect(response).to have_http_status(:success)
+      end
+
+      it "calls .find on User" do
+        expect(User).to receive(:find).with("1").and_return(@user)
+        get :edit, id: 1
+      end
+
+      it "assigns @user variable" do
+        get :edit, id: 1
+        expect(assigns(:user)).to eq(@user)
+      end
+
     end
 
-    it "calls .find on User" do
-      user = double("user")
-      expect(User).to receive(:find).with("1").and_return(user)
-      get :edit, id: 1
+    context "unauthorized user signed in" do
+
+      it "correctly blocks unauthorized users" do
+
+        @current_user = double("user", id: 2)
+        @owner_of_page = double("user", id: 1)
+        allow(controller).to receive(:current_user).and_return(@current_user)
+        allow(User).to receive(:find).with("1").and_return(@owner_of_page)
+
+        post :update, id: 1, user: {bio: "I am an artist"}
+        expect(response).to have_http_status(:redirect)
+        expect(flash[:alert]).to eq("You do not have permission to view this page")
+      end
+
     end
 
-    it "assigns @user variable" do
-      user = double("user")
-      allow(User).to receive(:find).with("1").and_return(user)
-      get :edit, id: 1
-      expect(assigns(:user)).to eq(user)
-    end
 
   end
 
