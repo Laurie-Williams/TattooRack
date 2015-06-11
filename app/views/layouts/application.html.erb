@@ -15,8 +15,9 @@
 </div>
 
 <div id="Flash">
-  <p class="notice"><%= notice %></p>
-  <p class="alert"><%= alert %></p>
+  <% flash.each do |type, message| %>
+    <p class=<%= type %>><%= flash[type] %></p>
+  <% end %>
 </div>
 
 <div id="main">

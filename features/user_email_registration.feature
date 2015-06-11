@@ -26,7 +26,7 @@ Feature: User Email Registration
     And I fill in the User Registration form incorrectly
     And I press "Create Account"
     Then I can see the registration form
-    And I can see an Error Flash
+    And I can see Form Errors
     And I can see Sign In link
 
 

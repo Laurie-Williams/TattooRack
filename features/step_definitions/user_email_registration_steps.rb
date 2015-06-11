@@ -41,6 +41,16 @@ And(/^I fill in the Sign In form correctly$/) do
   fill_in("Password", with: "secretpassword")
 end
 
+And(/^I fill in the Sign In form with invalid data$/) do
+  fill_in("Email", with: "john89@example.com")
+  fill_in("Password", with: "")
+end
+
+And(/^I fill in the Sign In form with non\-existent user$/) do
+  fill_in("Email", with: "notregistered@example.com")
+  fill_in("Password", with: "secretpassword")
+end
+
 And(/^the Username field contains correct Username$/) do
   withing("#form"){expect(page).to have_field("Name", with: "John")}
 end
@@ -111,6 +121,9 @@ And(/^I can see a Notice Flash$/) do
 end
 
 And(/^I can see an Error Flash$/) do
-  expect(page).to have_content("errors")
+  within("#Flash"){ expect(page).to have_css('.alert')}
 end
 
+And(/^I can see Form Errors$/) do
+  within("#error_explanation"){ expect(page).to have_css('li')}
+end
