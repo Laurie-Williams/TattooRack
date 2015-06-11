@@ -11,6 +11,13 @@ Given(/^I am an existing registred user$/) do
   @john.save
 end
 
+Given(/^I am a logged in user$/) do
+  step "I am an existing registred user"
+  step "I visit the Sign In page"
+  step "I fill in the Sign In form correctly"
+  step "I press \"Sign In\""
+end
+
 # Visit
 
 Given(/^I visit the User Registration page$/) do
@@ -19,6 +26,10 @@ end
 
 When(/^I visit the Sign In page$/) do
   visit(new_user_session_path)
+end
+
+When(/^I visit the Home page$/) do
+  visit(root_path)
 end
 
 
@@ -55,6 +66,10 @@ And(/^the Username field contains correct Username$/) do
   withing("#form"){expect(page).to have_field("Name", with: "John")}
 end
 
+When /^(?:|I )fill in "([^"]*)" with "([^"]*)"$/ do |field, value|
+  fill_in(field, :with => value)
+end
+
 
 # Click
 
@@ -89,7 +104,6 @@ Then(/^I am redirected to the Sign In page$/) do
   expect(current_path).to eq(new_user_session_path)
 end
 
-
 Then(/^I am redirected back to the User Registration Page$/) do
   expect(current_path).to eq(new_user_registration_path)
 end
@@ -111,6 +125,16 @@ end
 
 And(/^I can see Sign In link$/) do
   within(:css, "#nav"){ expect(page).to have_content("Sign In")}
+end
+
+Then /^the "([^"]*)" field should contain "([^"]*)"$/ do |field, value|
+    field = find_field(field)
+    field_value = (field.tag_name == 'textarea') ? field.text : field.value
+    if field_value.respond_to? :should
+      field_value.should =~ /#{value}/
+    else
+      assert_match(/#{value}/, field_value)
+    end
 end
 
 

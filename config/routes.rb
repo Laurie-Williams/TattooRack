@@ -3,7 +3,7 @@ Rails.application.routes.draw do
   devise_for :users,
              #Overide Devise controller with customised users/registrations controller
              :controllers => { :registrations => "users/registrations" }
-  resources :users, only: [:index]
+  resources :users, only: [:index, :edit, :update]
 
   root "users#index"
 

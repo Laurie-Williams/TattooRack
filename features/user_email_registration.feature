@@ -1,4 +1,5 @@
 Feature: User Email Registration
+
   As a user
   I want to create a user account with an Email and Password
   So I can access it on the site
