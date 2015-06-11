@@ -1,3 +1,5 @@
+
+
 Then(/^show me the page$/) do
   save_and_open_page
 end
@@ -32,6 +34,9 @@ When(/^I visit the Home page$/) do
   visit(root_path)
 end
 
+And(/^I leave the site$/) do
+  expire_cookies
+end
 
 # Form
 
@@ -68,6 +73,10 @@ end
 
 When /^(?:|I )fill in "([^"]*)" with "([^"]*)"$/ do |field, value|
   fill_in(field, :with => value)
+end
+
+When /^(?:|I )check "([^"]*)"$/ do |field|
+  check(field)
 end
 
 

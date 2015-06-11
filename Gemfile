@@ -48,8 +48,9 @@ group :test do
   # database_cleaner is not required, but highly recommended
   gem 'database_cleaner', '~> 1.4.1'
   gem 'capybara', '~> 2.4.4'
-  gem 'email_spec', '~> 1.6.0'
-  gem 'shoulda-matchers', '~> 2.8.0'
+  gem 'email_spec', '~> 1.6.0' # Testing emails with capybara
+  gem 'shoulda-matchers', '~> 2.8.0' # Common unit test shortcuts with RSpec
+  gem 'show_me_the_cookies', '~> 2.6.0' # Manipulating cookies for testing sessions with cucumber
 end
 
 group :development, :test do
@@ -58,7 +59,7 @@ end
 
 group :development do
   gem 'better_errors', '~> 2.1.1'
-  gem 'letter_opener', '~> 1.4.0'
+  gem 'letter_opener', '~> 1.4.0' #Open emails in browser in development
 end
 
 gem 'devise', '~> 3.5.1'

@@ -8,8 +8,9 @@ Feature: User is Remembered
     Given I am an existing registred user
     When I visit the Sign In page
     And I fill in the Sign In form correctly
-    And I check the "Remember Me" Box
+    And I check "Remember me"
     And I press "Sign In"
     And I leave the site
     And I visit the Home page
+    And show me the page
     Then I can see Sign Out Link
