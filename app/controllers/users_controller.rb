@@ -1,7 +1,7 @@
 class UsersController < ApplicationController
 
-  before_action :find_user, only: [:edit, :update]
-  before_action :authorize_user, except: [:index]
+  before_action :find_user, only: [:edit, :update, :show]
+  before_action :authorize_user, except: [:index, :show]
 
   def index
     @users = User.all
@@ -18,6 +18,9 @@ class UsersController < ApplicationController
       flash.now[:alert] = "Your settings have failed to update"
       render :edit
     end
+  end
+
+  def show
 
   end
 

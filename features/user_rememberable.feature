@@ -12,5 +12,4 @@ Feature: User is Remembered
     And I press "Sign In"
     And I leave the site
     And I visit the Home page
-    And show me the page
     Then I can see Sign Out Link

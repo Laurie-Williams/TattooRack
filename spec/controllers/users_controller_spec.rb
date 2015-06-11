@@ -140,4 +140,26 @@ RSpec.describe UsersController, type: :controller do
 
   end
 
+  describe "GET #index" do
+    before :each do
+      @user = double("user")
+      allow(User).to receive(:find).with("1").and_return(@user)
+      get :show, id: "1"
+    end
+
+    it "returns http success" do
+      expect(response).to have_http_status(:success)
+    end
+
+    it "calls .all on User" do
+      expect(User).to receive(:find).with("1").and_return(@user)
+      get :show, id: "1"
+    end
+
+    it "assigns @users variable" do
+      expect(assigns(:user)).to eq(@user)
+    end
+
+  end
+
 end
