@@ -1,6 +1,6 @@
 <h2>User Profile</h2>
 
-<%= form_for @user, html: { multipart: true } do |f| %>
+<%= form_for @user do |f| %>
 
   <div class="field">
     <%= f.label :name %><br />
@@ -30,7 +30,6 @@
 
 <h3>Your Avatar</h3>
 
-<%= image_tag (@user.image_url :thumb) %>
 
 <%= form_for @user, html: { multipart: true } do |f| %>
 
