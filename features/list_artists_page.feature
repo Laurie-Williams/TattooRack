@@ -1,8 +1,8 @@
 Feature: List Artists Page
 
-  As a
-  I want to
-  So that
+  As a User
+  I want to visit users page
+  So that see all registered user profiles listed
 
   Scenario:
     Given two existing registered users
