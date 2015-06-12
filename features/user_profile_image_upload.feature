@@ -1,3 +1,4 @@
+@upload_cleaned
 Feature: Profile Picture Upload
 
   As an existing registered user
@@ -14,6 +15,5 @@ Feature: Profile Picture Upload
     When I visit the Edit User page
     And attach an avatar image
     And I press "Upload Now"
-    And show me the page
     Then I can see my profile avatar thumbnail
 
