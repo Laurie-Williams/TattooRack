@@ -11,4 +11,6 @@ class User < ActiveRecord::Base
   validates :name,  presence: true,
                     length: {minimum: 2, maximum: 24}
 
+  mount_uploader :avatar, AvatarUploader
+
 end

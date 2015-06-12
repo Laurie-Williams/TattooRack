@@ -105,8 +105,8 @@ When /^(?:|I )check "([^"]*)"$/ do |field|
   check(field)
 end
 
-And(/^attach a profile image$/) do
-  attach_file('Image', File.expand_path("app/assets/images/test.png"))
+And(/^attach an avatar image/) do
+  attach_file('Avatar', File.expand_path("app/assets/images/test.png"))
 end
 
 
@@ -179,6 +179,11 @@ Then /^the "([^"]*)" field should contain "([^"]*)"$/ do |field, value|
     else
       assert_match(/#{value}/, field_value)
     end
+end
+
+Then(/^I can see my profile avatar thumbnail$/) do
+  @john.reload
+  expect(page).to have_xpath("//img[@src=\"#{@john.avatar_url(:thumb)}\"]")
 end
 
 
