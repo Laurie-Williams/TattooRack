@@ -13,6 +13,16 @@ Given(/^I am an existing registered user$/) do
   @john.save
 end
 
+Given(/^two existing registered users$/) do
+  @john = User.new( name: "John", username: "John89", email: "john89@example.com", password: "secretpassword", password_confirmation: "secretpassword")
+  @john.skip_confirmation! #Skip email confirmation step
+  @john.save
+
+  @jane = User.new( name: "Jane", username: "Jane77", email: "jane77@example.com", password: "secretpassword", password_confirmation: "secretpassword")
+  @jane.skip_confirmation! #Skip email confirmation step
+  @jane.save
+end
+
 Given(/^an existing registred user$/) do
   step "I am an existing registered user"
 end
@@ -40,6 +50,10 @@ end
 
 When(/^I visit the User page$/) do
   visit(user_path(1))
+end
+
+When(/^I visit the Users page$/) do
+  visit(users_path)
 end
 
 And(/^I leave the site$/) do
@@ -130,6 +144,11 @@ end
 
 And(/^I can see correct Username on the page$/) do
   within("#main"){ expect(page).to have_content("John")}
+end
+
+Then(/^I can see both Usernames on the page$/) do
+  within("#main"){ expect(page).to have_content("John")}
+  within("#main"){ expect(page).to have_content("Jane")}
 end
 
 And(/^I can see Sign Out Link$/) do
