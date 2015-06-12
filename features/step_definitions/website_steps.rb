@@ -105,6 +105,10 @@ When /^(?:|I )check "([^"]*)"$/ do |field|
   check(field)
 end
 
+And(/^attach a profile image$/) do
+  attach_file('Image', File.expand_path("app/assets/images/test.png"))
+end
+
 
 # Click
 

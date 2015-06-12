@@ -7,7 +7,7 @@ Feature: Profile Picture Upload
   Scenario: Successful upload
     Given I am a logged in user
     When I visit the Edit User page
-    And attatch a profile image
+    And attach a profile image
     And I press "Upload Now"
     Then I can see an my profile image thumbnail
 
