@@ -60,6 +60,10 @@ And(/^I leave the site$/) do
   expire_cookies
 end
 
+When(/^I visit the Edit User page$/) do
+  visit(edit_user_path(1))
+end
+
 # Form
 
 And(/^I fill in the User Registration form correctly$/) do
