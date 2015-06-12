@@ -64,6 +64,10 @@ When(/^I visit the Edit User page$/) do
   visit(edit_user_path(1))
 end
 
+When(/^I visit the Piece page$/) do
+  visit(piece_path(1))
+end
+
 # Form
 
 And(/^I fill in the User Registration form correctly$/) do
@@ -105,8 +109,13 @@ When /^(?:|I )check "([^"]*)"$/ do |field|
   check(field)
 end
 
-And(/^attach an avatar image/) do
-  attach_file('Avatar', File.expand_path("app/assets/images/test.png"))
+And /^(?:|I )attach (?:|an|a) "([^"]*)" image/ do |field|
+  attach_file(field, File.expand_path("app/assets/images/test.png"))
+end
+
+And(/^I fill in the Edit Piece form correctly$/) do
+  fill_in("Title", with: "My Piece")
+  fill_in("Description", with: "This is my test piece...")
 end
 
 
@@ -186,6 +195,11 @@ Then(/^I can see my profile avatar thumbnail$/) do
   expect(page).to have_xpath("//img[@src=\"#{@john.avatar_url(:thumb)}\"]")
 end
 
+And(/^I can see correct Piece Title on the page$/) do
+  within("#main"){ expect(page).to have_content("My Piece")}
+end
+
+
 
 # Notifications
 
@@ -199,4 +213,8 @@ end
 
 And(/^I can see Form Errors$/) do
   within("#error_explanation"){ expect(page).to have_css('li')}
+end
+
+Then(/^I get a Page Not Found Error/) do
+  expect(response.status).to eq(404)
 end
