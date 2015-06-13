@@ -3,6 +3,10 @@ class PiecesController < ApplicationController
   before_action :find_piece, only: [:show, :edit, :update]
 
   def show
+    unless @piece.published?
+      flash[:alert] = "Piece could not be found"
+      redirect_to new_piece_path
+    end
   end
 
   def new
@@ -40,6 +44,6 @@ class PiecesController < ApplicationController
   end
 
   def piece_params
-    params.require(:piece).permit(:image, :title, :description)
+    params.require(:piece).permit(:image, :title, :description, :published)
   end
 end

@@ -4,6 +4,8 @@
 
 <%= form_for @piece do |f| %>
 
+  <%= f.hidden_field :published, value: true %>
+
   <div class="field">
     <%= f.label :title %>
     <%= f.text_field :title %>
@@ -18,5 +20,6 @@
   <div class="actions">
     <%= f.submit "Publish" %>
   </div>
+
 
 <% end %>
