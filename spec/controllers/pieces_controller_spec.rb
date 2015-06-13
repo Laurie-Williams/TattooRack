@@ -28,7 +28,7 @@ RSpec.describe PiecesController, type: :controller do
 
     context "Successfully Create Piece" do
       before :each do
-        @piece = double("piece", save: true)
+        @piece = double("piece", save: true, check_and_set_title: nil)
         allow(Piece).to receive(:new).and_return(@piece)
       end
 
@@ -56,7 +56,7 @@ RSpec.describe PiecesController, type: :controller do
 
     context "Fail to Create Piece" do
       before :each do
-        @piece = double("piece", save: false)
+        @piece = double("piece", save: false, check_and_set_title: nil)
         allow(Piece).to receive(:new).and_return(@piece)
       end
 
@@ -99,5 +99,63 @@ RSpec.describe PiecesController, type: :controller do
     end
 
   end
+
+  describe "POST #update" do
+
+    context "successfully update bio attribute" do
+
+      before :each do
+        @piece = double("piece", update_attributes: true, id: "1")
+        allow(Piece).to receive(:find).with("1").and_return(@piece)
+
+      end
+
+      it "returns http success" do
+        post :update, id: 1, piece: {title: "My Piece Title"}
+        expect(response).to have_http_status(:redirect)
+      end
+
+      it "calls .find on User" do
+        expect(Piece).to receive(:find).with("1").and_return(@piece)
+        post :update, id: 1, piece: {title: "My Piece Title"}
+      end
+
+      it "assigns @user variable" do
+        post :update, id: 1, piece: {title: "My Piece Title"}
+        expect(assigns(:piece)).to eq(@piece)
+      end
+
+
+      it "calls update attributes on @user" do
+        expect(@piece).to receive(:update_attributes).and_return(true)
+        post :update, id: 1, piece: {title: "My Piece Title"}
+      end
+
+      it "assigns a notice flash" do
+        post :update, id: 1, piece: {title: "My Piece Title"}
+        expect(flash[:notice]).to eq("Your piece has been updated")
+      end
+
+    end
+
+    context "unsuccessful update" do
+
+      before :each do
+        @piece = double("piece", update_attributes: false, id: 1)
+        allow(Piece).to receive(:find).with("1").and_return(@piece)
+      end
+
+      it "returns http success" do
+        post :update, id: 1, piece: {title: "My Piece Title"}
+        expect(response).to have_http_status(:success)
+      end
+
+      it "renders Update Settings page" do
+        post :update, id: 1, piece: {title: "My Piece Title"}
+        expect(subject).to render_template(:edit)
+      end
+    end
+  end
+
 
 end

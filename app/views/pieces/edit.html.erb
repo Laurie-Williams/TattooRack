@@ -1,5 +1,7 @@
 <h1>Pieces#edit</h1>
 
+<%= image_tag @piece.image_url %>
+
 <%= form_for @piece do |f| %>
 
   <div class="field">
@@ -12,10 +14,6 @@
     <%= f.text_area :description %>
   </div>
 
-  <div class="field">
-    <%= f.label :image %>
-    <%= f.file_field :image %>
-  </div>
 
   <div class="actions">
     <%= f.submit "Publish" %>

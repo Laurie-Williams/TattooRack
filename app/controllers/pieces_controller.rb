@@ -1,4 +1,10 @@
 class PiecesController < ApplicationController
+
+  before_action :find_piece, only: [:show, :edit, :update]
+
+  def show
+  end
+
   def new
     @piece = Piece.new
   end
@@ -14,17 +20,26 @@ class PiecesController < ApplicationController
     end
   end
 
-  def show
-    @piece = Piece.find(params[:id])
+  def edit
   end
 
-  def edit
-    @piece = Piece.find(params[:id])
+  def update
+    if @piece.update_attributes(piece_params)
+      flash[:notice] = "Your piece has been updated"
+      redirect_to edit_piece_path @piece
+    else
+      flash.now[:alert] = "Your piece was not updated"
+      render :edit
+    end
   end
 
   private
 
+  def find_piece
+    @piece = Piece.find(params[:id])
+  end
+
   def piece_params
-    params.require(:piece).permit(:image)
+    params.require(:piece).permit(:image, :title, :description)
   end
 end

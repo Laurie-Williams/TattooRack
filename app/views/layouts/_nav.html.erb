@@ -2,7 +2,7 @@
   <!--Logged In-->
   <%= link_to "Sign Out", destroy_user_session_path, method: :delete %>
   <%= link_to "Account Settings", edit_user_path(current_user) %>
-  <%= link_to "Create Peice", new_piece_path %>
+  <%= link_to "Create Piece", new_piece_path %>
 <% else %>
   <!--Logged Out-->
   <%= link_to "Sign Up", new_user_registration_path %>

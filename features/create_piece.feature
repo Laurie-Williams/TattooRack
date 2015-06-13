@@ -1,4 +1,4 @@
-@javascript
+@javascript @upload_cleaned
 Feature: Creat Piece
 
   As a logged in user
@@ -8,9 +8,8 @@ Feature: Creat Piece
   Scenario: Upload Picture and Publish Piece
     Given I am a logged in user
     When I visit the Home page
-    And I follow "Create Peice"
+    And I follow "Create Piece"
     And I attach a "Piece" image
-    And show me the page
     And I fill in the Edit Piece form correctly
     And I press "Publish"
     And I visit the Piece page

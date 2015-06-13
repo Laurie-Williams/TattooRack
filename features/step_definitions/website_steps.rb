@@ -216,5 +216,5 @@ And(/^I can see Form Errors$/) do
 end
 
 Then(/^I get a Page Not Found Error/) do
-  expect(response.status).to eq(404)
+  expect(current_path).to eq(new_piece_path)
 end

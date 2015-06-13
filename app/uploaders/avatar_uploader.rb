@@ -16,13 +16,13 @@ class AvatarUploader < CarrierWave::Uploader::Base
     if Rails.env.test? || Rails.env.cucumber?
       "#{Rails.root}/spec/support/uploads/#{model.class.to_s.underscore}/#{mounted_as}/#{model.id}"
     else
-      "uploads/#{model.class.to_s.underscore}/#{mounted_as}/#{model.id}"
+      "uploads/test/#{model.class.to_s.underscore}/#{mounted_as}/#{model.id}"
     end
   end
 
   def cache_dir
     if Rails.env.test? || Rails.env.cucumber?
-      "#{Rails.root}/spec/support/uploads/tmp"
+      "uploads/test/tmp"
     else
       super
     end
