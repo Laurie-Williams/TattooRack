@@ -142,7 +142,7 @@ RSpec.describe UsersController, type: :controller do
 
   end
 
-  describe "GET #index" do
+  describe "GET #show" do
     before :each do
       @user = double("user")
       allow(User).to receive(:find).with("1").and_return(@user)

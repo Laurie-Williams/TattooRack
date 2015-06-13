@@ -5,4 +5,5 @@ class Piece < ActiveRecord::Base
 
   mount_uploader :image, PieceUploader
 
+
 end
