@@ -6,11 +6,15 @@ class PiecesController < ApplicationController
   def create
     @piece = Piece.new(piece_params)
     if @piece.save
-      redirect_to pieces_path @piece
+      redirect_to piece_path @piece
     else
-      flash[:alert] = "your piece has failed to be created"
+      flash.now[:alert] = "your piece has failed to be created"
       render new_piece_path
     end
+  end
+
+  def show
+
   end
 
   private
