@@ -1,0 +1,10 @@
+<h1>Pieces#new</h1>
+
+<%= form_for @piece do |f| %>
+
+<div class="field" onchange="this.form.submit()">
+  <%= f.label :image %>
+  <%= f.file_field :image %>
+</div>
+
+<% end %>
