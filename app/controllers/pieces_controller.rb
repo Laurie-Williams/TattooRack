@@ -1,6 +1,6 @@
 class PiecesController < ApplicationController
 
-  before_action :find_piece, only: [:show, :edit, :update]
+  before_action :find_piece, only: [:show, :edit, :update, :destroy]
 
   def show
     unless @piece.published?
@@ -37,10 +37,24 @@ class PiecesController < ApplicationController
     end
   end
 
+  def destroy
+    if @piece.destroy
+      flash[:notice] = "Your piece has been deleted"
+      redirect_to new_piece_path
+    else
+      flash.now[:alert] = "Your piece was not deleted"
+      render :edit
+    end
+  end
+
   private
 
   def find_piece
     @piece = Piece.find(params[:id])
+  # if @piece does not exist redirect to home with error
+  rescue ActiveRecord::RecordNotFound
+    flash[:alert] = "Piece could not be found"
+    redirect_to root_path
   end
 
   def piece_params

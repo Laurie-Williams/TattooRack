@@ -21,7 +21,7 @@ Feature: Creat Piece
     And I follow "Create Piece"
     And I attach a "Piece" image
     And I visit the Piece page
-    Then I get a Page Not Found Error
+    Then I can see an Error Flash
 
   Scenario: Upload Picture and cancel
     Given I am a logged in user
@@ -30,4 +30,4 @@ Feature: Creat Piece
     And I attach a "Piece" image
     And I follow "Cancel"
     And I visit the Piece page
-    Then I get a Page Not Found Error
+    Then I can see an Error Flash

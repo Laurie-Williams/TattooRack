@@ -214,7 +214,3 @@ end
 And(/^I can see Form Errors$/) do
   within("#error_explanation"){ expect(page).to have_css('li')}
 end
-
-Then(/^I get a Page Not Found Error/) do
-  expect(current_path).to eq(new_piece_path)
-end

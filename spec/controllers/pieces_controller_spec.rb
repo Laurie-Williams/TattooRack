@@ -2,6 +2,66 @@ require 'rails_helper'
 
 RSpec.describe PiecesController, type: :controller do
 
+  describe "GET #show" do
+
+    context "Piece is published" do
+
+      before :each do
+        @piece = double("piece", published?: true)
+        allow(Piece).to receive(:find).with("1").and_return(@piece)
+      end
+
+      it "returns http success" do
+        get :show, id: "1"
+        expect(response).to have_http_status(:success)
+      end
+
+      it "calls .find on Piece" do
+        expect(Piece).to receive(:find).with("1").and_return(@piece)
+        get :show, id: "1"
+      end
+
+      it "checks if published" do
+        expect(@piece).to receive(:published?).and_return(true)
+        get :show, id: "1"
+      end
+
+      it "assigns @users variable" do
+        get :show, id: "1"
+        expect(assigns(:piece)).to eq(@piece)
+      end
+    end
+
+    context "Piece is not published" do
+      before :each do
+        @piece = double("user", published?: false)
+        allow(Piece).to receive(:find).with("1").and_return(@piece)
+      end
+
+      it "returns http redirect" do
+        get :show, id: "1"
+        expect(response).to have_http_status(:redirect)
+        expect(flash[:alert]).to eq("Piece could not be found")
+      end
+
+      it "checks if published" do
+        expect(@piece).to receive(:published?).and_return(false)
+        get :show, id: "1"
+      end
+
+      it "calls .all on Piece" do
+        expect(Piece).to receive(:find).with("1").and_return(@piece)
+        get :show, id: "1"
+      end
+
+      it "assigns @users variable" do
+        get :show, id: "1"
+        expect(assigns(:piece)).to eq(@piece)
+      end
+    end
+
+  end
+
   describe "GET #new" do
     before :each do
       @piece = double("piece")
@@ -78,28 +138,6 @@ RSpec.describe PiecesController, type: :controller do
     end
   end
 
-  describe "GET #show" do
-    before :each do
-      @piece = double("piece")
-      allow(Piece).to receive(:find).with("1").and_return(@piece)
-      get :show, id: "1"
-    end
-
-    it "returns http success" do
-      expect(response).to have_http_status(:success)
-    end
-
-    it "calls .all on User" do
-      expect(Piece).to receive(:find).with("1").and_return(@piece)
-      get :show, id: "1"
-    end
-
-    it "assigns @users variable" do
-      expect(assigns(:piece)).to eq(@piece)
-    end
-
-  end
-
   describe "POST #update" do
 
     context "successfully update bio attribute" do
@@ -157,5 +195,59 @@ RSpec.describe PiecesController, type: :controller do
     end
   end
 
+  describe "DELETE #destroy" do
+
+    context "Piece is successfully destroyed" do
+
+      before :each do
+        @piece = double("piece", destroy: true)
+        allow(Piece).to receive(:find).with("1").and_return(@piece)
+      end
+
+      it "finds the piece" do
+        expect(Piece).to receive(:find).with("1").and_return(@piece)
+        delete :destroy, id: "1"
+      end
+
+      it "assigns an instance variable" do
+        delete :destroy, id: "1"
+        expect(assigns(:piece)).to eq(@piece)
+      end
+
+      it "destroys the piece" do
+        expect(@piece).to receive(:destroy).and_return(true)
+        delete :destroy, id: "1"
+      end
+
+      it "renders a redirect and flash" do
+        delete :destroy, id: "1"
+        expect(response).to have_http_status(:redirect)
+        expect(flash[:notice]).to eq("Your piece has been deleted")
+      end
+    end
+
+    context "Piece is not destroyed" do
+
+      before :each do
+        @piece = double("piece", destroy: false)
+        allow(Piece).to receive(:find).with("1").and_return(@piece)
+      end
+
+      it "finds the piece" do
+        expect(Piece).to receive(:find).with("1").and_return(@piece)
+        delete :destroy, id: "1"
+      end
+
+      it "assigns an instance variable" do
+        delete :destroy, id: "1"
+        expect(assigns(:piece)).to eq(@piece)
+      end
+
+      it "renders a flash" do
+        delete :destroy, id: "1"
+        expect(flash[:alert]).to eq("Your piece was not deleted")
+      end
+    end
+  end
 
 end
