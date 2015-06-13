@@ -2,9 +2,9 @@
 
 <%= form_for @piece do |f| %>
 
-<div class="field" onchange="this.form.submit()">
+<div class="field">
   <%= f.label :image %>
-  <%= f.file_field :image %>
+  <%= f.file_field :image, onchange: "this.form.submit()"%>
 </div>
 
 <% end %>

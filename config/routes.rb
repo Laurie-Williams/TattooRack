@@ -6,7 +6,8 @@ Rails.application.routes.draw do
              #Overide Devise controller with customised users/registrations controller
              :controllers => { :registrations => "users/registrations" }
   resources :users, only: [:index, :edit, :update, :show]
-  resources :pieces, only: [:new]
+  resources :pieces, only: [:index, :new, :create]
+
   root "users#index"
 
   # The priority is based upon order of creation: first created -> highest priority.
