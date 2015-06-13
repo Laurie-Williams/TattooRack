@@ -6,7 +6,7 @@ Rails.application.routes.draw do
              #Overide Devise controller with customised users/registrations controller
              :controllers => { :registrations => "users/registrations" }
   resources :users, only: [:index, :edit, :update, :show]
-  resources :pieces, only: [:index, :new, :create]
+  resources :pieces, only: [:index, :new, :create, :edit]
 
   root "users#index"
 

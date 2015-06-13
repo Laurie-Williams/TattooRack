@@ -4,6 +4,8 @@ RSpec.describe UsersController, type: :controller do
 
   describe "GET #index" do
     it "returns http success" do
+      users = double("users")
+      allow(User).to receive(:all).and_return(users)
       get :index
       expect(response).to have_http_status(:success)
     end
