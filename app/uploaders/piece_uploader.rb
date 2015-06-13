@@ -25,7 +25,6 @@ class PieceUploader < CarrierWave::Uploader::Base
       "#{Rails.root}/spec/support/uploads/tmp"
     else
       super
-      # CarrierWave::Uploader::Base.cache_dir
     end
   end
 

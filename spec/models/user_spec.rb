@@ -18,4 +18,12 @@ RSpec.describe User, type: :model do
     specify { expect(subject).to validate_presence_of(:password)}
 
   end
+
+  it "sets default piece title" do
+    @piece = Piece.new
+    @uploader = double "uploader", filename: "/uploads/tmp/1434192355-29662-5162/This-is_a_test-IMAGE.png"
+    allow(@piece).to receive(:image).and_return(@uploader)
+    @piece.check_and_set_title
+    expect(@piece.title).to eq("This Is A Test Image")
+  end
 end

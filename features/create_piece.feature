@@ -1,3 +1,4 @@
+@javascript
 Feature: Creat Piece
 
   As a logged in user
@@ -9,6 +10,7 @@ Feature: Creat Piece
     When I visit the Home page
     And I follow "Create Peice"
     And I attach a "Piece" image
+    And show me the page
     And I fill in the Edit Piece form correctly
     And I press "Publish"
     And I visit the Piece page
