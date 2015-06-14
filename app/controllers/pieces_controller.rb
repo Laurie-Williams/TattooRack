@@ -25,7 +25,7 @@ class PiecesController < ApplicationController
           flash.now[:alert] = "your piece has failed to be created"
           render new_piece_path
         end
-        format.json { render json: @micropost.errors, status: :unprocessable_entity }
+        format.json { render json: @piece.errors, status: :unprocessable_entity }
       end
     end
   end
