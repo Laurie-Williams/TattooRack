@@ -114,7 +114,6 @@ And /^(?:|I )attach (?:|an|a) "([^"]*)" image/ do |field|
 end
 
 And /^I drop a file into the drop area/ do
-
   def drop_files files, drop_area_id
     js_script = "fileList = Array();"
     files.count.times do |i|
@@ -124,14 +123,15 @@ And /^I drop a file into the drop area/ do
       attach_file("seleniumUpload#{i}", files[i])
       # Build up the fake js event
       js_script = "#{js_script} fileList.push(seleniumUpload#{i}.get(0).files[0]);"
+      save_and_open_page
     end
 
     # Trigger the fake drop event
     page.execute_script("#{js_script} e = $.Event('drop'); e.originalEvent = {dataTransfer : { files : fileList } }; $('##{drop_area_id}').trigger(e);")
   end
 
-  files = [ Rails.root + 'app/assets/images/test.png']
-  drop_files files, 'fileDropArea'
+  files = [ File.expand_path('app/assets/images/test.png')]
+  drop_files files, 'file_drop_area'
 end
 
 And(/^I fill in the Edit Piece form correctly$/) do

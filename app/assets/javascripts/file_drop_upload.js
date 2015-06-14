@@ -24,7 +24,7 @@ var fileDropper = {
         file = file[0];
         //Get CSRF Token
         var csrf_token = $('meta[name="csrf-token"]');
-        csrf_token = csrf_token[0].content;
+        if (csrf_token.length > 0) {csrf_token = csrf_token[0].content;}
         //Set Form Data
         var requestData = new FormData();
         requestData.append("piece[image]", file);

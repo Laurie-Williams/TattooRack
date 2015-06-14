@@ -10,6 +10,7 @@ Feature: Creat Piece
     When I visit the Home page
     And I follow "Create Piece"
     And I drop a file into the drop area
+    And show me the page
     And I fill in the Edit Piece form correctly
     And I press "Publish"
     And I visit the Piece page
