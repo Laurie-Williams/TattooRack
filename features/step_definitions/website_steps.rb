@@ -114,12 +114,24 @@ And /^(?:|I )attach (?:|an|a) "([^"]*)" image/ do |field|
 end
 
 And /^I drop a file into the drop area/ do
-  page.execute_script("seleniumUpload = window.$('<input/>').attr({id: 'seleniumUpload', type:'file'}).appendTo('body');")
 
-  attach_file('seleniumUpload', File.expand_path("app/assets/images/test.png"))
+  def drop_files files, drop_area_id
+    js_script = "fileList = Array();"
+    files.count.times do |i|
+      # Generate a fake input selector
+      page.execute_script("if ($('#seleniumUpload#{i}').length == 0) { seleniumUpload#{i} = window.$('<input/>').attr({id: 'seleniumUpload#{i}', type:'file'}).appendTo('body'); }")
+      # Attach file to the fake input selector through Capybara
+      attach_file("seleniumUpload#{i}", files[i])
+      # Build up the fake js event
+      js_script = "#{js_script} fileList.push(seleniumUpload#{i}.get(0).files[0]);"
+    end
 
-  # Trigger the drop event
-  page.execute_script("e = $.Event('drop'); e.originalEvent = {dataTransfer : { files : seleniumUpload.get(0).files } }; $('#file_drop_area').trigger(e);")
+    # Trigger the fake drop event
+    page.execute_script("#{js_script} e = $.Event('drop'); e.originalEvent = {dataTransfer : { files : fileList } }; $('##{drop_area_id}').trigger(e);")
+  end
+
+  files = [ Rails.root + 'app/assets/images/test.png']
+  drop_files files, 'fileDropArea'
 end
 
 And(/^I fill in the Edit Piece form correctly$/) do
