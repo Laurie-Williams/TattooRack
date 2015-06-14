@@ -16,11 +16,17 @@ class PiecesController < ApplicationController
   def create
     @piece = Piece.new(piece_params)
     @piece.check_and_set_title
-    if @piece.save
-      redirect_to edit_piece_path @piece
-    else
-      flash.now[:alert] = "your piece has failed to be created"
-      render new_piece_path
+    respond_to do |format|
+      if @piece.save
+        format.html {redirect_to edit_piece_path @piece}
+        format.json {render json: @piece, status: :created}
+      else
+        format.html do
+          flash.now[:alert] = "your piece has failed to be created"
+          render new_piece_path
+        end
+        format.json { render json: @micropost.errors, status: :unprocessable_entity }
+      end
     end
   end
 

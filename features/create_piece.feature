@@ -9,7 +9,7 @@ Feature: Creat Piece
     Given I am a logged in user
     When I visit the Home page
     And I follow "Create Piece"
-    And I attach a "Piece" image
+    And I drop a file into the drop area
     And I fill in the Edit Piece form correctly
     And I press "Publish"
     And I visit the Piece page

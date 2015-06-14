@@ -112,6 +112,12 @@ RSpec.describe PiecesController, type: :controller do
         post :create, piece: {image: "Test Image"}
         expect(assigns(:piece)).to eq(@piece)
       end
+
+      it "returns correct .json response" do
+        @piece = double("piece", save: true, check_and_set_title: nil)
+        post :create, piece: {image: "Test Image"}, format: :json
+        expect(response.body).to eq(@piece.to_json)
+      end
     end
 
     context "Fail to Create Piece" do
@@ -136,6 +142,7 @@ RSpec.describe PiecesController, type: :controller do
       end
 
     end
+
   end
 
   describe "POST #update" do

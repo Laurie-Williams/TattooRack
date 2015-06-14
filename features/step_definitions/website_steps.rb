@@ -113,6 +113,15 @@ And /^(?:|I )attach (?:|an|a) "([^"]*)" image/ do |field|
   attach_file(field, File.expand_path("app/assets/images/test.png"))
 end
 
+And /^I drop a file into the drop area/ do
+  page.execute_script("seleniumUpload = window.$('<input/>').attr({id: 'seleniumUpload', type:'file'}).appendTo('body');")
+
+  attach_file('seleniumUpload', File.expand_path("app/assets/images/test.png"))
+
+  # Trigger the drop event
+  page.execute_script("e = $.Event('drop'); e.originalEvent = {dataTransfer : { files : seleniumUpload.get(0).files } }; $('#file_drop_area').trigger(e);")
+end
+
 And(/^I fill in the Edit Piece form correctly$/) do
   fill_in("Title", with: "My Piece")
   fill_in("Description", with: "This is my test piece...")
