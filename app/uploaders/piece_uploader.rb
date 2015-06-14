@@ -22,7 +22,7 @@ class PieceUploader < CarrierWave::Uploader::Base
 
   def cache_dir
     if Rails.env.test? || Rails.env.cucumber?
-      "#uploads/test/tmp"
+      "uploads/test/tmp"
     else
       super
     end

@@ -31,14 +31,6 @@ var fileDropper = {
         requestData.append("authenticity_token", csrf_token);
 
         //Send Request
-
-        //var xhr = new XMLHttpRequest();
-        //xhr.open('post', '/pieces');
-        //xhr.send(requestData);
-        //xhr.onload = function(){
-        //
-        //}
-
         $.ajax({
             processData: false,
             contentType: false,
