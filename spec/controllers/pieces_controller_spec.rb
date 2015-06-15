@@ -3,6 +3,29 @@ require 'rails_helper'
 
 RSpec.describe PiecesController, type: :controller do
 
+  describe "GET #index" do
+
+    before :each do
+      @pieces = double("pieces")
+      allow(Piece).to receive(:all).and_return(@pieces)
+    end
+
+    it "returns http success" do
+      get :index
+      expect(response).to have_http_status(:success)
+    end
+
+    it "calls .all on User" do
+      expect(Piece).to receive(:all).and_return(@pieces)
+      get :index
+    end
+
+    it "assigns @users variable" do
+      get :index
+      expect(assigns(:pieces)).to eq(@pieces)
+    end
+  end
+
   describe "GET #show" do
 
     context "Piece is published" do

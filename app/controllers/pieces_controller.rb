@@ -1,7 +1,11 @@
 class PiecesController < ApplicationController
-  before_action :authenticate_user, except:[:show]
+  before_action :authenticate_user, except:[:index, :show]
   before_action :find_piece, only: [:show, :edit, :update, :destroy]
-  before_action :authorize_user, except: [:new, :show, :create]
+  before_action :authorize_user, except: [:index, :new, :show, :create]
+
+  def index
+    @pieces = Piece.all
+  end
 
   def show
     unless @piece.published?

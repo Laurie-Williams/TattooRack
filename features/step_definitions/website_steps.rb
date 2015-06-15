@@ -183,6 +183,10 @@ And(/^I can see correct Username on the page$/) do
   within("#main"){ expect(page).to have_content("John")}
 end
 
+And(/^I can see correct Username in the nav$/) do
+  within("#nav"){ expect(page).to have_content("John")}
+end
+
 Then(/^I can see both Usernames on the page$/) do
   within("#main"){ expect(page).to have_content("John")}
   within("#main"){ expect(page).to have_content("Jane")}

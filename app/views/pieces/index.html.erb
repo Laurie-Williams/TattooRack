@@ -1,0 +1,6 @@
+<h1>Pieces:</h1>
+<% @pieces.each do |piece| %>
+  <%= image_tag piece.image_url %>
+  <p><%= piece.title %></p>
+  <p><%= link_to "Delete", piece_path(piece), method: :delete %></p>
+<% end %>

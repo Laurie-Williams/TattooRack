@@ -13,7 +13,7 @@ Feature: User Sign In
     And I press "Sign In"
     Then I am redirected to the Home page
     And I can see a Notice Flash
-    And I can see correct Username on the page
+    And I can see correct Username in the nav
 
   Scenario: Sad Path - Unsuccessful Sign In - Invalid Data
     When I visit the Sign In page
