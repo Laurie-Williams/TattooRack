@@ -123,7 +123,6 @@ And /^I drop a file into the drop area/ do
       attach_file("seleniumUpload#{i}", files[i])
       # Build up the fake js event
       js_script = "#{js_script} fileList.push(seleniumUpload#{i}.get(0).files[0]);"
-      save_and_open_page
     end
 
     # Trigger the fake drop event

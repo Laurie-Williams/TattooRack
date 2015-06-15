@@ -3,6 +3,8 @@ class Piece < ActiveRecord::Base
   validates :description, length: {maximum: 300}
   validates :image, presence: true
 
+  belongs_to :user
+
   mount_uploader :image, PieceUploader
 
   def check_and_set_title
@@ -11,6 +13,7 @@ class Piece < ActiveRecord::Base
     end
   end
 
+  private
 
   def image_exists?
     uploader = self.image

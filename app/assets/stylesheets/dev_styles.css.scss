@@ -1,10 +1,13 @@
 #file_drop_area{
   border: 2px dashed lightgrey;
   color: lightgrey;
-  height: 400px;
-  width: 400px;
-  line-height: 400px;
+  height: 200px;
+  width: 200px;
+  line-height: 200px;
   text-align: center;
+  p{
+    margin: 0;
+  }
 }
 
 #file_drop_area.drag_over{

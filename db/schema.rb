@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150613175305) do
+ActiveRecord::Schema.define(version: 20150615082824) do
 
   create_table "pieces", force: :cascade do |t|
     t.string   "title"
@@ -20,7 +20,10 @@ ActiveRecord::Schema.define(version: 20150613175305) do
     t.datetime "created_at",                  null: false
     t.datetime "updated_at",                  null: false
     t.boolean  "published",   default: false
+    t.integer  "user_id"
   end
+
+  add_index "pieces", ["user_id"], name: "index_pieces_on_user_id"
 
   create_table "users", force: :cascade do |t|
     t.string   "email",                  default: "", null: false

@@ -88,8 +88,11 @@ RSpec.describe PiecesController, type: :controller do
 
     context "Successfully Create Piece" do
       before :each do
-        @piece = double("piece", save: true, check_and_set_title: nil)
-        allow(Piece).to receive(:new).and_return(@piece)
+        @piece = double("piece", save: true, check_and_set_title: nil, user: @user)
+        @pieces = double("users", build: @piece)
+        @user = double("user", pieces: @pieces)
+
+        allow(subject).to receive(:current_user).and_return(@user)
       end
 
       it "returns http redirect" do
@@ -97,8 +100,8 @@ RSpec.describe PiecesController, type: :controller do
         expect(response).to have_http_status :redirect
       end
 
-      it "calls .new on Piece" do
-        expect(Piece).to receive(:new).and_return(@piece)
+      it "calls .build on @pieces" do
+        expect(@pieces).to receive(:build)
         post :create, piece: {image: "Test Image"}
       end
 
@@ -122,8 +125,12 @@ RSpec.describe PiecesController, type: :controller do
 
     context "Fail to Create Piece" do
       before :each do
-        @piece = double("piece", save: false, check_and_set_title: nil)
-        allow(Piece).to receive(:new).and_return(@piece)
+        @piece = double("piece", save: false, check_and_set_title: nil, user: @user)
+        @pieces = double("users", build: @piece)
+        @user = double("user", pieces: @pieces)
+
+        allow(subject).to receive(:authorize_user).and_return(nil)
+        allow(subject).to receive(:current_user).and_return(@user)
       end
 
       it "returns http redirect" do
@@ -131,8 +138,8 @@ RSpec.describe PiecesController, type: :controller do
         expect(response).to render_template :new
       end
 
-      it "calls .new on Piece" do
-        expect(Piece).to receive(:new).and_return(@piece)
+      it "calls .build on @pieces" do
+        expect(@pieces).to receive(:build)
         post :create, piece: {image: "Test Image"}
       end
 
@@ -153,6 +160,7 @@ RSpec.describe PiecesController, type: :controller do
         @piece = double("piece", update_attributes: true, id: "1")
         allow(Piece).to receive(:find).with("1").and_return(@piece)
 
+        allow(subject).to receive(:authorize_user).and_return(nil)
       end
 
       it "returns http success" do
@@ -188,6 +196,8 @@ RSpec.describe PiecesController, type: :controller do
       before :each do
         @piece = double("piece", update_attributes: false, id: 1)
         allow(Piece).to receive(:find).with("1").and_return(@piece)
+
+        allow(subject).to receive(:authorize_user).and_return(nil)
       end
 
       it "returns http success" do
@@ -209,6 +219,8 @@ RSpec.describe PiecesController, type: :controller do
       before :each do
         @piece = double("piece", destroy: true)
         allow(Piece).to receive(:find).with("1").and_return(@piece)
+
+        allow(subject).to receive(:authorize_user).and_return(nil)
       end
 
       it "finds the piece" do
@@ -238,6 +250,8 @@ RSpec.describe PiecesController, type: :controller do
       before :each do
         @piece = double("piece", destroy: false)
         allow(Piece).to receive(:find).with("1").and_return(@piece)
+
+        allow(subject).to receive(:authorize_user).and_return(nil)
       end
 
       it "finds the piece" do

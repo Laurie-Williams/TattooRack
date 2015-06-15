@@ -26,4 +26,8 @@ RSpec.describe User, type: :model do
     @piece.check_and_set_title
     expect(@piece.title).to eq("This Is A Test Image")
   end
+
+  describe "Associations" do
+    specify{ expect(subject).to have_many(:pieces) }
+  end
 end

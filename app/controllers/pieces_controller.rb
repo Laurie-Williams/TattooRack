@@ -1,6 +1,7 @@
 class PiecesController < ApplicationController
 
   before_action :find_piece, only: [:show, :edit, :update, :destroy]
+  before_action :authorize_user, except: [:new, :show, :create]
 
   def show
     unless @piece.published?
@@ -14,7 +15,7 @@ class PiecesController < ApplicationController
   end
 
   def create
-    @piece = Piece.new(piece_params)
+    @piece = current_user.pieces.build(piece_params)
     @piece.check_and_set_title
     respond_to do |format|
       if @piece.save
@@ -61,6 +62,16 @@ class PiecesController < ApplicationController
   rescue ActiveRecord::RecordNotFound
     flash[:alert] = "Piece could not be found"
     redirect_to root_path
+  end
+
+  def authorize_user
+    if current_user == @piece.user
+      # continue
+    else
+      # Prompt for Sign In
+      redirect_to new_user_session_path
+      flash[:alert] = "You do not have permission to view this page"
+    end
   end
 
   def piece_params
