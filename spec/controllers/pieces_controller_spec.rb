@@ -196,7 +196,7 @@ RSpec.describe PiecesController, type: :controller do
     context "successfully update bio attribute" do
 
       before :each do
-        @user = double("user")
+        @user = double("user", admin?: false)
         @piece = double("piece", update_attributes: true, id: "1", user: @user)
 
         allow(subject).to receive(:current_user).and_return(@user)
@@ -219,7 +219,6 @@ RSpec.describe PiecesController, type: :controller do
         expect(assigns(:piece)).to eq(@piece)
       end
 
-
       it "calls update attributes on @piece" do
         expect(@piece).to receive(:update_attributes).and_return(true)
         post :update, id: 1, piece: {title: "My Piece Title"}
@@ -230,12 +229,20 @@ RSpec.describe PiecesController, type: :controller do
         expect(flash[:notice]).to eq("Your piece has been updated")
       end
 
+      it "does not redirect for Admin user" do
+        @user2 = double("user", admin?: true)
+        allow(subject).to receive(:current_user).and_return(@user2)
+
+        put :update, id: "1", piece: {title: "My Piece Title"}
+        expect(response).to redirect_to(piece_path(@piece))
+      end
+
     end
 
     context "unsuccessful update" do
 
       before :each do
-        @user = double("user", pieces: @pieces)
+        @user = double("user", admin?: false, pieces: @pieces)
         @piece = double("piece", update_attributes: false, id: "1", user: @user)
 
 
@@ -255,12 +262,13 @@ RSpec.describe PiecesController, type: :controller do
       end
 
       it "redirects Unauthorized users" do
-        @user2 = double("user")
+        @user2 = double("user", admin?: false)
         allow(subject).to receive(:current_user).and_return(@user2)
 
         put :update, id: "1"
         expect(response).to have_http_status(:redirect)
       end
+
     end
 
     it "redirects Signed Out users" do
@@ -275,11 +283,11 @@ RSpec.describe PiecesController, type: :controller do
     context "Piece is successfully destroyed" do
 
       before :each do
-        @piece = double("piece", destroy: true)
-        allow(Piece).to receive(:find).with("1").and_return(@piece)
+        @user = double("user", admin?: false)
+        @piece = double("piece", destroy: true, id: "1", user: @user)
 
-        allow(subject).to receive(:authorize_user).and_return(nil)
-        allow(subject).to receive(:authenticate_user).and_return(nil)
+        allow(subject).to receive(:current_user).and_return(@user)
+        allow(Piece).to receive(:find).with("1").and_return(@piece)
       end
 
       it "finds the piece" do
@@ -302,14 +310,21 @@ RSpec.describe PiecesController, type: :controller do
         expect(response).to have_http_status(:redirect)
         expect(flash[:notice]).to eq("Your piece has been deleted")
       end
+
+      it "does not redirect for Admin user" do
+        @user2 = double("user", admin?: true)
+        allow(subject).to receive(:current_user).and_return(@user2)
+
+        delete :destroy, id: "1"
+        expect(response).to redirect_to(pieces_path)
+      end
     end
 
     context "Piece is not destroyed" do
 
       before :each do
-        @user = double("user")
+        @user = double("user", admin?: false)
         @piece = double("piece", destroy: false, id: "1", user: @user)
-
 
         allow(subject).to receive(:current_user).and_return(@user)
         allow(Piece).to receive(:find).with("1").and_return(@piece)
@@ -331,7 +346,7 @@ RSpec.describe PiecesController, type: :controller do
       end
 
       it "redirects Unauthorized users" do
-        @user2 = double("user")
+        @user2 = double("user", admin?: false)
         allow(subject).to receive(:current_user).and_return(@user2)
 
         delete :destroy, id: "1"

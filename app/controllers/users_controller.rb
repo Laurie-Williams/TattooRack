@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
   before_action :authenticate_user, except: [:index, :show]
-  before_action :find_user, only: [:edit, :update, :show]
+  before_action :find_user, only: [:edit, :update, :show, :destroy]
   before_action :authorize_user, except: [:index, :show]
 
   def index
@@ -24,6 +24,16 @@ class UsersController < ApplicationController
 
   end
 
+  def destroy
+    if @user.destroy
+      flash[:notice] = "The user was deleted"
+      redirect_to users_path
+    else
+      flash[:alert] = "The user was not deleted"
+      redirect_to user_path @user
+    end
+  end
+
   private
 
   def user_params
@@ -42,11 +52,11 @@ class UsersController < ApplicationController
   end
 
   def authorize_user
-    if current_user == @user
+    if current_user.admin? || current_user == @user
       # continue
     else
       # Prompt for Sign In
-      redirect_to new_user_session_path
+      redirect_to users_path
       flash[:alert] = "You do not have permission to view this page"
     end
   end

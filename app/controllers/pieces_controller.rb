@@ -41,7 +41,7 @@ class PiecesController < ApplicationController
   def update
     if @piece.update_attributes(piece_params)
       flash[:notice] = "Your piece has been updated"
-      redirect_to edit_piece_path @piece
+      redirect_to piece_path @piece
     else
       flash.now[:alert] = "Your piece was not updated"
       render :edit
@@ -51,7 +51,7 @@ class PiecesController < ApplicationController
   def destroy
     if @piece.destroy
       flash[:notice] = "Your piece has been deleted"
-      redirect_to new_piece_path
+      redirect_to pieces_path
     else
       flash.now[:alert] = "Your piece was not deleted"
       render :edit
@@ -69,12 +69,12 @@ class PiecesController < ApplicationController
   end
 
   def authorize_user
-    if current_user == @piece.user
+    if current_user.admin? || (current_user == @piece.user)
       # continue
     else
       # Prompt for Sign In
-      redirect_to new_user_session_path
-      flash[:alert] = "You do not have permission to view this page"
+      redirect_to root_path
+      flash[:alert] = "Oops this piece doesn't belong to you"
     end
   end
 
