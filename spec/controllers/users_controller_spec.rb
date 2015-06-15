@@ -25,7 +25,7 @@ RSpec.describe UsersController, type: :controller do
 
   end
 
-  describe "POST #update" do
+  describe "PUT #update" do
 
     context "successfully update bio attribute" do
 
@@ -81,64 +81,61 @@ RSpec.describe UsersController, type: :controller do
         post :update, id: 1, user: {bio: "I am an artist"}
         expect(subject).to render_template(:edit)
       end
+
+      it "redirects Unauthorized users" do
+        @user2 = double("user")
+        allow(subject).to receive(:current_user).and_return(@user2)
+
+        put :update, id: "1"
+        expect(response).to have_http_status(:redirect)
+      end
     end
 
-    it "correctly blocks unauthorized users" do
-
-        @current_user = double("user", id: 2)
-        @owner_of_page = double("user", id: 1)
-        allow(controller).to receive(:current_user).and_return(@current_user)
-        allow(User).to receive(:find).with("1").and_return(@owner_of_page)
-
-        post :update, id: 1, user: {bio: "I am an artist"}
-        expect(response).to have_http_status(:redirect)
-        expect(flash[:alert]).to eq("You do not have permission to view this page")
+    it "redirects Signed Out users" do
+      allow(subject).to receive(:current_user).and_return(nil)
+      put :update, id: "1"
+      expect(response).to have_http_status(:redirect)
     end
   end
 
   describe "GET #edit" do
 
-    context "authorized user signed in" do
 
-      before :each do
-        @user = double("user")
-        allow(controller).to receive(:current_user).and_return(@user)
-        allow(User).to receive(:find).with("1").and_return(@user)
-      end
-
-      it "returns http success" do
-        get :edit, id: 1
-        expect(response).to have_http_status(:success)
-      end
-
-      it "calls .find on User" do
-        expect(User).to receive(:find).with("1").and_return(@user)
-        get :edit, id: 1
-      end
-
-      it "assigns @user variable" do
-        get :edit, id: 1
-        expect(assigns(:user)).to eq(@user)
-      end
-
+    before :each do
+      @user = double("user")
+      allow(controller).to receive(:current_user).and_return(@user)
+      allow(User).to receive(:find).with("1").and_return(@user)
     end
 
-    context "unauthorized user signed in" do
-
-      it "correctly blocks unauthorized users" do
-
-        @current_user = double("user", id: 2)
-        @owner_of_page = double("user", id: 1)
-        allow(controller).to receive(:current_user).and_return(@current_user)
-        allow(User).to receive(:find).with("1").and_return(@owner_of_page)
-
-        post :update, id: 1, user: {bio: "I am an artist"}
-        expect(response).to have_http_status(:redirect)
-        expect(flash[:alert]).to eq("You do not have permission to view this page")
-      end
-
+    it "returns http success" do
+      get :edit, id: 1
+      expect(response).to have_http_status(:success)
     end
 
+    it "calls .find on User" do
+      expect(User).to receive(:find).with("1").and_return(@user)
+      get :edit, id: 1
+    end
+
+    it "assigns @user variable" do
+      get :edit, id: 1
+      expect(assigns(:user)).to eq(@user)
+    end
+
+    it "redirects Unauthorized users" do
+      @user2 = double("user")
+      allow(subject).to receive(:current_user).and_return(@user2)
+
+      put :edit, id: "1"
+      expect(response).to have_http_status(:redirect)
+    end
+
+
+    it "redirects Signed Out users" do
+      allow(subject).to receive(:current_user).and_return(nil)
+      get :edit, id: "1"
+      expect(response).to have_http_status(:redirect)
+    end
 
   end
 
@@ -161,6 +158,8 @@ RSpec.describe UsersController, type: :controller do
     it "assigns @users variable" do
       expect(assigns(:user)).to eq(@user)
     end
+
+
 
   end
 

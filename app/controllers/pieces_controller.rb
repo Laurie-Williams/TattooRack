@@ -1,5 +1,5 @@
 class PiecesController < ApplicationController
-
+  before_action :authenticate_user, except:[:show]
   before_action :find_piece, only: [:show, :edit, :update, :destroy]
   before_action :authorize_user, except: [:new, :show, :create]
 
@@ -71,6 +71,13 @@ class PiecesController < ApplicationController
       # Prompt for Sign In
       redirect_to new_user_session_path
       flash[:alert] = "You do not have permission to view this page"
+    end
+  end
+
+  def authenticate_user
+    if current_user.nil?
+      flash[:alert] = "You need to sign in to view this"
+      redirect_to new_user_session_path
     end
   end
 

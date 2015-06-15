@@ -1,5 +1,6 @@
 require 'rails_helper'
 
+
 RSpec.describe PiecesController, type: :controller do
 
   describe "GET #show" do
@@ -64,8 +65,11 @@ RSpec.describe PiecesController, type: :controller do
 
   describe "GET #new" do
     before :each do
+      @user = double("user")
       @piece = double("piece")
+
       allow(Piece).to receive(:new).and_return(@piece)
+      allow(subject).to receive(:current_user).and_return(@user)
     end
 
     it "returns http success" do
@@ -82,6 +86,13 @@ RSpec.describe PiecesController, type: :controller do
       get :new
       expect(assigns(:piece)).to eq(@piece)
     end
+
+    it "redirects Signed Out users" do
+      allow(subject).to receive(:current_user).and_return(nil)
+      get :new
+      expect(response).to have_http_status(:redirect)
+    end
+
   end
 
   describe "POST #create" do
@@ -129,7 +140,6 @@ RSpec.describe PiecesController, type: :controller do
         @pieces = double("users", build: @piece)
         @user = double("user", pieces: @pieces)
 
-        allow(subject).to receive(:authorize_user).and_return(nil)
         allow(subject).to receive(:current_user).and_return(@user)
       end
 
@@ -150,17 +160,25 @@ RSpec.describe PiecesController, type: :controller do
 
     end
 
+    it "redirects Signed Out users" do
+      allow(subject).to receive(:current_user).and_return(nil)
+      post :create
+      expect(response).to have_http_status(:redirect)
+    end
+
   end
 
-  describe "POST #update" do
+  describe "PUT #update" do
 
     context "successfully update bio attribute" do
 
       before :each do
-        @piece = double("piece", update_attributes: true, id: "1")
+        @user = double("user")
+        @piece = double("piece", update_attributes: true, id: "1", user: @user)
+
+        allow(subject).to receive(:current_user).and_return(@user)
         allow(Piece).to receive(:find).with("1").and_return(@piece)
 
-        allow(subject).to receive(:authorize_user).and_return(nil)
       end
 
       it "returns http success" do
@@ -179,7 +197,7 @@ RSpec.describe PiecesController, type: :controller do
       end
 
 
-      it "calls update attributes on @user" do
+      it "calls update attributes on @piece" do
         expect(@piece).to receive(:update_attributes).and_return(true)
         post :update, id: 1, piece: {title: "My Piece Title"}
       end
@@ -194,10 +212,13 @@ RSpec.describe PiecesController, type: :controller do
     context "unsuccessful update" do
 
       before :each do
-        @piece = double("piece", update_attributes: false, id: 1)
+        @user = double("user", pieces: @pieces)
+        @piece = double("piece", update_attributes: false, id: "1", user: @user)
+
+
+        allow(subject).to receive(:current_user).and_return(@user)
         allow(Piece).to receive(:find).with("1").and_return(@piece)
 
-        allow(subject).to receive(:authorize_user).and_return(nil)
       end
 
       it "returns http success" do
@@ -209,6 +230,20 @@ RSpec.describe PiecesController, type: :controller do
         post :update, id: 1, piece: {title: "My Piece Title"}
         expect(subject).to render_template(:edit)
       end
+
+      it "redirects Unauthorized users" do
+        @user2 = double("user")
+        allow(subject).to receive(:current_user).and_return(@user2)
+
+        put :update, id: "1"
+        expect(response).to have_http_status(:redirect)
+      end
+    end
+
+    it "redirects Signed Out users" do
+      allow(subject).to receive(:current_user).and_return(nil)
+      put :update, id: "1"
+      expect(response).to have_http_status(:redirect)
     end
   end
 
@@ -221,6 +256,7 @@ RSpec.describe PiecesController, type: :controller do
         allow(Piece).to receive(:find).with("1").and_return(@piece)
 
         allow(subject).to receive(:authorize_user).and_return(nil)
+        allow(subject).to receive(:authenticate_user).and_return(nil)
       end
 
       it "finds the piece" do
@@ -248,10 +284,12 @@ RSpec.describe PiecesController, type: :controller do
     context "Piece is not destroyed" do
 
       before :each do
-        @piece = double("piece", destroy: false)
-        allow(Piece).to receive(:find).with("1").and_return(@piece)
+        @user = double("user")
+        @piece = double("piece", destroy: false, id: "1", user: @user)
 
-        allow(subject).to receive(:authorize_user).and_return(nil)
+
+        allow(subject).to receive(:current_user).and_return(@user)
+        allow(Piece).to receive(:find).with("1").and_return(@piece)
       end
 
       it "finds the piece" do
@@ -268,6 +306,20 @@ RSpec.describe PiecesController, type: :controller do
         delete :destroy, id: "1"
         expect(flash[:alert]).to eq("Your piece was not deleted")
       end
+
+      it "redirects Unauthorized users" do
+        @user2 = double("user")
+        allow(subject).to receive(:current_user).and_return(@user2)
+
+        delete :destroy, id: "1"
+        expect(response).to have_http_status(:redirect)
+      end
+    end
+
+    it "redirects Signed Out users" do
+      allow(subject).to receive(:current_user).and_return(nil)
+      delete :destroy, id: "1"
+      expect(response).to have_http_status(:redirect)
     end
   end
 

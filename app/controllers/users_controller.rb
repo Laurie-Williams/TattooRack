@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-
+  before_action :authenticate_user, except: [:index, :show]
   before_action :find_user, only: [:edit, :update, :show]
   before_action :authorize_user, except: [:index, :show]
 
@@ -32,6 +32,13 @@ class UsersController < ApplicationController
 
   def find_user
     @user = User.find(params[:id])
+  end
+
+  def authenticate_user
+    if current_user.nil?
+      flash[:alert] = "You need to sign in to view this"
+      redirect_to new_user_session_path
+    end
   end
 
   def authorize_user
