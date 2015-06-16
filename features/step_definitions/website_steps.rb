@@ -133,6 +133,13 @@ And /^I drop a file into the drop area/ do
   drop_files files, 'file_drop_area'
 end
 
+And(/^I select a crop area$/) do
+  step "I fill in \"crop_x\" with \"100\""
+  step "I fill in \"crop_y\" with \"300\""
+  step "I fill in \"crop_width\" with \"200\""
+  step "I fill in \"crop_height\" with \"200\""
+end
+
 And(/^I fill in the Edit Piece form correctly$/) do
   fill_in("Title", with: "My Piece")
   fill_in("Description", with: "This is my test piece...")
