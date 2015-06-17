@@ -53,6 +53,7 @@ group :test do
   gem 'show_me_the_cookies', '~> 2.6.0' # Manipulating cookies for testing sessions with cucumber
   # gem 'selenium-webdriver', '~> 2.46.2'
   gem 'capybara-webkit', '~> 1.5.2' #Headless browser for javascript enabled tests
+  gem 'factory_girl_rails', '~> 4.5.0'
 end
 
 group :development, :test do

@@ -4,6 +4,9 @@ class Piece < ActiveRecord::Base
   validates :description, length: {maximum: 300}
   validates :image, presence: true
 
+  # scopes
+  scope :all_by_created_at, -> {all.order(:created_at).reverse_order}
+
   attr_accessor :crop_x, :crop_y, :crop_height, :crop_width
   belongs_to :user
   mount_uploader :image, PieceUploader

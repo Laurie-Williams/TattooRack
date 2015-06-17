@@ -5,7 +5,7 @@ class PiecesController < ApplicationController
 
   # GET /pieces
   def index
-    @pieces = Piece.all.order(:created_at).reverse_order
+    @pieces = Piece.all_by_created_at
   end
 
   # GET /pieces/:id
