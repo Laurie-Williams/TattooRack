@@ -51,6 +51,7 @@ group :test do
   gem 'email_spec', '~> 1.6.0' # Testing emails with capybara
   gem 'shoulda-matchers', '~> 2.8.0' # Common unit test shortcuts with RSpec
   gem 'show_me_the_cookies', '~> 2.6.0' # Manipulating cookies for testing sessions with cucumber
+  # gem 'selenium-webdriver', '~> 2.46.2'
   gem 'capybara-webkit', '~> 1.5.2' #Headless browser for javascript enabled tests
 end
 

@@ -1,6 +1,8 @@
 Rails.application.routes.draw do
 
   get 'pieces/new'
+  get 'pieces/crop'
+
 
   devise_for :users,
              #Overide Devise controller with customised users/registrations controller

@@ -1,12 +1,14 @@
 class Piece < ActiveRecord::Base
+  # validations
   validates :title, presence: true, length: {minimum: 3, maximum: 128}
   validates :description, length: {maximum: 300}
   validates :image, presence: true
 
+  attr_accessor :crop_x, :crop_y, :crop_height, :crop_width
   belongs_to :user
-
   mount_uploader :image, PieceUploader
 
+  # instance methods
   def check_and_set_title
     if title.nil? && image_exists?
       self.title = pretty_file_name(image_file_name)

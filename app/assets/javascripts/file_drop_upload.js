@@ -1,6 +1,8 @@
 var fileDropper = {
     init: function(){
         var $file_drop_area = $("#file_drop_area");
+        var $file_field = $("input[type='file']");
+        $file_field.on('change', fileDropper.upload);
         $file_drop_area.on('dragover', fileDropper.dragOver);
         $file_drop_area.on('dragleave', fileDropper.dragLeave);
         $file_drop_area.on('drop', fileDropper.drop);
@@ -18,10 +20,14 @@ var fileDropper = {
         $(this).removeClass("drag_over");
         fileDropper.upload(event);
     },
-    setDropFile: function(event){
-        var file = event.originalEvent.dataTransfer.files;
+    setFile: function(event){
+        if(event.type == "change"){
+            var file = event.target.files
+        } else {
+            var file = event.originalEvent.dataTransfer.files;
+        }
         file = file[0];
-        fileDropper.dropFile = file;
+        fileDropper.file = file;
     },
     setCsrfToken: function(){
         var csrf_token = $('meta[name="csrf-token"]');
@@ -49,13 +55,14 @@ var fileDropper = {
         });
     },
     upload: function(event){
-        fileDropper.setDropFile(event);
-        var file = fileDropper.dropFile;
+        fileDropper.setFile(event);
+        var file = fileDropper.file;
         fileDropper.setCsrfToken();
         var csrfToken = fileDropper.csrfToken;
         fileDropper.setFormData(file, csrfToken);
-        var requestData = fileDropper.requestData;
-        fileDropper.sendAjaxRequest(requestData);
+        imageCropper.init();
+
+    //    trigger File Cropper INIT
     }
 };
 

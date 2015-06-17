@@ -135,9 +135,9 @@ end
 
 And(/^I select a crop area$/) do
   step "I fill in \"crop_x\" with \"100\""
-  step "I fill in \"crop_y\" with \"300\""
-  step "I fill in \"crop_width\" with \"200\""
-  step "I fill in \"crop_height\" with \"200\""
+  step "I fill in \"crop_y\" with \"100\""
+  step "I fill in \"crop_width\" with \"100\""
+  step "I fill in \"crop_height\" with \"100\""
 end
 
 And(/^I fill in the Edit Piece form correctly$/) do
@@ -177,6 +177,10 @@ end
 
 Then(/^I am redirected to the Sign In page$/) do
   expect(current_path).to eq(new_user_session_path)
+end
+
+Then(/^I am redirected to the crop page$/) do
+  expect(current_path).to eq(pieces_crop_path)
 end
 
 Then(/^I am redirected back to the User Registration Page$/) do

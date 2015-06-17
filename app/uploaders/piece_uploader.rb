@@ -4,7 +4,7 @@ class PieceUploader < CarrierWave::Uploader::Base
 
   # Include RMagick or MiniMagick support:
   # include CarrierWave::RMagick
-  # include CarrierWave::MiniMagick
+  include CarrierWave::MiniMagick
 
   # Choose what kind of storage to use for this uploader:
   storage :file
@@ -42,6 +42,20 @@ class PieceUploader < CarrierWave::Uploader::Base
   # def scale(width, height)
   #   # do something
   # end
+
+  process :crop
+
+  def crop
+    x = model.crop_x.to_i
+    y = model.crop_y.to_i
+    height = model.crop_height.to_i
+    width = model.crop_width.to_i
+
+    manipulate! do |img|
+      img.crop("#{width}x#{height}+#{x}+#{y}")
+    end
+    resize_to_fit(600, 600)
+  end
 
   # Create different versions of your uploaded files:
   # version :thumb do

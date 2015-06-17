@@ -11,7 +11,7 @@ Feature: Creat Piece
     And I follow "Create Piece"
     And I drop a file into the drop area
     And I select a crop area
-    And I follow "upload"
+    And I press "Upload"
     And I fill in the Edit Piece form correctly
     And I press "Publish"
     And I visit the Piece page
@@ -21,9 +21,9 @@ Feature: Creat Piece
     Given I am a logged in user
     When I visit the Home page
     And I follow "Create Piece"
+    And I drop a file into the drop area
     And I select a crop area
-    And I follow "upload"
-    And I attach a "Piece" image
+    And I press "Upload"
     And I visit the Piece page
     Then I can see an Error Flash
 
@@ -31,9 +31,9 @@ Feature: Creat Piece
     Given I am a logged in user
     When I visit the Home page
     And I follow "Create Piece"
-    And I attach a "Piece" image
+    And I drop a file into the drop area
     And I select a crop area
-    And I follow "upload"
+    And I press "Upload"
     And I follow "Cancel"
     And I visit the Piece page
     Then I can see an Error Flash
