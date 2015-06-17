@@ -8,6 +8,7 @@ RSpec.describe PiecesController, type: :controller do
     before :each do
       @pieces = double("pieces")
       allow(Piece).to receive(:all).and_return(@pieces)
+      allow(@pieces).to receive(:order).and_return(@pieces)
     end
 
     it "returns http success" do
@@ -17,6 +18,11 @@ RSpec.describe PiecesController, type: :controller do
 
     it "calls .all on User" do
       expect(Piece).to receive(:all).and_return(@pieces)
+      get :index
+    end
+
+    it "calls .order on @pieces" do
+      expect(@pieces).to receive(:order).and_return(@pieces)
       get :index
     end
 
