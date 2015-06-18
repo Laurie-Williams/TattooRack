@@ -10,6 +10,8 @@ class PiecesController < ApplicationController
 
   # GET /pieces/:id
   def show
+    @prev_piece = Piece.prev_piece(params[:offset])
+    @next_piece = Piece.next_piece(params[:offset])
     unless @piece.published?
       flash[:alert] = "Piece could not be found"
       redirect_to new_piece_path

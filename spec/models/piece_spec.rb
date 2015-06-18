@@ -13,15 +13,19 @@ RSpec.describe Piece, type: :model do
     specify { expect(subject).to belong_to(:user) }
   end
 
-  describe "Scopes" do
-    it "retreives all pieces ordered by created_at with :all_by_created_at" do
-      piece1 = FactoryGirl.create(:piece)
-      piece2 = FactoryGirl.create(:piece)
-      piece3 = FactoryGirl.create(:piece)
+  describe "next_piece and prev_piece" do
 
-      pieces = Piece.all_by_created_at
-      expect(pieces).to eq([piece3, piece2, piece1])
-
+    it "selects prev and next for piece" do
+      relation = Piece.all_by_created_at.offset(0).limit(3)
+      expect(Piece.prev_piece(1)).to eq(relation[0])
+      expect(Piece.next_piece(1)).to eq(relation[2])
     end
+
+    it "selects next piece and sets prev piece to nil for offset 0" do
+      relation = Piece.all_by_created_at.limit(2)
+      expect(Piece.prev_piece(0)).to eq(nil)
+      expect(Piece.next_piece(0)).to eq(relation[1])
+    end
+
   end
 end

@@ -11,6 +11,15 @@ class Piece < ActiveRecord::Base
   belongs_to :user
   mount_uploader :image, PieceUploader
 
+  # class methods
+  def self.prev_piece(offset)
+    prev_and_next_piece(offset)[0]
+  end
+
+  def self.next_piece(offset)
+    prev_and_next_piece(offset)[2]
+  end
+
   # instance methods
   def check_and_set_title
     if title.nil? && image_exists?
@@ -18,8 +27,21 @@ class Piece < ActiveRecord::Base
     end
   end
 
-  private
 
+private
+
+  # class methods
+  def self.prev_and_next_piece(offset)
+    if offset.to_i == 0 #Only retrieve current and next piece if first in list
+      array ||= Piece.all_by_created_at.limit(2)
+      array.unshift(nil) #Add nil to beginning of array to account for prev being non existent
+    else
+      array ||= Piece.all_by_created_at.offset(offset.to_i - 1).limit(3) #get prev, current and next piece in array
+    end
+    array
+  end
+
+  # instance methods
   def image_exists?
     uploader = self.image
     !uploader.blank?
