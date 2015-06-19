@@ -1,7 +1,7 @@
 var fileDropper = {
     init: function(){
         var $file_drop_area = $("#file_drop_area");
-        var $file_field = $("input[type='file']");
+        var $file_field = $("#piece_image");
         $file_field.on('change', fileDropper.upload);
         $file_drop_area.on('dragover', fileDropper.dragOver);
         $file_drop_area.on('dragleave', fileDropper.dragLeave);

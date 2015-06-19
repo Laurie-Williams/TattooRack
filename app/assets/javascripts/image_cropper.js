@@ -94,6 +94,7 @@ var imageCropper =  {
     upload: function(){
         var $upload_button = $("#upload");
         $upload_button.text("Loading");
+        $upload_button.unbind("click");
         var csrfToken = fileDropper.csrfToken;
         var file = fileDropper.file;
         imageCropper.setRequestData(file, csrfToken);
