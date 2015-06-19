@@ -27,5 +27,13 @@ RSpec.describe Piece, type: :model do
       expect(Piece.next_piece(0)).to eq(relation[1])
     end
 
+    it "returns nil for .prev_piece if offset is nil" do
+      expect(Piece.prev_piece(nil)).to eq(nil)
+    end
+
+    it "returns nil for .next_piece if offset is nil" do
+      expect(Piece.next_piece(nil)).to eq(nil)
+    end
+
   end
 end

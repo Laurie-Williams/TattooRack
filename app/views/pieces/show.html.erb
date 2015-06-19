@@ -1,14 +1,6 @@
-
-
 <%= image_tag @piece.image_url %>
 <h2><%= @piece.title %></h2>
 
-<h2>Previous Piece</h2>
-<% if @prev_piece.present? %>
-<%= image_tag @prev_piece.image_url %>
-<% end %>
-
-<h2>Next Piece</h2>
-<% if @next_piece.present? %>
-  <%= image_tag @next_piece.image_url %>
+<% if params[:offset].present? %>
+  <%= render partial: "more_pieces" %>
 <% end %>

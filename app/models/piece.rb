@@ -13,11 +13,11 @@ class Piece < ActiveRecord::Base
 
   # class methods
   def self.prev_piece(offset)
-    prev_and_next_piece(offset)[0]
+    prev_and_next_piece(offset)[0] if offset.present?
   end
 
   def self.next_piece(offset)
-    prev_and_next_piece(offset)[2]
+    prev_and_next_piece(offset)[2] if offset.present?
   end
 
   # instance methods
