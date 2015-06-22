@@ -14,7 +14,7 @@ Feature: Creat Piece
     And I press "Upload"
     And I fill in the Edit Piece form correctly
     And I press "Publish"
-    And I visit the Piece page
+    And I visit the "1" Piece page
     Then I can see correct Piece Title on the page
 
   Scenario: Upload Picture but dont Publish Piece
@@ -24,7 +24,7 @@ Feature: Creat Piece
     And I drop a file into the drop area
     And I select a crop area
     And I press "Upload"
-    And I visit the Piece page
+    And I visit the "1" Piece page
     Then I can see an Error Flash
 
   Scenario: Upload Picture and cancel
@@ -35,5 +35,5 @@ Feature: Creat Piece
     And I select a crop area
     And I press "Upload"
     And I follow "Cancel"
-    And I visit the Piece page
+    And I visit the "1" Piece page
     Then I can see an Error Flash

@@ -1,13 +1,13 @@
-<h2>Previous Piece</h2>
-<% if @prev_piece.present? %>
-  <%= image_tag @prev_piece.image_url %>
+<h2>Previous</h2>
+<% if prev_piece.present? %>
+  <%= image_tag prev_piece.image_url %>
 <% else %>
   <%= image_tag "start.png" %>
 <% end %>
 
-<h2>Next Piece</h2>
-<% if @next_piece.present? %>
-  <%= image_tag @next_piece.image_url %>
+<h2>Next</h2>
+<% if next_piece.present? %>
+  <%= image_tag next_piece.image_url %>
 <% else %>
   <%= image_tag "end.png" %>
 <% end %>

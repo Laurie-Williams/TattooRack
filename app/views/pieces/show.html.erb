@@ -1,6 +1,18 @@
 <%= image_tag @piece.image_url %>
 <h2><%= @piece.title %></h2>
-
-<% if params[:offset].present? %>
-  <%= render partial: "more_pieces" %>
+<p><%= @piece.offset %></p>
+<% if @piece.offset.present? %>
+  <div id="more_from_list">
+    <h3>More pieces from Popular:</h3>
+    <%= render partial: "more_pieces",
+               locals: {prev_piece: @piece.prev_list_piece,
+                        next_piece: @piece.next_list_piece}%>
+  </div>
 <% end %>
+
+<div id="more_from_user">
+  <h3>More pieces by user:</h3>
+  <%= render partial: "more_pieces",
+             locals: {prev_piece: @piece.prev_user_piece,
+                      next_piece: @piece.next_user_piece}%>
+</div>

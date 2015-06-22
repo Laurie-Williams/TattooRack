@@ -23,7 +23,7 @@ Given(/^two existing registered users$/) do
   @jane.save
 end
 
-Given(/^an existing registred user$/) do
+Given(/^an existing registered user$/) do
   step "I am an existing registered user"
 end
 
@@ -33,6 +33,13 @@ Given(/^I am a logged in user$/) do
   step "I fill in the Sign In form correctly"
   step "I press \"Sign In\""
 end
+
+And(/^three existing pieces$/) do
+  @piece1 = FactoryGirl.create(:piece, user_id: 1)
+  @piece2 = FactoryGirl.create(:piece, user_id: 1)
+  @piece3 = FactoryGirl.create(:piece, user_id: 1)
+end
+
 
 # Visit
 
@@ -64,8 +71,12 @@ When(/^I visit the Edit User page$/) do
   visit(edit_user_path(1))
 end
 
-When(/^I visit the Piece page$/) do
-  visit(piece_path(1))
+When(/^I visit the "([^"]*)" Piece page$/) do |piece_number|
+  visit(piece_path(piece_number.to_i))
+end
+
+When(/^I visit the Pieces page$/) do
+  visit(pieces_path)
 end
 
 # Form
@@ -156,6 +167,10 @@ When /^(?:|I )press "([^"]*)"$/ do |button|
   click_button(button)
 end
 
+When /^(?:|I )follow "([^"]*)" number "([^"]*)"$/ do |link, number|
+  find(:xpath, "(//a[text()='#{link}'])[#{number}]").click
+end
+
 
 # Redirect
 
@@ -234,6 +249,28 @@ And(/^I can see correct Piece Title on the page$/) do
   within("#main"){ expect(page).to have_content("My Piece")}
 end
 
+Then(/^I can see the "(.*?)" piece image in "(.*?)"$/) do |piece_number, prev_next_section|
+  piece = Piece.find(piece_number)
+  within( prev_next_section){ expect(page).to have_xpath("//img[contains(@src, #{piece.image_url})]") }
+end
+
+And(/^I can see the start image in "(.*?)"$/) do |prev_next_section|
+  within(prev_next_section){ expect(page).to have_xpath("//img[contains(@src,'start.png')]") }
+end
+
+And(/^I can see the end image in "(.*?)"$/) do |prev_next_section|
+  within(prev_next_section){ expect(page).to have_xpath("//img[contains(@src,'end.png')]") }
+end
+
+Then /^(?:|I )can not see "(.*?)"$/ do |regexp|
+  regexp = Regexp.new(regexp)
+
+  if page.respond_to? :should
+    page.should have_no_xpath('//*', :text => regexp)
+  else
+    assert page.has_no_xpath?('//*', :text => regexp)
+  end
+end
 
 
 # Notifications

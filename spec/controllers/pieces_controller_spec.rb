@@ -31,12 +31,8 @@ RSpec.describe PiecesController, type: :controller do
     context "Piece is published" do
 
       before :each do
-        @piece = double("piece", published?: true)
-        @prev = double("piece")
-        @next = double("piece")
+        @piece = FactoryGirl.build_stubbed(:piece)
         allow(Piece).to receive(:find).with("1").and_return(@piece)
-        allow(Piece).to receive(:prev_piece).and_return(@prev)
-        allow(Piece).to receive(:next_piece).and_return(@next)
       end
 
       it "returns http success" do
@@ -54,25 +50,21 @@ RSpec.describe PiecesController, type: :controller do
         get :show, id: "1"
       end
 
+      it "assigns @piece.offset using offset param" do
+        get :show, id: "1", offset: 0
+        expect(@piece.offset).to eq("0")
+      end
+
       it "assigns @piece variable" do
         get :show, id: "1"
         expect(assigns(:piece)).to eq(@piece)
       end
 
-      it "assigns @prev variable" do
-        get :show, id: "1"
-        expect(assigns(:prev_piece)).to eq(@prev)
-      end
-
-      it "assigns @next variable" do
-        get :show, id: "1"
-        expect(assigns(:next_piece)).to eq(@next)
-      end
     end
 
     context "Piece is not published" do
       before :each do
-        @piece = double("user", published?: false)
+        @piece = FactoryGirl.build_stubbed(:piece, published: false)
         allow(Piece).to receive(:find).with("1").and_return(@piece)
       end
 
@@ -87,12 +79,12 @@ RSpec.describe PiecesController, type: :controller do
         get :show, id: "1"
       end
 
-      it "calls .all on Piece" do
+      it "calls .find on Piece" do
         expect(Piece).to receive(:find).with("1").and_return(@piece)
         get :show, id: "1"
       end
 
-      it "assigns @users variable" do
+      it "assigns @piece variable" do
         get :show, id: "1"
         expect(assigns(:piece)).to eq(@piece)
       end
