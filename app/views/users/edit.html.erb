@@ -1,46 +1,23 @@
 <h2>User Profile</h2>
 
-<%= form_for @user  do |f| %>
+<%= simple_form_for @user  do |f| %>
 
-  <div class="field">
-    <%= f.label :name %><br />
-    <%= f.text_field :name, autofocus: true %>
-  </div>
+    <%= f.input :name, autofocus: true %>
+    <%= f.input :username %>
+    <%= f.input :email%>
+    <%= f.input :bio %>
 
-  <div class="field">
-    <%= f.label :username %><br />
-    <%= f.text_field :username %>
-  </div>
-
-  <div class="field">
-    <%= f.label :email %><br />
-    <%= f.email_field :email%>
-  </div>
-
-  <div class="field">
-    <%= f.label :bio %><br />
-    <%= f.text_area :bio %>
-  </div>
-
-
-  <div class="actions">
-    <%= f.submit "Update Settings" %>
-  </div>
+    <%= f.button :submit, "Update Settings" %>
 <% end %>
 
 <h3>Your Avatar:</h3>
 
 <%= image_tag @user.avatar_url :thumb %>
 
-<%= form_for @user, html: { multipart: true } do |f| %>
+<%= simple_form_for @user, html: { multipart: true } do |f| %>
 
-  <div class="field">
-    <%= f.label :avatar %><br />
-    <%= f.file_field :avatar %>
-  </div>
+    <%= f.input :avatar %>
 
-  <div class="actions">
-    <%= f.submit "Upload Now" %>
-  </div>
+    <%= f.button :submit, "Upload Now" %>
 <% end %>
 

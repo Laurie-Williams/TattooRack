@@ -5,11 +5,8 @@
 </div>
 
 
-<%= form_for @piece, html: {multipart: true} do |f| %>
+<%= simple_form_for @piece, html: {multipart: true} do |f| %>
 
-  <div class="field">
-    <%= f.label :image, "Piece" %>
-    <%= f.file_field :image %>
-  </div>
+  <%= f.input :image, label: "Piece" %>
 
 <% end %>

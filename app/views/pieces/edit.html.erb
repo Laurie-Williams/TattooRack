@@ -2,23 +2,14 @@
 
 <%= image_tag @piece.image_url %>
 
-<%= form_for @piece do |f| %>
+<%= simple_form_for @piece do |f| %>
 
-  <%= f.hidden_field :published, value: true %>
-
-  <div class="field">
-    <%= f.label :title %>
-    <%= f.text_field :title %>
-  </div>
-
-  <div class="field">
-    <%= f.label :description %>
-    <%= f.text_area :description %>
-  </div>
-
+  <%= f.input :published, as: :hidden, input_html: {value: true} %>
+  <%= f.input :title %>
+  <%= f.input :description %>
 
   <div class="actions">
-    <%= f.submit "Publish" %>
+    <%= f.button :submit, "Publish" %>
     <%= link_to "Cancel", piece_path(@piece), method: :delete %>
   </div>
 
