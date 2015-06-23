@@ -1,3 +1,4 @@
+@upload_cleaned
 Feature: Previous and Next Piece
 
   As a User
