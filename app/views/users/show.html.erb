@@ -1,7 +1,7 @@
 <h2><%= @user.username %></h2>
 
-<% @user.pieces.published.each_with_index do |piece, i| %>
+<% @user.pieces.all_by_created_at.each_with_index do |piece| %>
   <%= image_tag piece.image_url %>
   <p><%= piece.title %></p>
-  <p><%= link_to "Show", piece_path(piece, list: "users") %></p>
+  <p><%= link_to "Show", piece_path(piece) %></p>
 <% end %>

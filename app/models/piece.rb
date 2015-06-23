@@ -5,12 +5,20 @@ class Piece < ActiveRecord::Base
   validates :image, presence: true
 
   # scopes
-  scope :all_by_created_at, -> {all.order(:created_at).reverse_order.published}
   scope :published, -> {where(published: true)}
+  scope :all_by_created_at, -> {all.order(:created_at).reverse_order.published}
+  scope :all_in_category, ->(category) do
+    if category
+      all_by_created_at.where(category_id: Category.get_id_from_name(category))
+    else
+      all_by_created_at
+    end
+  end
 
   # associations
-  attr_accessor :crop_x, :crop_y, :crop_height, :crop_width, :offset
+  attr_accessor :crop_x, :crop_y, :crop_height, :crop_width, :offset, :list
   belongs_to :user
+  belongs_to :category
   acts_as_list scope: :user #Increment Piece.position for each new Piece by user
   mount_uploader :image, PieceUploader
 
@@ -44,9 +52,9 @@ private
    def list_prev_and_next
     if offset.to_i == 0 #Only retrieve current and next piece if first in list
       #Add nil to beginning of array to account for prev being non existent
-      @list_piece_array ||= Piece.all_by_created_at.limit(2).unshift(nil)
+      @list_piece_array ||= Piece.all_in_category(self.list).limit(2).unshift(nil)
     else
-      @list_piece_array ||= Piece.all_by_created_at.offset(offset.to_i - 1).limit(3) #get prev, current and next piece in array
+      @list_piece_array ||= Piece.all_in_category(self.list).offset(offset.to_i - 1).limit(3) #get prev, current and next piece in array
     end
   end
 

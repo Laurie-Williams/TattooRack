@@ -5,12 +5,14 @@ class PiecesController < ApplicationController
 
   # GET /pieces
   def index
-    @pieces = Piece.all_by_created_at
+    @list = params[:list]
+    @pieces = Piece.all_in_category(@list)
   end
 
   # GET /pieces/:id
   def show
     @piece.offset = params[:offset]
+    @piece.list = params[:list]
     unless @piece.published?
       flash[:alert] = "Piece could not be found"
       redirect_to new_piece_path

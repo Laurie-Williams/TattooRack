@@ -34,10 +34,21 @@ Given(/^I am a logged in user$/) do
   step "I press \"Sign In\""
 end
 
-And(/^three existing pieces$/) do
-  @piece1 = FactoryGirl.create(:piece, user_id: 1)
-  @piece2 = FactoryGirl.create(:piece, user_id: 1)
-  @piece3 = FactoryGirl.create(:piece, user_id: 1)
+And(/^three existing "([^"]*)"/) do |category|
+  category_id = nil
+  case category
+    when "Tattoos"
+      category_id =  1
+    when "Flash"
+      category_id =  2
+    when "Artworks"
+      category_id =  3
+    when "Inspirations"
+      category_id =  4
+  end
+  @piece1 = FactoryGirl.create(:piece, user_id: 1, category_id: category_id)
+  @piece2 = FactoryGirl.create(:piece, user_id: 1, category_id: category_id)
+  @piece3 = FactoryGirl.create(:piece, user_id: 1, category_id: category_id)
 end
 
 
@@ -251,7 +262,7 @@ end
 
 Then(/^I can see the "(.*?)" piece image in "(.*?)"$/) do |piece_number, prev_next_section|
   piece = Piece.find(piece_number)
-  within( prev_next_section){ expect(page).to have_xpath("//img[contains(@src, #{piece.image_url})]") }
+  within( prev_next_section){ expect(page).to have_xpath("//img[@src=\"#{piece.image_url}\"]") }
 end
 
 And(/^I can see the start image in "(.*?)"$/) do |prev_next_section|

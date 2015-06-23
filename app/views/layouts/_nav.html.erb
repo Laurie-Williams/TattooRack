@@ -1,5 +1,9 @@
 <%= link_to "Users", users_path %>
 <%= link_to "Pieces", pieces_path %> |
+<%= link_to "Tattoos", pieces_path(list: "tattoo") %> |
+<%= link_to "Flash", pieces_path(list: "flash") %> |
+<%= link_to "Artwork", pieces_path(list: "artwork") %> |
+<%= link_to "Inspiration", pieces_path(list: "inspiration") %> |
 
 <% if current_user.present? %>
   <!--Logged In-->

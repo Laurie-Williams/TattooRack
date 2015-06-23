@@ -15,9 +15,14 @@ RSpec.describe PiecesController, type: :controller do
       expect(response).to have_http_status(:success)
     end
 
-    it "calls .all_by_created_at on User" do
+    it "calls .all_by_created_at on User if no list param" do
       expect(Piece).to receive(:all_by_created_at).and_return(@pieces)
       get :index
+    end
+
+    it "calls .all_in_category on User if list param present" do
+      expect(Piece).to receive(:all_in_category).with("flash").and_return(@pieces)
+      get :index, list: "flash"
     end
 
     it "assigns @users variable" do
