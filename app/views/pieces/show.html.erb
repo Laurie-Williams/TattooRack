@@ -12,6 +12,9 @@
   <%= render partial: "votes/likes", locals:{ votable: @piece } %>
 </div>
 
+<div id="views">
+  Views: <%= @piece.impressionist_count(filter: :session_hash)%>
+</div>
 
 <div id="more_from_user">
   <h3>More pieces by user:</h3>

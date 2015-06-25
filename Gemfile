@@ -73,5 +73,6 @@ gem 'mini_magick', '~> 4.2.7'
 gem 'acts_as_list', '~> 0.7.2'
 gem 'acts_as_commentable', '~> 4.0.2'
 gem 'acts_as_votable', '~> 0.10.0'
+gem 'impressionist', '~> 1.5.1' #Acts as viewable
 
 

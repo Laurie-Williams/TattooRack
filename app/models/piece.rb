@@ -12,6 +12,7 @@ class Piece < ActiveRecord::Base
     relation.where!(category_id: Category.get_id_from_name(category)) if category
     relation.order!(:cached_votes_up) if sort_by == nil
     relation.order!(:comments_count) if sort_by == "comments"
+    relation.order!(:views_count) if sort_by == "views"
     relation.order!(:created_at).reverse_order
   end
 
@@ -23,6 +24,7 @@ class Piece < ActiveRecord::Base
   belongs_to :category
   acts_as_commentable
   acts_as_votable
+  is_impressionable counter_cache: true, column_name: :views_count, unique: :session_hash
   acts_as_list scope: :user #Increment Piece.position for each new Piece by user
   mount_uploader :image, PieceUploader
 

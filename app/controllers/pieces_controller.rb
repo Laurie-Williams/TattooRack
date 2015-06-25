@@ -2,6 +2,7 @@ class PiecesController < ApplicationController
   before_action :authenticate_user, except:[:index, :show]
   before_action :find_piece, only: [:show, :edit, :update, :destroy]
   before_action :authorize_user, except: [:index, :new, :show, :create, :crop]
+  impressionist actions: [:show], unique: [:impressionable_type, :impressionable_id, :session_hash]
 
   # GET /pieces
   def index
