@@ -70,5 +70,6 @@ gem 'devise', '~> 3.5.1'
 gem 'carrierwave', '~> 0.10.0'
 gem 'mini_magick', '~> 4.2.7'
 gem 'acts_as_list', '~> 0.7.2'
+gem 'acts_as_commentable', '~> 4.0.2'
 
 

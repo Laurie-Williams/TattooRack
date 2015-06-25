@@ -1,0 +1,6 @@
+<h5><%= comment.user.name %></h5>
+<p><%= comment.comment %></p>
+<% if comment.user == current_user %>
+  <%= link_to "Delete Comment", piece_comment_path(commentable, comment),
+              method: :delete, remote: true, id: "#delete_comment" %>
+<% end %>

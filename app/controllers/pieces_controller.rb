@@ -11,9 +11,13 @@ class PiecesController < ApplicationController
 
   # GET /pieces/:id
   def show
-    @piece.offset = params[:offset]
-    @piece.list = params[:list]
-    unless @piece.published?
+    if @piece.published?
+      @comments = @piece.comments.includes(:user).reject(&:new_record?)
+      @comment = current_user.comments.build if current_user
+
+      @piece.offset = params[:offset]
+      @piece.list = params[:list]
+    else
       flash[:alert] = "Piece could not be found"
       redirect_to new_piece_path
     end

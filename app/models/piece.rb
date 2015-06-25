@@ -15,10 +15,13 @@ class Piece < ActiveRecord::Base
     end
   end
 
-  # associations
+  # attributes
   attr_accessor :crop_x, :crop_y, :crop_height, :crop_width, :offset, :list
+
+  # associations
   belongs_to :user
   belongs_to :category
+  acts_as_commentable
   acts_as_list scope: :user #Increment Piece.position for each new Piece by user
   mount_uploader :image, PieceUploader
 

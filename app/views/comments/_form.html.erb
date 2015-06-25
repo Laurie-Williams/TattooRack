@@ -1,0 +1,6 @@
+<%= simple_form_for [commentable, @comment], remote: true do |f| %>
+  <%= f.input :user_id, as: :hidden %>
+
+  <%= f.input :comment %>
+  <%= f.button :submit, "Post Comment" %>
+<% end %>

@@ -16,3 +16,19 @@
              locals: {prev_piece: @piece.prev_user_piece,
                       next_piece: @piece.next_user_piece}%>
 </div>
+
+
+<% if current_user %>
+  <div id="comment_form">
+    <%= render partial: "/comments/form",
+               locals: {commentable: @piece}%>
+  </div>
+<% end %>
+
+<h3>Comments:</h3>
+
+<div id="comments">
+  <%= render partial: :'comments/comment',
+             collection: @comments,
+             locals: {commentable: @piece} %>
+</div>

@@ -11,6 +11,7 @@ class User < ActiveRecord::Base
 
   # associations
   has_many :pieces, -> {order(position: :asc)} #Order User.pieces by position
+  has_many :comments
   mount_uploader :avatar, AvatarUploader
 
 end

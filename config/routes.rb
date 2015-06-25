@@ -1,14 +1,18 @@
 Rails.application.routes.draw do
 
+
   get 'pieces/new'
   get 'pieces/crop'
 
 
   devise_for :users,
              #Overide Devise controller with customised users/registrations controller
-             :controllers => { :registrations => "users/registrations" }
+             controllers: { registrations: "users/registrations" }
   resources :users, only: [:index, :edit, :update, :show, :destroy]
-  resources :pieces, only: [:index, :new, :create, :edit, :update, :show, :destroy]
+  resources :pieces, only: [:index, :new, :create, :edit, :update, :show, :destroy]do
+    resources :comments, only: [:create, :destroy]
+  end
+
 
   root "pieces#index"
 

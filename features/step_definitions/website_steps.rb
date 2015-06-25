@@ -30,7 +30,7 @@ end
 Given(/^I am a logged in user$/) do
   step "I am an existing registered user"
   step "I visit the Sign In page"
-  step "I fill in the Sign In form correctly"
+  step "I fill in the Sign In form correctly as \"John\""
   step "I press \"Sign In\""
 end
 
@@ -104,8 +104,10 @@ And(/^I fill in the User Registration form incorrectly$/) do
   fill_in("Name", with: "John")
 end
 
-And(/^I fill in the Sign In form correctly$/) do
-  fill_in("Email", with: "john89@example.com")
+And(/^I fill in the Sign In form correctly as "([^"]*)"$/) do |user|
+  email = "john89@example.com" if user == "John"
+  email = "jane77@example.com" if user == "Jane"
+  fill_in("Email", with: email)
   fill_in("Password", with: "secretpassword")
 end
 
@@ -163,8 +165,12 @@ And(/^I select a crop area$/) do
 end
 
 And(/^I fill in the Edit Piece form correctly$/) do
-  fill_in("Title", with: "My Piece")
-  fill_in("Description", with: "This is my test piece...")
+    fill_in("Title", with: "My Piece")
+    fill_in("Description", with: "This is my test piece...")
+end
+
+And(/^I fill in the comment form$/) do
+  fill_in("Comment", with: "Test Comment")
 end
 
 
@@ -283,6 +289,19 @@ Then /^(?:|I )can not see "(.*?)"$/ do |regexp|
   end
 end
 
+Then /^(?:|I )can see "(.*?)"$/ do |regexp|
+  regexp = Regexp.new(regexp)
+
+  if page.respond_to? :should
+    page.should have_xpath('//*', :text => regexp)
+  else
+    assert page.has_xpath?('//*', :text => regexp)
+  end
+end
+
+And(/^I can see comment$/) do
+  expect(page).to have_content('Test Comment')
+end
 
 # Notifications
 

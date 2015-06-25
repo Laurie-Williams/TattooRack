@@ -9,7 +9,7 @@ Feature: User Sign In
   Scenario: Happy Path - Successful Sign In
     Given I am an existing registered user
     When I visit the Sign In page
-    And I fill in the Sign In form correctly
+    And I fill in the Sign In form correctly as "John"
     And I press "Sign In"
     Then I am redirected to the Home page
     And I can see a Notice Flash

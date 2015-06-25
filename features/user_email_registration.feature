@@ -17,7 +17,7 @@ Feature: User Email Registration
     And I follow "Confirm my account" in the email
     And I am redirected to the Sign In page
     And I can see a Notice Flash
-    And I fill in the Sign In form correctly
+    And I fill in the Sign In form correctly as "John"
     And I press "Sign In"
     Then I am redirected to the Home page
     And I can see a Notice Flash
