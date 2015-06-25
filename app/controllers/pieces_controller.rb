@@ -6,7 +6,8 @@ class PiecesController < ApplicationController
   # GET /pieces
   def index
     @list = params[:list]
-    @pieces = Piece.all_in_category(@list)
+    @sort = params[:sort]
+    @pieces = Piece.all_in_category(@list, @sort)
   end
 
   # GET /pieces/:id

@@ -7,7 +7,7 @@ RSpec.describe PiecesController, type: :controller do
 
     before :each do
       @pieces = double("pieces")
-      allow(Piece).to receive(:all_by_created_at).and_return(@pieces)
+      allow(Piece).to receive(:all_in_category).and_return(@pieces)
     end
 
     it "returns http success" do
@@ -15,17 +15,12 @@ RSpec.describe PiecesController, type: :controller do
       expect(response).to have_http_status(:success)
     end
 
-    it "calls .all_by_created_at on User if no list param" do
-      expect(Piece).to receive(:all_by_created_at).and_return(@pieces)
-      get :index
-    end
-
     it "calls .all_in_category on User if list param present" do
-      expect(Piece).to receive(:all_in_category).with("flash").and_return(@pieces)
+      expect(Piece).to receive(:all_in_category).with("flash", nil).and_return(@pieces)
       get :index, list: "flash"
     end
 
-    it "assigns @users variable" do
+    it "assigns @pieces variable" do
       get :index
       expect(assigns(:pieces)).to eq(@pieces)
     end

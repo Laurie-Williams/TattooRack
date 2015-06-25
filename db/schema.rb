@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150625135726) do
+ActiveRecord::Schema.define(version: 20150625174448) do
 
   create_table "categories", force: :cascade do |t|
     t.string   "name"
@@ -45,6 +45,7 @@ ActiveRecord::Schema.define(version: 20150625135726) do
     t.integer  "position"
     t.integer  "category_id",     default: 1
     t.integer  "cached_votes_up", default: 0
+    t.integer  "comments_count"
   end
 
   add_index "pieces", ["cached_votes_up"], name: "index_pieces_on_cached_votes_up"

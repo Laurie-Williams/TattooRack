@@ -7,12 +7,12 @@ class Piece < ActiveRecord::Base
   # scopes
   scope :published, -> {where(published: true)}
   scope :all_by_created_at, -> {all.order(:created_at).reverse_order.published}
-  scope :all_in_category, ->(category) do
-    if category
-      all_by_created_at.where(category_id: Category.get_id_from_name(category))
-    else
-      all_by_created_at
-    end
+  scope :all_in_category, ->(category, sort_by = nil) do
+    relation = all.published
+    relation.where!(category_id: Category.get_id_from_name(category)) if category
+    relation.order!(:cached_votes_up) if sort_by == nil
+    relation.order!(:comments_count) if sort_by == "comments"
+    relation.order!(:created_at).reverse_order
   end
 
   # attributes
