@@ -34,10 +34,10 @@ RSpec.describe PiecesController, type: :controller do
         @comment = double "Comment"
         @comments = double("Comments")
         @piece = FactoryGirl.build_stubbed(:piece)
-        @user = double("user")
+        @user = FactoryGirl.build_stubbed(:user)
         allow(@user).to receive_message_chain(:comments, :build).and_return(@comment)
         allow(subject).to receive(:current_user).and_return @user
-        allow(Piece).to receive(:find).with("1").and_return(@piece)
+        allow(Piece).to receive(:find).and_return(@piece)
         allow(@piece).to receive_message_chain(:comments, :includes, :reject).and_return(@comments)
       end
 
@@ -78,8 +78,8 @@ RSpec.describe PiecesController, type: :controller do
         @comment = double "Comment"
         @comments = double("Comments")
         @piece = FactoryGirl.build_stubbed(:piece, published: false)
-        @user = double("user")
-        allow(Piece).to receive(:find).with("1").and_return(@piece)
+        @user = FactoryGirl.build_stubbed(:user)
+        allow(Piece).to receive(:find).and_return(@piece)
       end
 
       it "returns http redirect" do
