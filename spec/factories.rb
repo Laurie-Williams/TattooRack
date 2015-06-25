@@ -6,4 +6,7 @@ FactoryGirl.define do
     published true
     user_id 2
   end
+
+  factory :user do
+  end
 end

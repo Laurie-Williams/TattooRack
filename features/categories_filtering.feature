@@ -4,7 +4,7 @@ Feature: Categories Filtering
   I want to view pieces from a category
 
   Background:
-    Given an existing registered user
+    Given an existing registered user "John"
     And three existing "Flash"
     And three existing "Tattoos"
 

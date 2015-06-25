@@ -11,7 +11,7 @@ Feature: Profile Picture Upload
 
 
   Scenario: Successful Image upload
-    Given I am a logged in user
+    Given I am logged in as "John"
     When I visit the Edit User page
     And attach an "Avatar" image
     And I press "Upload Now"

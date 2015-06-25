@@ -7,7 +7,7 @@ Feature: User Sign In
   Background:
 
   Scenario: Happy Path - Successful Sign In
-    Given I am an existing registered user
+    Given I am an existing registered user named "John"
     When I visit the Sign In page
     And I fill in the Sign In form correctly as "John"
     And I press "Sign In"

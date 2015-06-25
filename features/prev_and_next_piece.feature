@@ -6,7 +6,7 @@ Feature: Previous and Next Piece
   So I can browse related pieces
 
   Background:
-    Given an existing registered user
+    Given an existing registered user "John"
     And three existing "Tattoos"
 
   Scenario: View the second piece for all pieces

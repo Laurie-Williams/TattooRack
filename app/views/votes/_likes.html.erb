@@ -1,0 +1,8 @@
+Likes: <span id="like_count"><%= votable.cached_votes_up %></span>
+<% unless current_user.nil? || current_user == votable.user %>
+  <% if current_user.voted_for? votable %>
+    <%= link_to "Unlike", piece_like_path(votable), method: :delete, remote: true %>
+  <% else %>
+    <%= link_to "Like", piece_like_path(votable), method: :post, remote: true %>
+  <% end %>
+<% end %>

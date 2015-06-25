@@ -6,7 +6,7 @@ Feature: Edit User Profile
 
 
   Scenario: Happy Path - Successfully edit Bio
-    Given I am a logged in user
+    Given I am logged in as "John"
     And I visit the Home page
     And I follow "Account Settings"
     And I fill in "Bio" with "I am an artist"

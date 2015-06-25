@@ -5,6 +5,6 @@ Feature: View User Profile
   In order to see their information
 
   Scenario: View User Profile
-    Given an existing registered user
+    Given an existing registered user "John"
     When I visit the User page
     Then I can see correct Username on the page

@@ -22,8 +22,10 @@ class Piece < ActiveRecord::Base
   belongs_to :user
   belongs_to :category
   acts_as_commentable
+  acts_as_votable
   acts_as_list scope: :user #Increment Piece.position for each new Piece by user
   mount_uploader :image, PieceUploader
+
 
   # instance methods
   def prev_list_piece

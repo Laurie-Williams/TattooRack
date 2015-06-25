@@ -6,7 +6,7 @@ Feature: Creat Piece
   So it can be seen on my profile
 
   Scenario: Upload Picture and Publish Piece
-    Given I am a logged in user
+    Given I am logged in as "John"
     When I visit the Home page
     And I follow "Create Piece"
     And I drop a file into the drop area
@@ -18,7 +18,7 @@ Feature: Creat Piece
     Then I can see correct Piece Title on the page
 
   Scenario: Upload Picture but dont Publish Piece
-    Given I am a logged in user
+    Given I am logged in as "John"
     When I visit the Home page
     And I follow "Create Piece"
     And I drop a file into the drop area
@@ -28,7 +28,7 @@ Feature: Creat Piece
     Then I can see an Error Flash
 
   Scenario: Upload Picture and cancel
-    Given I am a logged in user
+    Given I am logged in as "John"
     When I visit the Home page
     And I follow "Create Piece"
     And I drop a file into the drop area

@@ -7,30 +7,32 @@ end
 
 # Preconditions
 
-Given(/^I am an existing registered user$/) do
-  @john = User.new( name: "John", username: "John89", email: "john89@example.com", password: "secretpassword", password_confirmation: "secretpassword")
-  @john.skip_confirmation! #Skip email confirmation step
-  @john.save
+Given(/^I am an existing registered user named "([^"]*)"$/) do |name|
+  if name == "John"
+    @john = User.new( name: "John", username: "John89", email: "john89@example.com", password: "secretpassword", password_confirmation: "secretpassword")
+    @john.skip_confirmation! #Skip email confirmation step
+    @john.save
+  elsif name == "Jane"
+    @jane = User.new( name: "Jane", username: "Jane77", email: "jane77@example.com", password: "secretpassword", password_confirmation: "secretpassword")
+    @jane.skip_confirmation! #Skip email confirmation step
+    @jane.save
+  end
+
 end
 
 Given(/^two existing registered users$/) do
-  @john = User.new( name: "John", username: "John89", email: "john89@example.com", password: "secretpassword", password_confirmation: "secretpassword")
-  @john.skip_confirmation! #Skip email confirmation step
-  @john.save
-
-  @jane = User.new( name: "Jane", username: "Jane77", email: "jane77@example.com", password: "secretpassword", password_confirmation: "secretpassword")
-  @jane.skip_confirmation! #Skip email confirmation step
-  @jane.save
+  step "I am an existing registered user named \"John\""
+  step "I am an existing registered user named \"Jane\""
 end
 
-Given(/^an existing registered user$/) do
-  step "I am an existing registered user"
+Given(/^an existing registered user "([^"]*)"$/) do |name|
+  step "I am an existing registered user named \"#{name}\""
 end
 
-Given(/^I am a logged in user$/) do
-  step "I am an existing registered user"
+Given(/^I am logged in as "([^"]*)"$/) do |name|
+  step "I am an existing registered user named \"#{name}\""
   step "I visit the Sign In page"
-  step "I fill in the Sign In form correctly as \"John\""
+  step "I fill in the Sign In form correctly as \"#{name}\""
   step "I press \"Sign In\""
 end
 
@@ -301,6 +303,10 @@ end
 
 And(/^I can see comment$/) do
   expect(page).to have_content('Test Comment')
+end
+
+Then(/^I can see like count is "(.*?)"$/) do |count|
+  within("#likes"){expect(page).to have_content("#{count}")}
 end
 
 # Notifications

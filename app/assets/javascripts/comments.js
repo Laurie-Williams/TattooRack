@@ -8,7 +8,7 @@ var commentReplace = {
       });
 
       //Replace "#comments" with new updated comments html on comment delete
-      $("a[data-remote]").on("ajax:success", function(e, data, status, xhr){
+      $("#comments a[data-remote]").on("ajax:success", function(e, data, status, xhr){
           $("#comments").html(data);
           commentReplace.init();
       });
