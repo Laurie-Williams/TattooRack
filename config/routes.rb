@@ -1,19 +1,21 @@
 Rails.application.routes.draw do
 
-
-  get 'pieces/new'
-  get 'pieces/crop'
-
-
   devise_for :users,
              #Overide Devise controller with customised users/registrations controller
              controllers: { registrations: "users/registrations" }
+
   resources :users, only: [:index, :edit, :update, :show, :destroy]
+
+  get 'pieces/crop'
   resources :pieces, only: [:index, :new, :create, :edit, :update, :show, :destroy]do
     resources :comments, only: [:create, :destroy]
+    resources :tags, only: [:create, :destroy]
     post "like", to: "votes#like"
     delete "like", to: "votes#unlike"
   end
+  get "pieces/tags/:tag", to: "tags#show", as: "pieces_tag"
+  get "tags", to: "tags#index"
+
 
 
   root "pieces#index"

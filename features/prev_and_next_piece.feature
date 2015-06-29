@@ -7,7 +7,7 @@ Feature: Previous and Next Piece
 
   Background:
     Given an existing registered user "John"
-    And three existing "Tattoos"
+    And three existing pieces of category "Tattoo"
 
   Scenario: View the second piece for all pieces
     When I visit the Home page

@@ -2,6 +2,8 @@
 
 <%= image_tag @piece.image_url %>
 
+<hr>
+
 <%= simple_form_for @piece do |f| %>
 
   <%= f.input :published, as: :hidden, input_html: {value: true} %>
@@ -11,8 +13,21 @@
 
   <div class="actions">
     <%= f.button :submit, "Publish" %>
-    <%= link_to "Cancel", piece_path(@piece), method: :delete %>
+    <%= link_to "Delete", piece_path(@piece), method: :delete %>
   </div>
 
+
+<% end %>
+
+<hr>
+
+<div id="tags">
+  <%= render partial: "tags/delete_tag_list", locals: {piece: @piece, method: :delete} %>
+</div>
+
+<%= form_tag piece_tags_path(@piece), id: "new_tag", remote: true do  %>
+
+  <%= label_tag :tag%>
+  <%= text_field_tag :tag, "Add a tag and press Enter", data: {autocomplete_source: tags_url} %>
 
 <% end %>

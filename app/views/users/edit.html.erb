@@ -1,4 +1,18 @@
-<h2>User Profile</h2>
+<h1>User Profile</h1>
+
+<hr>
+<h3>Your Avatar:</h3>
+
+<%= image_tag @user.avatar_url :thumb %>
+
+<%= simple_form_for @user, html: { multipart: true } do |f| %>
+
+  <%= f.input :avatar %>
+
+  <%= f.button :submit, "Upload Now" %>
+<% end %>
+
+<hr>
 
 <%= simple_form_for @user  do |f| %>
 
@@ -10,14 +24,8 @@
     <%= f.button :submit, "Update Settings" %>
 <% end %>
 
-<h3>Your Avatar:</h3>
+<hr>
 
-<%= image_tag @user.avatar_url :thumb %>
 
-<%= simple_form_for @user, html: { multipart: true } do |f| %>
 
-    <%= f.input :avatar %>
-
-    <%= f.button :submit, "Upload Now" %>
-<% end %>
 

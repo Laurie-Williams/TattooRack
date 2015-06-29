@@ -1,0 +1,4 @@
+Tags:
+<% piece.tags.each do |tag| %>
+  <%= link_to tag, piece_tag_path(piece, tag.name), method: :delete, remote: true %>
+<% end %>

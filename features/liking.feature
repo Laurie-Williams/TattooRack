@@ -6,7 +6,7 @@ Feature: User can Like resources
 
   Scenario: Like and unlike a Piece
 
-    Given three existing "Tattoos"
+    Given three existing pieces of category "Tattoo"
     And an existing registered user "John"
     And I am logged in as "Jane"
     When I visit the "1" Piece page

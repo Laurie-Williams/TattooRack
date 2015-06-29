@@ -6,7 +6,7 @@ Feature: Comment on Piece
 
   Scenario: Create and Destroy Comment
     Given two existing registered users
-    And three existing "Tattoos"
+    And three existing pieces of category "Tattoo"
     When I visit the Sign In page
     And I fill in the Sign In form correctly as "Jane"
     And I press "Sign In"

@@ -36,7 +36,13 @@ Given(/^I am logged in as "([^"]*)"$/) do |name|
   step "I press \"Sign In\""
 end
 
-And(/^three existing "([^"]*)"/) do |category|
+And(/^three existing pieces of category "([^"]*)"/) do |category|
+  step "I create a \"#{category}\" with tag \"test\""
+  step "I create a \"#{category}\" with tag \"test\""
+  step "I create a \"#{category}\" with tag \"test\""
+end
+
+When(/^I create a "([^"]*)" with tag "(.*?)"$/) do |category, tag|
   category_id = nil
   case category
     when "Tattoos"
@@ -48,9 +54,9 @@ And(/^three existing "([^"]*)"/) do |category|
     when "Inspirations"
       category_id =  4
   end
-  @piece1 = FactoryGirl.create(:piece, user_id: 1, category_id: category_id)
-  @piece2 = FactoryGirl.create(:piece, user_id: 1, category_id: category_id)
-  @piece3 = FactoryGirl.create(:piece, user_id: 1, category_id: category_id)
+
+  @piece = FactoryGirl.create(:piece, user_id: 1, category_id: category_id, tag_list: tag)
+
 end
 
 
@@ -90,6 +96,10 @@ end
 
 When(/^I visit the Pieces page$/) do
   visit(pieces_path)
+end
+
+When(/^I visit the Edit "([^"]*)" Piece page$/) do |piece_number|
+  visit(edit_piece_path(piece_number.to_i))
 end
 
 # Form
@@ -175,6 +185,12 @@ And(/^I fill in the comment form$/) do
   fill_in("Comment", with: "Test Comment")
 end
 
+And(/^I fill in the "(.*?)" autocomplete field with "(.*?)"$/) do |field, text|
+  page.execute_script "$('#{field}').val('#{text}')"
+  page.execute_script "$('#{field}').trigger('focus')"
+  page.execute_script "$('#{field}').trigger('keydown')"
+end
+
 
 # Click
 
@@ -188,6 +204,15 @@ end
 
 When /^(?:|I )follow "([^"]*)" number "([^"]*)"$/ do |link, number|
   find(:xpath, "(//a[text()='#{link}'])[#{number}]").click
+end
+
+When /^(?:|I )click the "([^"]*)" containing "([^"]*)"$/ do |element, text|
+  page.execute_script "$('li:contains(\"tag1\")').trigger('mouseenter').trigger('click')"
+end
+
+When /^(?:|I )hit Enter on "([^"]*)"$/ do |element|
+  page.execute_script "var e = jQuery.Event('keypress'); e.which = 13; $('#tag').trigger(e);"
+
 end
 
 

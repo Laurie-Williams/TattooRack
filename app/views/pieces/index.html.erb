@@ -1,7 +1,8 @@
 <h1>Pieces:</h1>
 <% @pieces.each_with_index do |piece, i| %>
   <%= image_tag piece.image_url %>
-  <p><%= piece.title %></p>
-  <p><%= link_to "Delete", piece_path(piece), method: :delete %></p>
-  <p><%= link_to "Show", piece_path(piece, offset: i, list: @list) %></p>
+  <h3>Title: <%= piece.title %></h3>
+  <%= link_to "Delete", piece_path(piece), method: :delete %>
+  <%= link_to "Show", piece_path(piece, offset: i, list: @list) %>
+  <hr>
 <% end %>

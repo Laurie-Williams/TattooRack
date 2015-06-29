@@ -34,6 +34,6 @@ Feature: Creat Piece
     And I drop a file into the drop area
     And I select a crop area
     And I press "Upload"
-    And I follow "Cancel"
+    And I follow "Delete"
     And I visit the "1" Piece page
     Then I can see an Error Flash

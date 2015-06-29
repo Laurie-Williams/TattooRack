@@ -6,6 +6,7 @@
 var imageCropper =  {
     init: function(){
         imageCropper.getHtmlViaAjax();
+
     },
     setRequestData: function(file, csrf_token){
         var requestData = new FormData();
@@ -27,8 +28,8 @@ var imageCropper =  {
         });
     },
     renderCropHtml: function(html){
-        $("body").html(html);
         var imgFile = fileDropper.file;
+        $("body").html(html);
         imageCropper.createImageTagFromFile(imgFile); //Setup cropper on div
         $("#upload").on('click', imageCropper.upload); //Set upload function
     },
@@ -82,6 +83,7 @@ var imageCropper =  {
         $.ajax({
             processData: false,
             contentType: false,
+            async: true,
             type: 'POST',
             url: "/pieces.json",
             data: requestData,

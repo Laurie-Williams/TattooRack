@@ -108,6 +108,6 @@ class PiecesController < ApplicationController
 
   # must have attr_accessor params declared before :image param to be visible in the uploader
   def piece_params
-    params.require(:piece).permit(:crop_x, :crop_y, :crop_height, :crop_width, :image, :title, :description, :published)
+    params.require(:piece).permit(:crop_x, :crop_y, :crop_height, :crop_width, :image, :title, :description, :published, :tag_list)
   end
 end

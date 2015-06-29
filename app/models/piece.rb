@@ -24,6 +24,7 @@ class Piece < ActiveRecord::Base
   belongs_to :category
   acts_as_commentable
   acts_as_votable
+  acts_as_taggable
   is_impressionable counter_cache: true, column_name: :views_count, unique: :session_hash
   acts_as_list scope: :user #Increment Piece.position for each new Piece by user
   mount_uploader :image, PieceUploader

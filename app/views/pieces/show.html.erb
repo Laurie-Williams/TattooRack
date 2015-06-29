@@ -1,12 +1,8 @@
 <%= image_tag @piece.image_url %>
 <h2><%= @piece.title %></h2>
+<%= link_to "Edit", edit_piece_path(@piece) %>
 
-<% if @piece.offset.present? %>
-  <div id="more_from_list">
-    <h3>More pieces from <%= if @piece.list then @piece.list.capitalize else "Pieces" end %>:</h3>
-    <%= render partial: "more_pieces", locals: {prev_piece: @piece.prev_list_piece, next_piece: @piece.next_list_piece}%>
-  </div>
-<% end %>
+<hr>
 
 <div id="likes">
   <%= render partial: "votes/likes", locals:{ votable: @piece } %>
@@ -16,11 +12,30 @@
   Views: <%= @piece.views_count%>
 </div>
 
+<div id="tags">
+  Tags:
+  <% @piece.tags.each do |tag| %>
+    <%= link_to tag, pieces_tag_path(tag.name) %>
+  <% end %>
+</div>
+
+<hr>
+
+<% if @piece.offset.present? %>
+  <div id="more_from_list">
+    <h3>More pieces from <%= if @piece.list then @piece.list.capitalize else "Pieces" end %>:</h3>
+    <%= render partial: "more_pieces", locals: {prev_piece: @piece.prev_list_piece, next_piece: @piece.next_list_piece}%>
+  </div>
+<% end %>
+
+<hr>
+
 <div id="more_from_user">
   <h3>More pieces by user:</h3>
   <%= render partial: "more_pieces", locals: {prev_piece: @piece.prev_user_piece, next_piece: @piece.next_user_piece}%>
 </div>
 
+<hr>
 
 <% if current_user %>
   <div id="comment_form">
@@ -33,3 +48,4 @@
 <div id="comments">
   <%= render partial: :'comments/comment', collection: @comments, locals: {commentable: @piece} %>
 </div>
+

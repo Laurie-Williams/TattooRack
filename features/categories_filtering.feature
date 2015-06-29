@@ -5,8 +5,8 @@ Feature: Categories Filtering
 
   Background:
     Given an existing registered user "John"
-    And three existing "Flash"
-    And three existing "Tattoos"
+    And three existing pieces of category "Flash"
+    And three existing pieces of category "Tattoo"
 
   Scenario: View the last piece for Flash
     When I visit the Home page
