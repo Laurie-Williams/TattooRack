@@ -8,14 +8,16 @@ end
 # Preconditions
 
 Given(/^I am an existing registered user named "([^"]*)"$/) do |name|
-  if name == "John"
-    @john = User.new( name: "John", username: "John89", email: "john89@example.com", password: "secretpassword", password_confirmation: "secretpassword")
-    @john.skip_confirmation! #Skip email confirmation step
-    @john.save
-  elsif name == "Jane"
-    @jane = User.new( name: "Jane", username: "Jane77", email: "jane77@example.com", password: "secretpassword", password_confirmation: "secretpassword")
-    @jane.skip_confirmation! #Skip email confirmation step
-    @jane.save
+  Chewy.strategy(:atomic) do
+    if name == "John"
+      @john = User.new( name: "John", username: "John89", email: "john89@example.com", password: "secretpassword", password_confirmation: "secretpassword")
+      @john.skip_confirmation! #Skip email confirmation step
+      @john.save
+    elsif name == "Jane"
+      @jane = User.new( name: "Jane", username: "Jane77", email: "jane77@example.com", password: "secretpassword", password_confirmation: "secretpassword")
+      @jane.skip_confirmation! #Skip email confirmation step
+      @jane.save
+    end
   end
 
 end
@@ -37,26 +39,78 @@ Given(/^I am logged in as "([^"]*)"$/) do |name|
 end
 
 And(/^three existing pieces of category "([^"]*)"/) do |category|
-  step "I create a \"#{category}\" with tag \"test\""
-  step "I create a \"#{category}\" with tag \"test\""
-  step "I create a \"#{category}\" with tag \"test\""
+  step "a \"#{category}\" with tag \"test\""
+  step "a \"#{category}\" with tag \"test\""
+  step "a \"#{category}\" with tag \"test\""
 end
 
-When(/^I create a "([^"]*)" with tag "(.*?)"$/) do |category, tag|
-  category_id = nil
-  case category
-    when "Tattoos"
-      category_id =  1
-    when "Flash"
-      category_id =  2
-    when "Artworks"
-      category_id =  3
-    when "Inspirations"
-      category_id =  4
+When(/^a "([^"]*)" with tag "(.*?)"$/) do |category, tag|
+  Chewy.strategy(:atomic) do
+    category_id = nil
+    case category
+      when "Tattoos"
+        category_id =  1
+      when "Flash"
+        category_id =  2
+      when "Artworks"
+        category_id =  3
+      when "Inspirations"
+        category_id =  4
+    end
+
+    @piece = FactoryGirl.create(:piece, user_id: 1, category_id: category_id, tag_list: tag)
   end
+end
 
-  @piece = FactoryGirl.create(:piece, user_id: 1, category_id: category_id, tag_list: tag)
+When(/^a "([^"]*)" with description "(.*?)"$/) do |category, description|
+  Chewy.strategy(:atomic) do
+  category_id = nil
+    case category
+      when "Tattoos"
+        category_id =  1
+      when "Flash"
+        category_id =  2
+      when "Artworks"
+        category_id =  3
+      when "Inspirations"
+        category_id =  4
+    end
 
+    @piece = FactoryGirl.create(:piece, user_id: 1, category_id: category_id, description: description)
+  end
+end
+
+When(/^a "([^"]*)" with title "(.*?)"$/) do |category, title|
+  Chewy.strategy(:atomic) do
+    category_id = nil
+    case category
+      when "Tattoos"
+        category_id =  1
+      when "Flash"
+        category_id =  2
+      when "Artworks"
+        category_id =  3
+      when "Inspirations"
+        category_id =  4
+    end
+
+    @piece = FactoryGirl.create(:piece, user_id: 1, category_id: category_id, title: title)
+  end
+end
+
+When(/^a tattoo by user "(.*?)"$/) do | user |
+
+  Chewy.strategy(:atomic) do
+    user_id = nil
+    case user
+      when "John"
+        user_id =  1
+      when "Jane"
+        user_id =  2
+    end
+
+    @piece = FactoryGirl.create(:piece, user_id: user_id, category_id: 1, tag_list: "")
+  end
 end
 
 
@@ -211,7 +265,7 @@ When /^(?:|I )click the "([^"]*)" containing "([^"]*)"$/ do |element, text|
 end
 
 When /^(?:|I )hit Enter on "([^"]*)"$/ do |element|
-  page.execute_script "var e = jQuery.Event('keypress'); e.which = 13; $('#tag').trigger(e);"
+  page.execute_script "var e = jQuery.Event('keypress'); e.which = 13; $('##{element}').trigger(e);"
 
 end
 
@@ -296,6 +350,11 @@ end
 Then(/^I can see the "(.*?)" piece image in "(.*?)"$/) do |piece_number, prev_next_section|
   piece = Piece.find(piece_number)
   within( prev_next_section){ expect(page).to have_xpath("//img[@src=\"#{piece.image_url}\"]") }
+end
+
+Then(/^I can not see the "(.*?)" piece image in "(.*?)"$/) do |piece_number, prev_next_section|
+  piece = Piece.find(piece_number)
+  within( prev_next_section){ expect(page).not_to have_xpath("//img[@src=\"#{piece.image_url}\"]") }
 end
 
 And(/^I can see the start image in "(.*?)"$/) do |prev_next_section|

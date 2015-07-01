@@ -15,6 +15,7 @@ Rails.application.routes.draw do
   end
   get "pieces/tags/:tag", to: "tags#show", as: "pieces_tag"
   get "tags", to: "tags#index"
+  get "search", to: "search#search"
 
 
 

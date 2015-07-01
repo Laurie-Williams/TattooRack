@@ -86,4 +86,8 @@ RSpec.configure do |config|
   # as the one that triggered the failure.
   Kernel.srand config.seed
 =end
+
+  config.before(:suite) do
+    Chewy.strategy(:bypass)
+  end
 end

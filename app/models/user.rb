@@ -9,6 +9,11 @@ class User < ActiveRecord::Base
          :recoverable, :rememberable, :trackable,
          :validatable, :confirmable
 
+  # callbacks
+  update_index('Users#user') { self }
+  update_index('Pieces#piece') { :pieces }
+
+
   # associations
   has_many :pieces, -> {order(position: :asc)} #Order User.pieces by position
   has_many :comments

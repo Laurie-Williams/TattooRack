@@ -1,0 +1,21 @@
+<h1>Pieces:</h1>
+<% if params[:q] %>
+  <p>param <%= params[:q] %></p>
+<% end %>
+<% @pieces.each do |piece| %>
+  <%= image_tag piece.image_url %>
+  <h3>Title: <%= piece.title %></h3>
+  <%= link_to "Show", piece_path(piece) %>
+  <hr>
+<% end %>
+
+<h1>Users:</h1>
+<% if params[:q] %>
+  <p>param <%= params[:q] %></p>
+<% end %>
+<% @users.each do |user| %>
+  <%= image_tag user.avatar_url %>
+  <h3>Title: <%= user.username %></h3>
+  <%= link_to "Show", user_path(user) %>
+  <hr>
+<% end %>

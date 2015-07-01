@@ -16,6 +16,9 @@ class Piece < ActiveRecord::Base
     relation.order!(:created_at).reverse_order
   end
 
+  # callbacks
+  update_index('pieces#piece') { self }
+
   # attributes
   attr_accessor :crop_x, :crop_y, :crop_height, :crop_width, :offset, :list
 
@@ -28,7 +31,6 @@ class Piece < ActiveRecord::Base
   is_impressionable counter_cache: true, column_name: :views_count, unique: :session_hash
   acts_as_list scope: :user #Increment Piece.position for each new Piece by user
   mount_uploader :image, PieceUploader
-
 
   # instance methods
   def prev_list_piece
@@ -54,7 +56,7 @@ class Piece < ActiveRecord::Base
   end
 
 
-private
+  private
 
   # instance methods
    def list_prev_and_next

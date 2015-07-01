@@ -66,6 +66,7 @@ group :development do
   gem 'letter_opener', '~> 1.4.0' #Open emails in browser in development
 end
 
+gem 'chewy', '~> 0.8.1'
 gem 'simple_form', '~> 3.1.0'
 gem 'devise', '~> 3.5.1'
 gem 'carrierwave', '~> 0.10.0'
