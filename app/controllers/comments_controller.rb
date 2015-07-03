@@ -1,6 +1,5 @@
 class CommentsController < ApplicationController
-
- before_action :assign_commentable, only: [:create, :destroy]
+  before_action :assign_commentable, only: [:create, :destroy]
 
   def create
     if @commentable.comments.create(comment_params)
@@ -31,7 +30,6 @@ class CommentsController < ApplicationController
       redirect_to :back, alert: "Your comment was not deleted"
     end
   end
-
 
   private
 

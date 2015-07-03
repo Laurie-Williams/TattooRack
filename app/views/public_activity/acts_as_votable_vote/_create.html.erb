@@ -1,0 +1,8 @@
+<%= link_to activity.owner.name, activity.owner if activity.owner %>
+Liked
+
+<% if activity.trackable %>
+    <%= link_to "one of your Pieces", activity.trackable.votable %>
+<% else %>
+  a piece which has since been removed
+<% end %>

@@ -1,11 +1,12 @@
 Rails.application.routes.draw do
 
+  # Users
   devise_for :users,
              #Overide Devise controller with customised users/registrations controller
              controllers: { registrations: "users/registrations" }
-
   resources :users, only: [:index, :edit, :update, :show, :destroy]
 
+  # Pieces
   get 'pieces/crop'
   resources :pieces, only: [:index, :new, :create, :edit, :update, :show, :destroy]do
     resources :comments, only: [:create, :destroy]
@@ -13,12 +14,20 @@ Rails.application.routes.draw do
     post "like", to: "votes#like"
     delete "like", to: "votes#unlike"
   end
+
+  # Tags
   get "pieces/tags/:tag", to: "tags#show", as: "pieces_tag"
   get "tags", to: "tags#index"
+
+  # Search
   get "search", to: "search#search"
 
+  # Notifications
+  get "notifications", to: "notifications#index"
+  get "notifications/count", to: "notifications#count"
+  post "notification/:id/viewed", to: "notifications#viewed", as: "notification_viewed"
 
-
+  # Home
   root "pieces#index"
 
   # The priority is based upon order of creation: first created -> highest priority.

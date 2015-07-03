@@ -261,7 +261,7 @@ When /^(?:|I )follow "([^"]*)" number "([^"]*)"$/ do |link, number|
 end
 
 When /^(?:|I )click the "([^"]*)" containing "([^"]*)"$/ do |element, text|
-  page.execute_script "$('li:contains(\"tag1\")').trigger('mouseenter').trigger('click')"
+  page.execute_script "$('#{element}:contains(\"#{text}\")').trigger('mouseenter').trigger('click')"
 end
 
 When /^(?:|I )hit Enter on "([^"]*)"$/ do |element|
@@ -392,6 +392,15 @@ end
 Then(/^I can see like count is "(.*?)"$/) do |count|
   within("#likes"){expect(page).to have_content("#{count}")}
 end
+
+Then(/^"(.*?)" has content "(.*?)"$/) do |element, content|
+  within("#{element}"){expect(page).to have_content("#{content}")}
+end
+
+Then(/^"(.*?)" does not have content "(.*?)"$/) do |element, content|
+  within("#{element}"){expect(page).not_to have_content("#{content}")}
+end
+
 
 # Notifications
 

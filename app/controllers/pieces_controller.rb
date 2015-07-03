@@ -110,4 +110,5 @@ class PiecesController < ApplicationController
   def piece_params
     params.require(:piece).permit(:crop_x, :crop_y, :crop_height, :crop_width, :image, :title, :description, :published, :tag_list)
   end
+
 end

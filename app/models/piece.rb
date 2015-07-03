@@ -1,4 +1,5 @@
 class Piece < ActiveRecord::Base
+
   # validations
   validates :title, presence: true, length: {maximum: 128}
   validates :description, length: {maximum: 300}

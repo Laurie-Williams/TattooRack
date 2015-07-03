@@ -1,0 +1,15 @@
+<% @activities.each do |activity| %>
+  <% if activity.viewed? %>
+    <%= render_activity activity %>
+  <% else %>
+    <strong><%= render_activity activity %></strong>
+    <script>
+      $.ajax({
+        async: true,
+        type: 'POST',
+        url: '<%= notification_viewed_path(activity.id) %>'
+      });
+    </script>
+  <% end %>
+  <hr>
+<% end %>

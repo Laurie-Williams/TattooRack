@@ -60,4 +60,5 @@ class UsersController < ApplicationController
       flash[:alert] = "You do not have permission to view this page"
     end
   end
+
 end

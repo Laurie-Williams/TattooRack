@@ -77,5 +77,6 @@ gem 'acts_as_commentable', '~> 4.0.2'
 gem 'acts_as_votable', '~> 0.10.0'
 gem 'acts-as-taggable-on', '~> 3.5.0'
 gem 'impressionist', '~> 1.5.1' #Acts as viewable
+gem 'public_activity', '~> 1.4.2'
 
 
