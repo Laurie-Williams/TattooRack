@@ -8,8 +8,10 @@ RSpec.describe CommentsController, type: :controller do
       @comment = double "Comment"
       @comments = double("Comments", create: @comment)
       @piece = FactoryGirl.build_stubbed(:piece)
+      @user = double "User"
       allow(@piece).to receive(:comments).and_return(@comments)
       allow(Comment).to receive(:find_commentable).and_return(@piece)
+      allow(subject).to receive(:current_user).and_return(@user)
       request.env["HTTP_REFERER"] = piece_url(@piece)
     end
 
@@ -40,17 +42,23 @@ RSpec.describe CommentsController, type: :controller do
         expect(flash[:alert]).to be_present
       end
     end
+
+    it "Redirects logged out user to log in page" do
+      allow(subject).to receive(:current_user).and_return(nil)
+      post :create, piece_id: @piece, comment: {comment: "Test Comment"}
+      expect(response).to redirect_to(new_user_session_path)
+    end
   end
 
   describe "POST #destroy" do
 
     before :each do
-      @comment = double "Comment", destroy: true
-      @comments = double("Comments", find: @comment)
+      @user = double "User"
+      @comment = double "Comment", destroy: true, user: @user
       @piece = FactoryGirl.build_stubbed(:piece)
-      @user = double "User", comments: @comments
       allow(subject).to receive(:current_user).and_return(@user)
       allow(Comment).to receive(:find_commentable).and_return(@piece)
+      allow(Comment).to receive(:find).and_return(@comment)
       request.env["HTTP_REFERER"] = piece_url(@piece)
     end
 
@@ -80,6 +88,18 @@ RSpec.describe CommentsController, type: :controller do
         post :destroy, piece_id: @piece, id: 1
         expect(flash[:alert]).to be_present
       end
+    end
+
+    it "Redirects logged out user to log in page" do
+      allow(subject).to receive(:current_user).and_return(nil)
+      post :destroy, piece_id: @piece, id: 1
+      expect(response).to redirect_to(new_user_session_path)
+    end
+
+    it "Redirects user who did not create comment" do
+      allow(subject).to receive(:current_user).and_return("not user")
+      post :destroy, piece_id: @piece, id: 1
+      expect(response).to redirect_to(root_path)
     end
   end
 

@@ -6,7 +6,7 @@ RSpec.describe NotificationsController, type: :controller do
     before :each do
       @user = double "User"
       allow(PublicActivity::Activity).to receive_message_chain(:all, :order, :where, :where, :not ).and_return(@tags)
-      allow(subject).to receive(:current_user ).and_return(@user)
+      allow(subject).to receive(:current_user).and_return(@user)
     end
 
     it "returns http success" do
@@ -22,6 +22,12 @@ RSpec.describe NotificationsController, type: :controller do
     it "returns notifications partial" do
       get :index
       expect(response).to render_template(partial: "notifications/_notifications")
+    end
+
+    it "redirects logged out user" do
+      allow(subject).to receive(:current_user).and_return(nil)
+      get :index
+      expect(response).to redirect_to(new_user_session_path)
     end
 
   end
@@ -44,14 +50,21 @@ RSpec.describe NotificationsController, type: :controller do
       expect(assigns(:count)).to eq(1)
     end
 
+    it "redirects logged out user" do
+      allow(subject).to receive(:current_user).and_return(nil)
+      get :count
+      expect(response).to redirect_to(new_user_session_path)
+    end
 
   end
 
   describe "POST #viewed" do
 
     before :each do
-      @activity = double "Activity", update_attributes: true
+      @user = double "User"
+      @activity = double "Activity", update_attributes: true, recipient: @user
       allow(PublicActivity::Activity).to receive(:find).with("1").and_return(@activity)
+      allow(subject).to receive(:current_user ).and_return(@user)
     end
 
     it "finds activity" do
@@ -63,5 +76,18 @@ RSpec.describe NotificationsController, type: :controller do
       expect(@activity).to receive(:update_attributes).with(viewed: true).and_return(true)
       post :viewed, id: 1
     end
+
+    it "redirects logged out user" do
+      allow(subject).to receive(:current_user).and_return(nil)
+      post :viewed, id: 1
+      expect(response).to redirect_to(new_user_session_path)
+    end
+
+    it "redirects user who is not analytics recipient" do
+      allow(@activity).to receive(:recipient).and_return("not recipient")
+      post :viewed, id: 1
+      expect(response).to redirect_to(root_path)
+    end
+
   end
 end

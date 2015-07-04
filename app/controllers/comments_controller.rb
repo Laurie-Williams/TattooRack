@@ -1,5 +1,8 @@
 class CommentsController < ApplicationController
   before_action :assign_commentable, only: [:create, :destroy]
+  before_action :assign_comment, only: [:destroy]
+  before_action :authenticate_user
+  before_action :authorize_user, except: [:create]
 
   def create
     if @commentable.comments.create(comment_params)
@@ -16,7 +19,6 @@ class CommentsController < ApplicationController
   end
 
   def destroy
-    @comment = current_user.comments.find(params[:id])
     if @comment.destroy
       @comments = @commentable.comments
       if request.xhr?
@@ -37,6 +39,27 @@ class CommentsController < ApplicationController
     @commentable_type = request.path.split("/")[1].singularize.capitalize
     @commentable_id = request.path.split("/")[2]
     @commentable = Comment.find_commentable(@commentable_type, @commentable_id)
+  end
+
+  def assign_comment
+    @comment = Comment.find(params[:id])
+  end
+
+  def authenticate_user
+    if current_user.nil?
+      flash[:alert] = "You need to sign in to view this"
+      redirect_to new_user_session_path
+    end
+  end
+
+  def authorize_user
+    if current_user == @comment.user
+      # continue
+    else
+      # Prompt for Sign In
+      redirect_to root_path
+      flash[:alert] = "Oops this piece doesn't belong to you"
+    end
   end
 
   def comment_params

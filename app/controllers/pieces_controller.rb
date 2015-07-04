@@ -90,7 +90,7 @@ class PiecesController < ApplicationController
   end
 
   def authorize_user
-    if current_user.admin? || (current_user == @piece.user)
+    if current_user == @piece.user
       # continue
     else
       # Prompt for Sign In

@@ -1,6 +1,7 @@
 class TagsController < ApplicationController
   before_action :authenticate_user, except: [:show, :index]
   before_action :assign_taggable, except: [:show, :index]
+  before_action :authorize_user, except: [:show, :index]
 
   def index
     if request.xhr?
@@ -32,6 +33,16 @@ class TagsController < ApplicationController
     if current_user.nil?
       flash[:alert] = "You need to sign in to view this"
       redirect_to new_user_session_path
+    end
+  end
+
+  def authorize_user
+    if current_user == @taggable.user
+      # continue
+    else
+      # Prompt for Sign In
+      redirect_to root_path
+      flash[:alert] = "Oops this piece doesn't belong to you"
     end
   end
 

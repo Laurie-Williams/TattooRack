@@ -53,7 +53,7 @@ RSpec.describe TagsController, type: :controller do
       before :each do
         @user = double("user", pieces: @pieces)
         @tag_list = double("Tag List", add: ["tag1"])
-        @piece = double("Piece", tag_list: @tag_list, save: true)
+        @piece = double("Piece", tag_list: @tag_list, save: true, user: @user)
         allow(subject).to receive(:current_user).and_return(@user)
         allow(Piece).to receive(:find).with("1").and_return(@piece)
       end
@@ -81,6 +81,12 @@ RSpec.describe TagsController, type: :controller do
         post :create, tag: "tag", piece_id: 1
         request.path = "pieces/1/tags"
       end
+
+      it "redirects if current user is not taggable owner" do
+        allow(subject).to receive(:current_user).and_return("Not Owner")
+        post :create, tag: "tag", piece_id: 1
+        expect(response).to redirect_to(root_path)
+      end
     end
 
     it "redirects logged out user" do
@@ -97,7 +103,7 @@ RSpec.describe TagsController, type: :controller do
       before :each do
         @user = double("user", pieces: @pieces)
         @tag_list = double("Tag List", remove: [])
-        @piece = double("Piece", tag_list: @tag_list, save: true)
+        @piece = double("Piece", tag_list: @tag_list, save: true, user: @user)
         allow(subject).to receive(:current_user).and_return(@user)
         allow(Piece).to receive(:find).with("1").and_return(@piece)
       end
@@ -124,6 +130,12 @@ RSpec.describe TagsController, type: :controller do
         expect(response).to render_template(partial: "delete_tag_list", locals: { piece: @piece })
         delete :destroy, piece_id: 1, id: "tag"
         request.path = "pieces/1/tags/tag"
+      end
+
+      it "redirects if current user is not taggable owner" do
+        allow(subject).to receive(:current_user).and_return("Not Owner")
+        delete :destroy, piece_id: 1, id: "tag"
+        expect(response).to redirect_to(root_path)
       end
     end
 

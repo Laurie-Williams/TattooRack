@@ -249,14 +249,6 @@ RSpec.describe PiecesController, type: :controller do
         expect(flash[:notice]).to eq("Your piece has been updated")
       end
 
-      it "does not redirect for Admin user" do
-        @user2 = double("user", admin?: true)
-        allow(subject).to receive(:current_user).and_return(@user2)
-
-        put :update, id: "1", piece: {title: "My Piece Title"}
-        expect(response).to redirect_to(piece_path(@piece))
-      end
-
     end
 
     context "unsuccessful update" do
@@ -331,13 +323,6 @@ RSpec.describe PiecesController, type: :controller do
         expect(flash[:notice]).to eq("Your piece has been deleted")
       end
 
-      it "does not redirect for Admin user" do
-        @user2 = double("user", admin?: true)
-        allow(subject).to receive(:current_user).and_return(@user2)
-
-        delete :destroy, id: "1"
-        expect(response).to redirect_to(pieces_path)
-      end
     end
 
     context "Piece is not destroyed" do
