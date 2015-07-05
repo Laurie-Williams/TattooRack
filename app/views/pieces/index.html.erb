@@ -6,6 +6,8 @@
   <%= image_tag piece.image_url %>
   <h3>Title: <%= piece.title %></h3>
   <%= link_to "Delete", piece_path(piece), method: :delete %>
-  <%= link_to "Show", piece_path(piece, offset: i, list: @list) %>
+  <%= link_to "Show", piece_path(piece, offset: piece_index_offset(i) , list: @list) %>
   <hr>
 <% end %>
+
+<%= paginate @pieces %>

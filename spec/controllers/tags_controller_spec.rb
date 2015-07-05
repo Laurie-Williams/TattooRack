@@ -31,7 +31,7 @@ RSpec.describe TagsController, type: :controller do
 
     before :each do
       @pieces = double "Pieces"
-      allow(Piece).to receive_message_chain(:published, :tagged_with).and_return(@pieces)
+      allow(Piece).to receive_message_chain(:published, :tagged_with, :page, :per).and_return(@pieces)
     end
 
     it "returns http success" do

@@ -7,7 +7,7 @@ RSpec.describe PiecesController, type: :controller do
 
     before :each do
       @pieces = double("pieces")
-      allow(Piece).to receive(:all_in_category).and_return(@pieces)
+      allow(Piece).to receive_message_chain(:all_in_category, :page, :per).and_return(@pieces)
     end
 
     it "returns http success" do
@@ -17,6 +17,7 @@ RSpec.describe PiecesController, type: :controller do
 
     it "calls .all_in_category on User if list param present" do
       expect(Piece).to receive(:all_in_category).with("flash", nil).and_return(@pieces)
+      allow(@pieces).to receive_message_chain(:page, :per).and_return(@pieces)
       get :index, list: "flash"
     end
 

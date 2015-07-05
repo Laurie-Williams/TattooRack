@@ -11,7 +11,7 @@ class TagsController < ApplicationController
   end
 
   def show
-    @pieces = Piece.published.tagged_with(params[:tag])
+    @pieces = Piece.published.tagged_with(params[:tag]).page(params[:page]).per(12)
     render "pieces/index"
   end
 
