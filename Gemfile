@@ -74,6 +74,7 @@ group :development do
 end
 
 gem 'chewy', '~> 0.8.1'
+gem 'newrelic_rpm'
 gem 'simple_form', '~> 3.1.0'
 gem 'devise', '~> 3.5.1'
 gem 'carrierwave', '~> 0.10.0'
