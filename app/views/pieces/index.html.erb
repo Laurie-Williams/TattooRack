@@ -1,13 +1,18 @@
-<h1>Pieces:</h1>
-<% if params[:q] %>
-  <p>param <%= params[:q] %></p>
-<% end %>
-<% @pieces.each_with_index do |piece, i| %>
-  <%= image_tag piece.image_url :small %>
-  <h3>Title: <%= piece.title %></h3>
-  <%= link_to "Delete", piece_path(piece), method: :delete %>
-  <%= link_to "Show", piece_path(piece, offset: piece_index_offset(i) , list: @list) %>
-  <hr>
-<% end %>
+<div class="l-content">
+  <div class="l-index-main">
 
-<%= paginate @pieces %>
+    <!-- List Pieces-->
+    <% @pieces.each_with_index do |piece, i| %>
+
+      <!-- Single Piece-->
+      <%= render partial: "piece", locals: {piece: piece, i: i} %>
+      <!-- Single Piece End-->
+
+  <% end %>
+  <!-- List Pieces End-->
+
+  <!-- Pagination-->
+  <%= paginate @pieces %>
+
+  </div>
+</div>

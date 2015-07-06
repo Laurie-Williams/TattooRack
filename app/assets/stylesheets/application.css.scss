@@ -9,38 +9,13 @@
  * compiled file so the styles you add here take precedence over styles defined in any styles
  * defined in the other CSS/SCSS files in this directory. It is generally better to create a new
  * file per style scope.
- *
- *= require jquery-ui/autocomplete
- *= require cropper.min
- *= require dev_styles
- *= require_self
  */
 
-    body{font-family: helvetica neue, lucida grande, sans-serif}
-
-    /*#crop_area{*/
-        /*height: 600px;*/
-        /*width: 600px;*/
-    /*}*/
-
-    .preview-lg{
-        height: 500px;
-        overflow: hidden;
-    }
-
-    .preview-sm{
-        height: 100px;
-        overflow: hidden;
-    }
-
-    span.cropper-line{
-        background-color: rgba(211, 211, 211, 0.6);
-    }
-
-     span.cropper-point{
-         background-color: rgba(211, 211, 211, 0.4);
-     }
-    .cropper-view-box{
-     outline: 1px dashed rgba(211, 211, 211, 0.6);
-    }
-
+  @import "jquery-ui/autocomplete";
+  @import "cropper.min";
+  @import "bootstrap-sprockets";
+  @import "base/base";
+  @import "layout/grid";
+  @import "layout/layout";
+  @import "modules/*";
+  @import "dev_styles";

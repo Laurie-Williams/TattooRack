@@ -60,7 +60,7 @@ var imageCropper =  {
             rotatable: false,
             zoomable: false,
             autoCropArea: 1,
-            mincanvasWidth: 600,
+            mincanvasWidth: 450,
             minContainerHeight: 600,
             crop: function(data) {
                 // Output the result data for cropping image.

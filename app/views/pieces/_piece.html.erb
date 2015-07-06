@@ -1,0 +1,22 @@
+<div class="piece clearfix">
+
+  <div class="piece-main">
+
+    <a class="piece-main-image">
+      <%= image_tag piece.image_url%>
+    </a>
+
+    <a class="piece-main-overlay">
+      <h3><%= piece.title %></h3>
+      <p><%= truncate(piece.description, length: 140) %></p>
+      <em><%= piece.created_at.strftime("%B %d, %Y") %></em>
+    </a>
+
+  </div>
+
+  <div class="piece-footer">
+    <%= link_to "Delete", piece_path(piece), method: :delete %>
+    <%= link_to "Show", piece_path(piece, offset: piece_index_offset(i) , list: @list) %>
+  </div>
+
+</div>

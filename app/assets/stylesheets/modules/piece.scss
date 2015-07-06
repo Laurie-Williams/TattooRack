@@ -1,0 +1,37 @@
+//== Piece
+
+.piece{
+  @extend .col-xs-12;
+  @extend .col-sm-6;
+  @extend .col-md-4;
+  @extend .col-lg-3;
+  padding: 10px;
+
+  &-main{
+
+
+    &-image{
+      > img{
+        @extend .img-responsive
+      }
+    }
+
+    &-overlay{
+      position: absolute;
+      top: 0;  bottom: 0;  left: 0;  right: 0;
+      background-color: #FFFFFF;
+      // Fade in
+      opacity: 0;
+      transition: opacity 0.17s linear;
+
+      > h3{}
+
+      &:hover{
+        opacity: 0.97;
+      }
+    }
+  }
+
+  &-footer{
+  }
+}

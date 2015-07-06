@@ -1,0 +1,13 @@
+//== Global
+.l-content{
+  @media (min-width: $max-width){
+    width: $max-width;
+  }
+  @extend .container-fluid;
+}
+
+//== Index
+.l-index-main{
+  @extend .col-xs-12;
+}
+

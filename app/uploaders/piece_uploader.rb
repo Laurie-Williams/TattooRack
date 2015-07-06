@@ -54,12 +54,12 @@ class PieceUploader < CarrierWave::Uploader::Base
     manipulate! do |img|
       img.crop("#{width}x#{height}+#{x}+#{y}")
     end
-    resize_to_fit(600, 600)
+    resize_to_fill(600, 450)
   end
 
   # Create different versions of your uploaded files:
   version :small do
-    process :resize_to_fit => [100, 100]
+    process :resize_to_fit => [100, 75]
   end
 
   # Add a white list of extensions which are allowed to be uploaded.

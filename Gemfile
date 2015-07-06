@@ -83,6 +83,7 @@ gem "fog"
 gem 'mini_magick', '~> 4.2.7'
 gem 'activeadmin', '~> 1.0.0.pre1'
 gem 'kaminari', '~> 0.16.3'
+gem 'bootstrap-sass', '~> 3.3.5'
 
 gem 'acts_as_list', '~> 0.7.2'
 gem 'acts_as_commentable', '~> 4.0.2'
