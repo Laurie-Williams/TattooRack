@@ -5,7 +5,7 @@
     <% @pieces.each_with_index do |piece, i| %>
 
       <!-- Single Piece-->
-      <%= render partial: "piece", locals: {piece: piece, i: i} %>
+      <%= render partial: "pieces/piece", locals: {piece: piece, i: i} %>
       <!-- Single Piece End-->
 
   <% end %>

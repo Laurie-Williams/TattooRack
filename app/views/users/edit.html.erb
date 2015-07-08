@@ -3,7 +3,7 @@
 <hr>
 <h3>Your Avatar:</h3>
 
-<%= image_tag @user.avatar_url :thumb %>
+<%= image_tag @user.avatar_url :small %>
 
 <%= simple_form_for @user, html: { multipart: true } do |f| %>
 

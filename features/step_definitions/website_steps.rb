@@ -340,7 +340,7 @@ end
 
 Then(/^I can see my profile avatar thumbnail$/) do
   @john.reload
-  expect(page).to have_xpath("//img[@src=\"#{@john.avatar_url(:thumb)}\"]")
+  expect(page).to have_xpath("//img[@src=\"#{@john.avatar_url(:small)}\"]")
 end
 
 And(/^I can see correct Piece Title on the page$/) do

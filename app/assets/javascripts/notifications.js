@@ -43,7 +43,7 @@ var notifications = {
                 $notifications_button.text("Notifications" + " (" + data + ")");
             }
         });
-    },
+    }
 };
         //Initalize
 $(document).on('ready page:load', function () {
