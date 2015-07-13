@@ -8,12 +8,13 @@ h1, h2, h3, h4, h5, p{
   letter-spacing: 0.07em;
   margin: 0;
   padding: 0;
+  color: $gray-light;
 }
 
 //## Emphasis
 i, cite, em, var, address, dfn {
   font-style: normal;
-  color: $gray-light;
+  color: $gray-lighter;
 }
 
 ul, li{
@@ -31,7 +32,12 @@ img{
   @extend .img-responsive
 }
 
+html, body{
+  height: 100%;
+}
+
 body{
   background-color: $body-bg;
+  background-image: url("bg_texture.png");
 }
 

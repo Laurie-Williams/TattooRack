@@ -4,8 +4,7 @@
     width:                      $max-width;
   }
   @extend                       .container-fluid;
-  background-color:             #f2f2f2;
-  min-height:                   600px;
+  padding:                      20px 0;
 }
 
 //== Index
@@ -14,19 +13,29 @@
   background-image:             url("hero3.jpg");
   background-position:          top;
   background-size:              cover;
-  height: 300px;
-  margin: auto;
+  height:                       300px;
+  margin:                       auto;
+  border-radius:                4px;
   @media (min-width: $max-width){
     width:                      $max-width;
   }
   &-user{
-    background-image:           url("hero2.jpg");
+    background-image:           none;
     background-position:        center;
+    background-size:            auto;
+    background-repeat:          no-repeat;
+    background-color: $gray-darker;
+    border: 1px solid #24272b;
+    border-top: none;
   }
 }
 .l-index-main{
   @extend                       .col-xs-12;
-  margin-top:                   20px;
+  background-color:             $gray-dark;
+  background-image: url("bg_texture2.png");
+  border-radius:                4px;
+  padding:                      $grid-gutter-width;
+  box-shadow:                 0 1px 6px rgba(0,0,0,0.05);
 }
 
 //== Show

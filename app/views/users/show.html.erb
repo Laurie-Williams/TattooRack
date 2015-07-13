@@ -1,6 +1,9 @@
 <div class="l-index-hero l-index-hero-user">
-  <h1><%= @user.username %></h1>
-  <%= image_tag @user.avatar_url(:small) %>
+  <div class="user-hero">
+    <%= image_tag @user.avatar_url(:small)%>
+    <h1><%= @user.name %></h1>
+    <h4><%= @user.bio %></h4>
+  </div>
 </div>
 
 <div class="page-content">

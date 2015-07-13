@@ -1,20 +1,52 @@
 //== Site Nav =================
+.nav-container{
+  @extend .clearfix;
+  padding: 0;
+  background-color: $navbar-default-bg;
+  border: 1px solid #24272b;
+  border-top: none;
+  &-logo{
+    width: 200px;
+    height: 45px;
+    display: inline-block;
+    position: absolute;
+    background-image: url("logo_white.png");
+    background-position: left;
+    background-repeat: no-repeat;
+    background-size: contain;
+  }
+}
+
 .sitenav{
+  @extend .container-fluid;
   @extend .hidden-xs;
   @extend .hidden-sm;
   @extend .hidden-md;
   @extend .clearfix;
+  @media (min-width: $max-width+($grid-gutter-width*3)){
+    width: $max-width+($grid-gutter-width*3);
+    margin: auto;
+  }
   display: block;
   width: 100%;
-  text-align: center;
-  background-color: $navbar-default-bg;
+  text-align: left;
+  font-family: $headings-font-family;
   position: relative;
   list-style: none;
-  padding: 0;
-
+  padding: 0 1.5*$grid-gutter-width;
 
   >ul{
-    @extend .clearfix
+    @extend .clearfix;
+    margin-left: 200px;
+  }
+
+  .public-nav{
+    float: left;
+    padding-top: 12px;
+  }
+
+  .user-nav{
+    float: right;
   }
 
 
@@ -22,16 +54,20 @@
     position: absolute;
     width: 100%;
     left: 0px;
-    top: 100%;
+    top: 10px;
     display: none;
     z-index: 1;
 
     .sitenav-item{
       width: 150px;
+      border-bottom: none;
     }
 
-    a:hover{
-      background: $nav-link-hover-bg;
+    a {
+      padding: 0 10px 10px 10px;
+      &:hover {
+        color: $gray-lighter;
+      }
     }
   }
 
@@ -40,14 +76,18 @@
     width: auto;
     position: relative;
     text-align: left;
-
+    border-bottom: 3px solid $gray;
+    margin-right: 20px;
+    &:hover{
+      border-bottom: 4px solid $brand-primary;
+    }
 
     > a {
       display: block;
       background: $navbar-default-bg;
       color: $navbar-default-color;
       text-decoration: none;
-
+      padding: 0;
     }
   }
 }
@@ -65,8 +105,8 @@
     float: left;
     cursor: pointer;
     border-radius: $nav-pills-border-radius;
-    //background-color: $navbar-default-bg;
-    background-color: $navbar-default-link-active-bg;
+    background-image: url("menu_icon.png");
+    background-size: contain;
     padding: 2px 4px;
     height: 30px;
     width: 30px;
@@ -87,17 +127,17 @@
       display: block;
       padding: 2px;
       width: 100%;
+      border-bottom: none;
       a {
         padding: 1px;
         display: block;
         text-align: center;
-        color: $navbar-default-link-hover-color;
+        //color: $navbar-default-link-hover-color;
       }
     }
 
     .sitenav-sublist{
       ul{
-        margin-left: 20px;
         position: static;
         width: 100%;
         left: 0px;

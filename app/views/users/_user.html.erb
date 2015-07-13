@@ -3,14 +3,13 @@
     <div class="card-user-main" >
       <a href="<%=user_path user%>"><%= image_tag user.avatar_url(:small)%></a>
       <%= link_to "#{user.pieces.count}", user_path(user), class: "icon icon-comments card-user-main-info" %>
-      <a href="<%=user_path user%>"><h4 class="card-user-main-info"><%= user.name %></h4></a>
     </div>
 
     <div class="card-user-pieces">
       <% [0, 1, 2].each do |i| %>
         <% piece = user.pieces[i] %>
         <% if piece.present? %>
-          <a href="<%=piece%>" class="card-user-piece">
+          <a href="<%=piece_path piece%>" class="card-user-piece">
             <div class="card-user-piece-overlay"></div>
             <%= image_tag piece.image_url() %>
           </a>
@@ -18,4 +17,5 @@
       <% end %>
     </div>
   </div>
+  <a href="<%=user_path user%>"><h4 class="card-user-main-info"><%= user.name %></h4></a>
 </div>

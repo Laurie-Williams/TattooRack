@@ -1,34 +1,43 @@
 .footer{
-  @media (min-width: $max-width){
-    width:                $max-width;
-    margin: auto;
-  }
+  @extend .clearfix;
+  background-color:         $gray-dark;
+  border-top:               4px solid $gray-darker;
+
   &-content{
-    @extend                 .col-xs-12;
-    @extend                 .col-lg-8;
-    @extend                 .col-lg-offset-2;
+    @extend .container-fluid;
+    @media (min-width: $max-width){
+      width: $max-width;
+      margin: auto;
+    }
+    color:                  $gray-light;
+    padding:                50px 0;
     &-tagline{
       @extend               .col-xs-12;
-      @extend               .col-lg-6;
+      @extend               .col-lg-4;
     }
     &-navigate{
       @extend               .col-xs-6;
-      @extend               .col-lg-3;
+      @extend               .col-lg-4;
+      text-align: center;
     }
     &-company{
       @extend               .col-xs-6;
-      @extend               .col-lg-3;
+      @extend               .col-lg-4;
+      text-align: right;
     }
   }
   &-subfooter{
-    @extend               .col-xs-12;
-    background-color:     $gray-light;
-    color:                white;
+    background-color:     $gray-darker;
+    color:                $gray-light;
+    padding:              10px 0;
+    box-shadow: 0px 500px 0px 500px $gray-darker; // extend footer to bottom
     small{
-      @extend             .col-xs-12;
-      @extend             .col-lg-8;
-      @extend             .col-lg-offset-2;
+      display: block;
+      @extend .container-fluid;
+      @media (min-width: $max-width){
+        width: $max-width;
+        margin: auto;
+      }
     }
   }
-
 }

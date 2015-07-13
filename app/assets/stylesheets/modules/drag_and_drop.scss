@@ -11,18 +11,20 @@
     text-align: center;
   }
   &-area {
-    border: 2px dashed lightgrey;
-    color: lightgrey;
+    border: 2px dashed $gray-light;
     text-align: center;
     padding: 38% 10%;
     margin: 20px 0;
     p {
       margin: 0;
     }
-    .drag_over {
-      border-color: grey;
-      color: grey;
-    }
+  }
+}
+
+.drag_over {
+  border-color: $brand-primary;
+  h4{
+    color: $gray-lighter;
   }
 }
 

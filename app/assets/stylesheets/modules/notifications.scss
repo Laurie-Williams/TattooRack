@@ -6,15 +6,16 @@
 .notifications_panel{
   position: absolute;
   top: 33px;
-  width: 350px;
+  width: 375px;
   z-index: 100;
-  background-color: $navbar-default-bg;
+  background-color: $gray-dark;
   padding: 10px 25px;
-  border: 1px solid $gray-lighter;
+  box-shadow:                 0 0 60px rgba(0, 0, 0, 0.6);
+
   &-notification{
     margin: 7px 0;
     padding: 7px;
-    border-bottom: 1px solid $gray-lighter;
+    border-bottom: 1px solid $gray-dark;
   }
 }
 

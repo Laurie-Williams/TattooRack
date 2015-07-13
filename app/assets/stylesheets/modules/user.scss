@@ -8,13 +8,29 @@
 
 }
 
-.card{
-  @extend .clearfix;
-  border:                   1px solid $gray-lighter;
-  background-color:         white;
+.user-hero{
+  padding: 30px 0;
+  text-align: center;
+  h1{
+    color: $brand-primary;
+    margin: auto;
+    font-size: 7em;
+    letter-spacing: -5px;
+    display: inline-block;
+    border-bottom: 10px solid $brand-primary;
+  }
+  img{
+    margin: auto;
+    border-radius: 50%;
+  }
+}
 
+.card{
   &-user {
-    padding:                5px 0;
+    box-shadow:                 0 1px 30px rgba(0, 0, 0, 0.1);
+    //border-radius:              6px;
+    padding:                    3;
+    background-color:         $gray;
     @media (min-width: $screen-md-min)and(max-width: $screen-md-max){
       width:                  600px;
       margin: auto;
@@ -24,9 +40,9 @@
       @extend               .col-sm-8;
       @extend               .col-lg-8;
       @extend               .hidden-xs;
-      @media (min-width: $screen-lg-min){
-        margin-top:         2%;
-      }
+      padding: 0;
+      border-radius: 0 3px 3px 0;
+      overflow: hidden;
     }
 
     &-main {
@@ -44,16 +60,17 @@
       img {
         @extend             .col-xs-4;
         @extend             .col-sm-6;
-        @extend             .col-lg-6;
+        @extend             .col-lg-5;
         @extend             .img-responsive;
         border-radius:      50%;
         position:           relative;
+        padding: 0;
       }
 
       &-info{
         @extend              .col-xs-8;
         @extend              .col-sm-6;
-        @extend              .col-lg-6;
+        @extend              .col-lg-5;
         position:            relative;
         margin:              0;
       }
@@ -61,10 +78,14 @@
 
     &-piece{
       @extend .col-xs-4;
+      padding: 0;
+      img{
+        background-color: white;
+      }
 
       &-overlay{
         position:             absolute;
-        top: 0; bottom: 0; left: 0; right: 0;
+        top: 0; bottom: 0; left: 0px; right: 0px;
         background-color:     white;
         background-image:     url("Eye_outline_32.png");
         background-repeat:    no-repeat;
