@@ -8,23 +8,21 @@
 </head>
 <body>
 
+  <div id="nav">
+    <%= render partial: "layouts/nav" %>
+  </div>
 
-<div id="nav">
-  <%= render partial: "layouts/nav" %>
-</div>
+  <div id="Flash">
+    <%= render partial: "layouts/flash" %>
+  </div>
 
-<div id="notifications_panel"></div>
+  <div id="main">
+    <%= yield %>
+  </div>
 
-<hr>
-<hr>
-
-<div id="Flash">
-  <%= render partial: "layouts/flash" %>
-</div>
-
-<div id="main">
-  <%= yield %>
-</div>
+  <div id="footer">
+    <%= render partial: "layouts/footer" %>
+  </div>
 
 </body>
 </html>

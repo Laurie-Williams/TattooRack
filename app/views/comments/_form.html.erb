@@ -1,6 +1,9 @@
-<%= simple_form_for [commentable, @comment], remote: true do |f| %>
-  <%= f.input :user_id, as: :hidden %>
+<div class="comments-form">
+  <%= image_tag current_user.avatar_url, class: "avatar-small" %>
+  <%= simple_form_for [commentable, @comment], remote: true, class: "comments-form" do |f| %>
+    <%= f.input :user_id, as: :hidden %>
 
-  <%= f.input :comment %>
-  <%= f.button :submit, "Post Comment" %>
-<% end %>
+    <%= f.input :comment, placeholder: "Add a new comment", label: false%>
+    <%= f.button :submit, "Post Comment" %>
+  <% end %>
+</div>

@@ -15,5 +15,7 @@
 //= require jquery_ujs
 //= require turbolinks
 //= require cropper.min
+//= require jquery.slicknav
+//= require minimalist-nav
 //= require_tree .
 

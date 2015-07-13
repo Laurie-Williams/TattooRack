@@ -1,23 +1,61 @@
-<%= link_to "Users", users_path %>
-<%= link_to "Pieces", pieces_path %> |
-<%= link_to "Tattoos", pieces_path(list: "tattoo") %> |
-<%= link_to "Flash", pieces_path(list: "flash") %> |
-<%= link_to "Artwork", pieces_path(list: "artwork") %> |
-<%= link_to "Inspiration", pieces_path(list: "inspiration") %> |
-<%= form_tag search_path, method: :get, id: "search_form" do %>
-  <%= text_field_tag :q, nil, placeholder: "Search"%>
-  <%= submit_tag :search %>
-<% end %>
+<nav id="site-nav" class="sitenav">
+  <ul class="col-lg-10 col-lg-offset-1">
 
-<% if current_user.present? %>
-  <!--Logged In-->
-  <%= link_to "Sign Out", destroy_user_session_path, method: :delete %>
-  <%= link_to "Account Settings", edit_user_path(current_user) %>
-  <%= link_to "Create Piece", new_piece_path %> |
-  <span >Name:  <%=current_user.name%> </span> |
-  <button id="notifications_button">Notifications</button>
-<% else %>
-  <!--Logged Out-->
-  <%= link_to "Sign Up", new_user_registration_path %>
-  <%= link_to "Sign In", new_user_session_path %>
-<% end %>
+        <li class="sitenav-item sitenav-sublist" id="pieces_dropdown">
+          <a href=<%=pieces_path%>>
+            Pieces
+            <ul>
+              <li class="sitenav-item">
+                <%= link_to "Tattoos", pieces_path(list: "tattoo") %>
+              </li>
+              <li class="sitenav-item">
+                <%= link_to "Flash", pieces_path(list: "flash") %>
+              </li>
+              <li class="sitenav-item">
+                <%= link_to "Artwork", pieces_path(list: "artwork") %>
+              </li>
+              <li class="sitenav-item">
+                <%= link_to "Inspiration", pieces_path(list: "inspiration") %>
+              </li>
+            </ul>
+          </a>
+        </li>
+        <li class="sitenav-item"><%= link_to "Artists", users_path %></li>
+
+    <% if current_user.present? %>
+      <li class="sitenav-item sitenav-sublist" id="user_dropdown">
+        <a href=<%=users_path(current_user)%>>
+          <%= current_user.name %>
+          <ul class="">
+            <li class="sitenav-item">
+              <%= link_to "Account Settings", edit_user_path(current_user) %>              </li>
+            <li class="sitenav-item">
+              <%= link_to "Sign Out", destroy_user_session_path, method: :delete %>
+            </li>
+          </ul>
+        </a>
+      </li>
+      <li class="sitenav-item notification_button">
+        <a href="#" id="notifications_button">Notifications</a>
+        <div id="notifications_panel" class="notifications_panel"></div>
+      </li>
+      <li class="sitenav-item"><%= link_to "Create", new_piece_path %></li>
+    <% else %>
+      <li class="sitenav-item"><%= link_to "Sign Up", new_user_registration_path %></li>
+      <li class="sitenav-item">  <%= link_to "Sign In", new_user_session_path %></li>
+    <% end %>
+
+    <%= form_tag search_path, method: :get, id: "search_form", class: "search_form" do %>
+      <div class="search_form-icon"></div>
+      <%= text_field_tag :q, nil, placeholder: "Search", class: "search_form-field"%>
+    <% end %>
+
+  </ul>
+</nav>
+
+<script>
+  $(function(){
+    $('#site-nav > ul').slicknav();
+    $('#site-nav').pulldown();
+  });
+</script>

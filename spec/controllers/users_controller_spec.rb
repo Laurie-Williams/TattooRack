@@ -5,7 +5,7 @@ RSpec.describe UsersController, type: :controller do
   describe "GET #index" do
     before :each do
       @users = double("users")
-      allow(User).to receive_message_chain(:all, :page, :per).and_return(@users)
+      allow(User).to receive_message_chain(:includes, :all, :page, :per).and_return(@users)
     end
 
     it "returns http success" do
@@ -14,7 +14,7 @@ RSpec.describe UsersController, type: :controller do
     end
 
     it "calls .all on User" do
-      expect(User).to receive(:all).and_return(@users)
+      expect(User).to receive_message_chain(:includes, :all).and_return(@users)
       allow(@users).to receive_message_chain(:page, :per)
       get :index
     end
@@ -158,6 +158,8 @@ RSpec.describe UsersController, type: :controller do
     before :each do
       @user = double("user")
       allow(User).to receive(:find).with("1").and_return(@user)
+      @pieces = double("pieces")
+      allow(@user).to receive_message_chain(:pieces, :all_by_created_at, :page, :per).and_return(@pieces)
       get :show, id: "1"
     end
 
@@ -172,6 +174,10 @@ RSpec.describe UsersController, type: :controller do
 
     it "assigns @users variable" do
       expect(assigns(:user)).to eq(@user)
+    end
+
+    it "assigns @users variable" do
+      expect(assigns(:pieces)).to eq(@pieces)
     end
 
 

@@ -48,7 +48,7 @@ var imageCropper =  {
     },
     setCropper: function(target){
         target.cropper({
-            aspectRatio: 1,
+            aspectRatio: 1/0.75,
             strict: true,
             responsive: true,
             background: false,

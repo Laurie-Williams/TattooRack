@@ -1,4 +1,33 @@
-//Bootstrap Reset
+//== Bootstrap Reset
 @import "bootstrap/normalize";
 
-//Custom Reset
+//== Custom Reset
+@import "bootstrap/type";
+//## Headings
+h1, h2, h3, h4, h5, p{
+  letter-spacing: 0.07em;
+  margin: 0;
+  padding: 0;
+}
+
+//## Emphasis
+i, cite, em, var, address, dfn {
+  font-style: normal;
+  color: $gray-light;
+}
+
+ul, li{
+  list-style: none;
+  margin:0;
+  padding:0;
+}
+
+a{
+  font-weight: normal;
+  color: $brand-primary;
+}
+
+img{
+  @extend .img-responsive
+}
+

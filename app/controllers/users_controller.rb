@@ -1,10 +1,10 @@
 class UsersController < ApplicationController
   before_action :authenticate_user, except: [:index, :show]
-  before_action :find_user, only: [:edit, :update, :show, :destroy]
+  before_action :find_user, only: [:show, :edit, :update, :show, :destroy]
   before_action :authorize_user, except: [:index, :show]
 
   def index
-    @users = User.all.page(params[:page]).per(12)
+    @users = User.includes(:pieces).all.page(params[:page]).per(12)
   end
 
   def edit
@@ -21,7 +21,7 @@ class UsersController < ApplicationController
   end
 
   def show
-
+    @pieces = @user.pieces.all_by_created_at.page(params[:page]).per(15)
   end
 
   def destroy

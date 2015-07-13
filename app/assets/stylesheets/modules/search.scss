@@ -1,0 +1,28 @@
+.search_form{
+  @extend .hidden-xs;
+  @extend .hidden-sm;
+  @extend .hidden-md;
+  display: inline-block;
+  position: relative;
+  &-field{
+    color: $gray-light;
+    height: 25px;
+    width: 175px;
+    margin: 10px 0;
+    padding-left: 30px;
+    border: none;
+    background-color: $input-bg-disabled;
+    border-radius: 5px;
+  }
+
+  &-icon{
+    height: 18px;
+    width: 18px;
+    position: absolute;
+    top: 14px;
+    left: 5px;
+    background-repeat: no-repeat;
+    background-size: contain;
+    background-image: url("Musica_Searcher_32.png");
+  }
+}

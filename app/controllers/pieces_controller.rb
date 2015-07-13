@@ -8,7 +8,7 @@ class PiecesController < ApplicationController
   def index
     @list = params[:list]
     @sort = params[:sort]
-    @pieces = Piece.all_in_category(@list, @sort).page(params[:page]).per(12)
+    @pieces = Piece.includes(:user).all_in_category(@list, @sort).page(params[:page]).per(15)
   end
 
   # GET /pieces/:id
@@ -108,7 +108,7 @@ class PiecesController < ApplicationController
 
   # must have attr_accessor params declared before :image param to be visible in the uploader
   def piece_params
-    params.require(:piece).permit(:crop_x, :crop_y, :crop_height, :crop_width, :image, :title, :description, :published, :tag_list)
+    params.require(:piece).permit(:crop_x, :crop_y, :crop_height, :crop_width, :image, :title, :description, :published, :tag_list, :category_id)
   end
 
 end

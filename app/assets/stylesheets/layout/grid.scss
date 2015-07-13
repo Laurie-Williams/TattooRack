@@ -5,3 +5,64 @@
 // Utility classes
 @import "bootstrap/utilities";
 @import "bootstrap/responsive-utilities";
+
+//5th layout
+
+.col-xs-5ths,
+.col-sm-5ths,
+.col-md-5ths,
+.col-lg-5ths {
+  position: relative;
+  min-height: 1px;
+  padding-right: $grid-gutter-width;
+  padding-left: $grid-gutter-width;
+}
+
+.col-xs-5ths {
+  width: 20%;
+  float: left;
+}
+
+@media (min-width: $screen-sm-min) {
+  .col-sm-5ths {
+    width: 20%;
+    float: left;
+  }
+}
+
+@media (min-width: $screen-md-min) {
+  .col-md-5ths {
+    width: 20%;
+    float: left;
+  }
+}
+
+@media (min-width: $screen-lg-min) {
+  .col-lg-5ths {
+    width: 20%;
+    float: left;
+  }
+}
+
+@media (min-width: $screen-xl-min) {
+  .col-xl-5ths {
+    width: 20%;
+    float: left;
+  }
+}
+
+// xl breakpoint
+
+.col-xl-4 {
+  position: relative;
+  min-height: 1px;
+  padding-right: $grid-gutter-width;
+  padding-left: $grid-gutter-width;
+}
+
+@media (min-width: 1500px) {
+  .col-xl-4 {
+    width: 25%;
+    float: left;
+  }
+}

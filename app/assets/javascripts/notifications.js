@@ -1,12 +1,12 @@
 var notifications = {
     init: function(){
         var $notifications_panel = $("#notifications_panel");
-        if($notifications_panel.length > 0){
-            $notifications_panel.hide();
-            notifications.setClickCallback();
-            notifications.getNotificationsCount();
-            setInterval(notifications.getNotificationsCount, 3*60*1000);
-        }
+
+        $notifications_panel.hide();
+        notifications.setClickCallback();
+        notifications.getNotificationsCount();
+        setInterval(notifications.getNotificationsCount, 3*60*1000);
+
     },
     setClickCallback: function(){
         var $notifications_panel = $("#notifications_panel");

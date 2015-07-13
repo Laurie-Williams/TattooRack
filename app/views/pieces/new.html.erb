@@ -1,12 +1,15 @@
-<h1>Pieces#new</h1>
+<div class="page-content">
+  <div class="file_drop">
+    <header class="file_drop-header">
+      <h1>What are you working on?</h1>
+      <h4>You have 22 pieces remaining this month</h4>
+    </header>
+    <div id="file_drop_area" class="file_drop-area">
+      <h4>Drag an image here or <a href="#">browse</a> for an image to uplaod</h4>
+    </div>
 
-<div id="file_drop_area">
-  <p>Drag files here to upload</p>
+    <%= simple_form_for @piece, html: {multipart: true} do |f| %>
+      <%= f.input :image, label: "Piece" %>
+    <% end %>
+  </div>
 </div>
-
-
-<%= simple_form_for @piece, html: {multipart: true} do |f| %>
-
-  <%= f.input :image, label: "Piece" %>
-
-<% end %>

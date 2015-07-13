@@ -14,5 +14,5 @@ Feature: Comment on Piece
     And I fill in the comment form
     And I press "Post Comment"
     And I can see "Test Comment"
-    And I follow "Delete Comment" number "1"
+    And I follow "Delete" number "1"
     And I can not see "Test Comment"

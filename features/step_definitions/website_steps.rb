@@ -236,7 +236,7 @@ And(/^I fill in the Edit Piece form correctly$/) do
 end
 
 And(/^I fill in the comment form$/) do
-  fill_in("Comment", with: "Test Comment")
+  fill_in("comment_comment", with: "Test Comment")
 end
 
 And(/^I fill in the "(.*?)" autocomplete field with "(.*?)"$/) do |field, text|
@@ -248,8 +248,12 @@ end
 
 # Click
 
+And /^I hover over user dropdown/ do
+  find("#user_dropdown").hover
+end
+
 When /^(?:|I )follow "([^"]*)"$/ do |link|
-  click_link(link)
+    click_link(link)
 end
 
 When /^(?:|I )press "([^"]*)"$/ do |button|

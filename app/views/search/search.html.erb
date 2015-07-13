@@ -1,13 +1,52 @@
-<h1>Pieces:</h1>
-<% if params[:q] %>
-  <p>param <%= params[:q] %></p>
-<% end %>
-<% @pieces.each do |piece| %>
-  <%= image_tag piece.image_url %>
-  <h3>Title: <%= piece.title %></h3>
-  <%= link_to "Show", piece_path(piece) %>
-  <hr>
-<% end %>
+
+<h1>Results: <%= params[:q] %></h1>
+
+<h2>Pieces:</h2>
+
+<!-- List Pieces-->
+<div class="col-lg-9">
+  <% @pieces.each_with_index do |piece, i| %>
+
+    <div class="piece-search-column col-lg-3 col-md-4 col-sm-6">
+      <div class="card">
+
+        <div class="card-main">
+          <div class="card-main-image" >
+            <%= image_tag piece.image_url%>
+          </div>
+
+          <div class="card-main-overlay">
+            <%= link_to "Piece", piece_path(piece, offset: piece_index_offset(i) , list: @list) %>
+            <h4><%= piece.title %></h4>
+            <p><%= truncate(piece.description, length: 140) %></p>
+            <div class="card-main-overlay-footer">
+              <em class="card-user">
+                <%= image_tag piece.user.avatar_url(:small), class: "avatar-tiny"%><!--
+           --><%= link_to piece.user.username, user_path(piece.user) %>
+              </em>
+              <!--<em><%= piece.created_at.strftime("%B %d, %Y") %></em>-->
+            </div>
+          </div>
+
+        </div>
+
+        <div class="card-footer">
+        <span class="card-footer-links">
+          <span class="icon icon-views"><%= piece.views_count %></span>
+          <a href="#" class="icon icon-comments"><%= piece.comments_count %></a>
+          <a href="#" class="icon icon-likes"><%= piece.cached_votes_up %></a>
+        </span>
+        </div>
+
+      </div>
+    </div>
+
+  <% end %>
+</div>
+<!-- List Pieces End-->
+
+<!-- Pagination-->
+<%= paginate @pieces %>
 
 <h1>Users:</h1>
 <% if params[:q] %>

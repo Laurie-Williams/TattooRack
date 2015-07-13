@@ -1,0 +1,81 @@
+//== Piece
+.user-index-column{
+  @extend                   .col-xs-12;
+  @extend                   .col-lg-6;
+  @extend                   .col-lg-offset-0;
+
+  margin-bottom:            ($grid-gutter-width);
+
+}
+
+.card{
+  @extend .clearfix;
+  border:                   1px solid $gray-lighter;
+  background-color:         white;
+
+  &-user {
+    padding:                5px 0;
+    @media (min-width: $screen-md-min)and(max-width: $screen-md-max){
+      width:                  600px;
+      margin: auto;
+    }
+    &-pieces {
+      @extend               .col-xs-6;
+      @extend               .col-sm-8;
+      @extend               .col-lg-8;
+      @extend               .hidden-xs;
+      @media (min-width: $screen-lg-min){
+        margin-top:         2%;
+      }
+    }
+
+    &-main {
+      @extend               .clearfix;
+      @extend               .col-xs-8;
+      @extend               .col-sm-4;
+      @extend               .col-lg-4;
+      position:             relative;
+      display:              block;
+
+      h4{
+        @extend .col-lg-12;
+      }
+
+      img {
+        @extend             .col-xs-4;
+        @extend             .col-sm-6;
+        @extend             .col-lg-6;
+        @extend             .img-responsive;
+        border-radius:      50%;
+        position:           relative;
+      }
+
+      &-info{
+        @extend              .col-xs-8;
+        @extend              .col-sm-6;
+        @extend              .col-lg-6;
+        position:            relative;
+        margin:              0;
+      }
+    }
+
+    &-piece{
+      @extend .col-xs-4;
+
+      &-overlay{
+        position:             absolute;
+        top: 0; bottom: 0; left: 0; right: 0;
+        background-color:     white;
+        background-image:     url("Eye_outline_32.png");
+        background-repeat:    no-repeat;
+        background-position:  center;
+        // Fade in
+        opacity:              0;
+        transition:           opacity 0.17s linear;
+        &:hover{
+          opacity:             0.95;
+        }
+      }
+    }
+  }
+}

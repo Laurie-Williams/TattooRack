@@ -2,10 +2,12 @@ var fileDropper = {
     init: function(){
         var $file_drop_area = $("#file_drop_area");
         var $file_field = $("#piece_image");
+        var $browse_button = $("#file_drop_area a");
         $file_field.on('change', fileDropper.upload);
         $file_drop_area.on('dragover', fileDropper.dragOver);
         $file_drop_area.on('dragleave', fileDropper.dragLeave);
         $file_drop_area.on('drop', fileDropper.drop);
+        $browse_button.on('click', function(){ $file_field[0].click() });
     },
     dragOver: function(){
         $(this).addClass("drag_over");

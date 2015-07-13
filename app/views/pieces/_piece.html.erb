@@ -1,22 +1,32 @@
-<div class="piece clearfix">
+<div class="piece-index-column">
+  <div class="card">
 
-  <div class="piece-main">
+    <div class="card-piece-main">
+      <div class="card-piece-main-image" >
+        <%= image_tag piece.image_url%>
+      </div>
 
-    <a class="piece-main-image">
-      <%= image_tag piece.image_url%>
-    </a>
+      <div class="card-piece-main-overlay">
+        <%= link_to "Piece", piece_path(piece, offset: piece_index_offset(i) , list: @list) %>
+        <h4><%= piece.title %></h4>
+        <p><%= truncate(piece.description, length: 140) %></p>
+        <div class="card-piece-main-overlay-footer">
+          <em class="card-user">
+            <%= image_tag piece.user.avatar_url(:small), class: "avatar-tiny"%><!--
+         --><%= link_to piece.user.username, user_path(piece.user) %>
+          </em>
+        </div>
+      </div>
 
-    <a class="piece-main-overlay">
-      <h3><%= piece.title %></h3>
-      <p><%= truncate(piece.description, length: 140) %></p>
-      <em><%= piece.created_at.strftime("%B %d, %Y") %></em>
-    </a>
+    </div>
+
+    <div class="card-piece-footer">
+      <span class="card-piece-footer-links">
+        <span class="icon icon-views"><%= piece.views_count %></span>
+        <a href="#" class="icon icon-comments"><%= piece.comments_count %></a>
+        <a href="#" class="icon icon-likes"><%= piece.cached_votes_up %></a>
+      </span>
+    </div>
 
   </div>
-
-  <div class="piece-footer">
-    <%= link_to "Delete", piece_path(piece), method: :delete %>
-    <%= link_to "Show", piece_path(piece, offset: piece_index_offset(i) , list: @list) %>
-  </div>
-
 </div>

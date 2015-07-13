@@ -11,7 +11,7 @@ Feature: Categories Filtering
   Scenario: View the last piece for Flash
     When I visit the Home page
     And I follow "Flash"
-    And I follow "Show" number "1"
+    And I follow "Piece" number "1"
     Then I can see the "2" piece image in "#more_from_user"
     And I can see the "4" piece image in "#more_from_user"
     And I can see the start image in "#more_from_list"

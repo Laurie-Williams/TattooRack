@@ -14,6 +14,7 @@ class Piece < ActiveRecord::Base
     relation.order!(:cached_votes_up) if sort_by == nil
     relation.order!(:comments_count) if sort_by == "comments"
     relation.order!(:views_count) if sort_by == "views"
+    relation.order!(:created_at) if sort_by == "date"
     relation.order!(:created_at).reverse_order
   end
 
@@ -30,7 +31,7 @@ class Piece < ActiveRecord::Base
   acts_as_votable
   acts_as_taggable
   is_impressionable counter_cache: true, column_name: :views_count, unique: :session_hash
-  acts_as_list scope: :user #Increment Piece.position for each new Piece by user
+  acts_as_list #Increment Piece.position for each new Piece by user
   mount_uploader :image, PieceUploader
 
   # instance methods
@@ -56,24 +57,41 @@ class Piece < ActiveRecord::Base
     end
   end
 
+  def scope_condition
+    {user_id: self.user_id, published: true}
+  end
 
-  private
+  # private
 
   # instance methods
-   def list_prev_and_next
+  def list_prev_and_next
+     @list_piece_array ||= get_list_piece_array
+  end
+
+  def get_list_piece_array
     if offset.to_i == 0 #Only retrieve current and next piece if first in list
       #Add nil to beginning of array to account for prev being non existent
-      @list_piece_array ||= Piece.all_in_category(self.list).limit(2).unshift(nil)
+      list_piece_array = Piece.all_in_category(self.list).limit(2)
+      list_piece_array.to_a.unshift(nil)
     else
-      @list_piece_array ||= Piece.all_in_category(self.list).offset(offset.to_i - 1).limit(3) #get prev, current and next piece in array
+      list_piece_array = Piece.all_in_category(self.list).offset(offset.to_i - 1).limit(3) #get prev, current and next piece in array
     end
   end
 
   def user_prev_and_next
-    if self.last?
-      @user_piece_array ||= Piece.published.where(user_id: user_id).reverse_order.limit(2).unshift(nil)
+      @user_piece_array ||= get_user_prev_and_next
+  end
+
+  def get_user_prev_and_next
+      user_piece_array = Piece.published.where(user_id: user_id).offset(self.position - 2).limit(3) #get prev, current and next piece in array
+    if self.first? #if first Piece in list
+      user_piece_array.to_a.unshift(nil).pop #add nil to end of array
+      user_piece_array.to_a.reverse
+    elsif self.last?
+      user_piece_array.to_a.push(nil).reverse #add nil to start of array
     else
-      @user_piece_array ||= Piece.published.where(user_id: user_id).offset(self.position - 2).limit(3).reverse #get prev, current and next piece in array
+
+      user_piece_array.to_a.reverse
     end
   end
 

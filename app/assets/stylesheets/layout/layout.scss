@@ -1,13 +1,49 @@
 //== Global
-.l-content{
+.page-content{
   @media (min-width: $max-width){
-    width: $max-width;
+    width:                      $max-width;
   }
-  @extend .container-fluid;
+  @extend                       .container-fluid;
+  background-color:             #f2f2f2;
 }
 
 //== Index
+.l-index-hero{
+  @extend .visible-lg;
+  background-image:             url("hero3.jpg");
+  background-position:          top;
+  background-size:              cover;
+  height: 300px;
+  margin: auto;
+  @media (min-width: $max-width){
+    width:                      $max-width;
+  }
+  &-user{
+    background-image:           url("hero2.jpg");
+    background-position:        center;
+  }
+}
 .l-index-main{
-  @extend .col-xs-12;
+  @extend                       .col-xs-12;
+  margin-top:                   20px;
+}
+
+//== Show
+.l-show-header{
+  @extend                       .col-xs-12;
+  @extend                       .col-lg-10;
+  @extend                       .col-lg-offset-1;
+}
+
+.l-show-main{
+  @extend                       .col-xs-12;
+  @extend                       .col-lg-7;
+  @extend                       .col-lg-offset-1;
+  padding-right:                2%;
+}
+
+.l-show-side{
+  @extend                       .col-xs-12;
+  @extend                       .col-lg-3;
 }
 

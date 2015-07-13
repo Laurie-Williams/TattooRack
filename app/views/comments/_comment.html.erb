@@ -1,6 +1,11 @@
-<h5><%= comment.user.name %></h5>
-<p><%= comment.comment %></p>
-<% if comment.user == current_user %>
-  <%= link_to "Delete Comment", piece_comment_path(commentable, comment),
-              method: :delete, remote: true, id: "#delete_comment" %>
-<% end %>
+<div class="comment">
+  <%= image_tag comment.user.avatar_url, class: "avatar-tiny" %>
+  <div class="comment-content">
+    <%= link_to comment.user.name, user_path(comment.user) %>
+    <p><%= comment.comment %></p>
+    <em><%= time_ago_in_words(comment.created_at) %> ago</em>
+    <% if comment.user == current_user %>
+      <%= link_to "Delete", piece_comment_path(commentable, comment), method: :delete, remote: true, id: "#delete_comment" %>
+    <% end %>
+  </div>
+</div>

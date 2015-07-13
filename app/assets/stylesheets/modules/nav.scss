@@ -1,0 +1,154 @@
+//== Site Nav =================
+.sitenav{
+  @extend .hidden-xs;
+  @extend .hidden-sm;
+  @extend .hidden-md;
+  @extend .clearfix;
+  display: block;
+  width: 100%;
+  text-align: center;
+  background-color: $navbar-default-bg;
+  position: relative;
+  list-style: none;
+  padding: 0;
+
+
+  >ul{
+    @extend .clearfix
+  }
+
+
+  &-sublist ul{
+    position: absolute;
+    width: 100%;
+    left: 0px;
+    top: 100%;
+    display: none;
+    z-index: 1;
+
+    .sitenav-item{
+      width: 150px;
+    }
+
+    a:hover{
+      background: $nav-link-hover-bg;
+    }
+  }
+
+  &-item{
+    display: inline-block;
+    width: auto;
+    position: relative;
+    text-align: left;
+
+
+    > a {
+      display: block;
+      background: $navbar-default-bg;
+      color: $navbar-default-color;
+      text-decoration: none;
+
+    }
+  }
+}
+
+//== Mobile Nav ====================
+.mobile_menu {
+  @extend .clearfix;
+  @extend .visible-xs;
+  @extend .visible-sm;
+  @extend .visible-md;
+  background: $navbar-default-bg;
+  padding: 10px;
+
+  .mobile_btn {
+    float: left;
+    cursor: pointer;
+    border-radius: $nav-pills-border-radius;
+    //background-color: $navbar-default-bg;
+    background-color: $navbar-default-link-active-bg;
+    padding: 2px 4px;
+    height: 30px;
+    width: 30px;
+  }
+
+  .mobile_nav {
+    clear: both;
+    overflow: hidden;
+
+    ul {
+      display: block;
+      list-style: none;
+      padding: 0;
+      overflow: hidden;
+    }
+
+    .sitenav-item {
+      display: block;
+      padding: 2px;
+      width: 100%;
+      a {
+        padding: 1px;
+        display: block;
+        text-align: center;
+        color: $navbar-default-link-hover-color;
+      }
+    }
+
+    .sitenav-sublist{
+      ul{
+        margin-left: 20px;
+        position: static;
+        width: 100%;
+        left: 0px;
+        top: 100%;
+        display: none;
+      }
+    }
+
+
+    .mobile_row {
+      &:hover {
+        -webkit-border-radius: 6px;
+        -moz-border-radius: 6px;
+        border-radius: 6px;
+        background: $navbar-default-link-hover-bg;
+        color: $navbar-default-link-hover-color;
+      }
+    }
+
+    .mobile_open {
+      .mobile_arrow {
+        display: inline-block;
+        height: 10px;
+        width: 10px;
+        background-image: url("Speech_bubble_32.png")
+      }
+    }
+
+    .mobile_collapsed {
+      .mobile_arrow {
+        display: inline-block;
+        height: 10px;
+        width: 10px;
+        background-image: url("Eye_outline_32.png")
+      }
+    }
+
+    .mobile_item {
+      cursor: pointer;
+      a {
+        display: inline-block;
+      }
+    }
+
+    .notification_button{
+      @extend .hidden-xs;
+      @extend .hidden-sm;
+      @extend .hidden-md;
+    }
+  }
+}
+
+
+

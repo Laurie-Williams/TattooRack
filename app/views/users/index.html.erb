@@ -1,11 +1,13 @@
-<h1>Users:</h1>
-<% @users.each do |user| %>
-  <p><%= image_tag user.avatar_url :small %></p>
-  <h3>USername: <%= user.username %></h3>
-  <p>Find me in app/views/user/index.html.erb</p>
-  <%= link_to "Show", user_path(user) %>
-  <%= link_to "Delete", user_path(user), method: :delete %>
-  <hr>
-<% end %>
+<div class="l-index-hero">
+</div>
 
-<%= paginate @users %>
+<div class="page-content">
+  <div class="l-index-main">
+
+    <%= render partial: "user", collection: @users %>
+
+    <!-- Pagination-->
+    <%= paginate @users %>
+
+  </div>
+</div>

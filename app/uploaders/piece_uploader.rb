@@ -54,7 +54,7 @@ class PieceUploader < CarrierWave::Uploader::Base
     manipulate! do |img|
       img.crop("#{width}x#{height}+#{x}+#{y}")
     end
-    resize_to_fill(600, 450)
+    resize_to_fill(840, 630)
   end
 
   # Create different versions of your uploaded files:
