@@ -1,13 +1,22 @@
-<h2>Log in</h2>
+<div class="page-content">
+  <div class="form-container">
+    <div class="form-header">
+      <h1>Tattoo Rack</h1>
+      <h3>Sign In</h3>
+    </div>
+    <%= simple_form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
 
-<%= simple_form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
-  <%= f.input :email, autofocus: true %>
-  <%= f.input :password, autocomplete: "off" %>
-  <% if devise_mapping.rememberable? -%>
-      <%= f.input :remember_me, as: :boolean %>
-  <% end -%>
-  <%= f.button :submit, "Sign In" %>
+      <%= f.input :email, autofocus: true %>
+      <%= f.input :password, autocomplete: "off" %>
 
-<% end %>
+      <div class="form-submit">
+        <%= f.button :submit, "Sign In" %>
+        <%= render "devise/shared/links" %>
+      </div>
 
-<%= render "devise/shared/links" %>
+      <% if devise_mapping.rememberable? -%>
+        <%= f.input :remember_me, as: :hidden, input_html: {value: f.object.remember_me || '1'}  %>
+      <% end -%>
+    <% end %>
+  </div>
+</div>
