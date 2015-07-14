@@ -73,14 +73,14 @@
 }
 
 .icon{
-  margin-left:                5px;
-  margin-right:               2px;
+  margin-left:                8px;
+  margin-right:               0px;
   font-weight:                600;
   color:                      $gray-light;
   background-repeat:          no-repeat;
   background-size:            contain;
-  background-position:        0px 1px;
-  padding-left:               17px;
+  background-position:        0px 0px;
+  padding-left:               23px;
   &-views{
     background-image:         url("Eye_outline_32.png");
   }
@@ -89,6 +89,9 @@
   }
   &-likes{
     background-image:         url("Favourite_Heart_32.png");
+  }
+  &:hover{
+    color:                      $gray-lighter;
   }
 }
 

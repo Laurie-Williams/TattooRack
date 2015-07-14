@@ -2,6 +2,10 @@
   @extend .col-xs-12;
   @extend .col-sm-8;
   @extend .col-sm-offset-2;
+  background-color:             $gray-dark;
+  background-image: url("bg_texture2.png");
+  border-radius:                4px;
+  padding: 50px;
 
   .form-header{
     @extend .col-xs-8;
@@ -13,17 +17,17 @@
     @extend .col-xs-offset-2;
     margin-top: 10px;
     * {
-      @extend .col-xs-8;
-      @extend .col-xs-offset-4;
+      @extend .col-xs-10;
+      @extend .col-xs-offset-0;
       border: none;
     }
     label {
-      @extend .col-xs-4;
+      @extend .col-xs-2;
       @extend .col-xs-offset-0;
       text-align: right;
     }
     input {
-      @extend .col-xs-8;
+      @extend .col-xs-10;
       @extend .col-xs-offset-0;
     }
 
@@ -39,8 +43,8 @@
     @extend .col-xs-offset-2;
     margin-top: 10px;
     *{
-      @extend .col-xs-8;
-      @extend .col-xs-offset-4
+      @extend .col-xs-10;
+      @extend .col-xs-offset-2
     }
 
   }

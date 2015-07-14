@@ -162,7 +162,9 @@
         display: inline-block;
         height: 10px;
         width: 10px;
-        background-image: url("Speech_bubble_32.png")
+        margin-left: 3px;
+        background-image: url("arrow_down.png");
+        background-size: contain;
       }
     }
 
@@ -171,7 +173,9 @@
         display: inline-block;
         height: 10px;
         width: 10px;
-        background-image: url("Eye_outline_32.png")
+        margin-left: 3px;
+        background-image: url("arrow_right.png");
+        background-size: contain;
       }
     }
 

@@ -1,60 +1,56 @@
+<div class="page-content">
+  <h1>Results: <%= params[:q] %></h1>
 
-<h1>Results: <%= params[:q] %></h1>
+  <div class="search-pieces">
+    <h2>Pieces:</h2>
 
-<h2>Pieces:</h2>
+    <!-- List Pieces-->
+    <div class="col-lg-9">
+      <% @pieces.each_with_index do |piece, i| %>
 
-<!-- List Pieces-->
-<div class="col-lg-9">
-  <% @pieces.each_with_index do |piece, i| %>
-
-    <div class="piece-search-column col-lg-3 col-md-4 col-sm-6">
-      <div class="card">
-
-        <div class="card-main">
-          <div class="card-main-image" >
-            <%= image_tag piece.image_url%>
-          </div>
-
-          <div class="card-main-overlay">
-            <%= link_to "Piece", piece_path(piece, offset: piece_index_offset(i) , list: @list) %>
-            <h4><%= piece.title %></h4>
-            <p><%= truncate(piece.description, length: 140) %></p>
-            <div class="card-main-overlay-footer">
-              <em class="card-user">
-                <%= image_tag piece.user.avatar_url(:small), class: "avatar-tiny"%><!--
-           --><%= link_to piece.user.username, user_path(piece.user) %>
-              </em>
-              <!--<em><%= piece.created_at.strftime("%B %d, %Y") %></em>-->
+        <div class="piece-index-column">
+          <div class="card">
+            <div class="card-piece-main">
+              <div class="card-piece-main-image" >
+                <%= image_tag piece.image_url%>
+              </div>
+              <div class="card-piece-main-overlay">
+                <%= link_to "Piece", piece_path(piece, offset: piece_index_offset(i) , list: @list) %>
+                <h4><%= piece.title %></h4>
+                <p><%= truncate(piece.description, length: 140) %></p>
+                <div class="card-piece-main-overlay-footer">
+                  <em class="card-user">
+                    <%= image_tag piece.user.avatar_url(:small), class: "avatar-tiny"%><!--
+                 --><%= link_to piece.user.username, user_path(piece.user) %>
+                  </em>
+                </div>
+              </div>
+            </div>
+            <div class="card-piece-footer">
+              <span class="card-piece-footer-links">
+                <span class="icon icon-views"><%= piece.views_count %></span>
+                <a href="#" class="icon icon-comments"><%= piece.comments_count %></a>
+                <a href="#" class="icon icon-likes"><%= piece.cached_votes_up %></a>
+              </span>
             </div>
           </div>
-
         </div>
 
-        <div class="card-footer">
-        <span class="card-footer-links">
-          <span class="icon icon-views"><%= piece.views_count %></span>
-          <a href="#" class="icon icon-comments"><%= piece.comments_count %></a>
-          <a href="#" class="icon icon-likes"><%= piece.cached_votes_up %></a>
-        </span>
-        </div>
-
-      </div>
+      <% end %>
     </div>
+    <!-- List Pieces End-->
 
-  <% end %>
+    <!-- Pagination-->
+    <%= paginate @pieces %>
+  </div>
+
+  <div class="search-users">
+    <h1>Users:</h1>
+    <% if params[:q] %>
+      <p>param <%= params[:q] %></p>
+    <% end %>
+    <% @users.each do |user| %>
+      <a href="<%= user_path(user) %>"><%= user.username %></a>
+    <% end %>
+  </div>
 </div>
-<!-- List Pieces End-->
-
-<!-- Pagination-->
-<%= paginate @pieces %>
-
-<h1>Users:</h1>
-<% if params[:q] %>
-  <p>param <%= params[:q] %></p>
-<% end %>
-<% @users.each do |user| %>
-  <%= image_tag user.avatar_url %>
-  <h3>Title: <%= user.username %></h3>
-  <%= link_to "Show", user_path(user) %>
-  <hr>
-<% end %>

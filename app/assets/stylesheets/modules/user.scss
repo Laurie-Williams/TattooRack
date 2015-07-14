@@ -1,11 +1,9 @@
-//== Piece
+//== User
 .user-index-column{
   @extend                   .col-xs-12;
   @extend                   .col-lg-6;
   @extend                   .col-lg-offset-0;
-
   margin-bottom:            ($grid-gutter-width);
-
 }
 
 .user-hero{
@@ -22,6 +20,41 @@
   img{
     margin: auto;
     border-radius: 50%;
+  }
+}
+
+.user-edit{
+  @extend .col-xs-10;
+  @extend .col-xs-offset-1;
+  .form-container{
+    @extend .col-xs-12;
+    @extend .col-xs-offset-0;
+    .form-group {
+      @extend .col-xs-12;
+      @extend .col-xs-offset-0;
+    }
+    .form-submit{
+      @extend .col-xs-12;
+      @extend .col-xs-offset-0;
+    }
+  }
+  &-form{
+    @extend .col-xs-6;
+    @extend .col-xs-offset-2;
+  }
+  &-form-avatar{
+    @extend .col-xs-4;
+    img{
+      @extend .col-xs-4;
+      @extend .col-xs-offset-2;
+      padding: 0;
+    }
+    input{
+      padding: 0 !important;
+    }
+    h3{
+      @extend .col-xs-offset-2;
+    }
   }
 }
 
