@@ -38,7 +38,7 @@
 .l-index-main{
   @extend                       .col-xs-12;
   background-color:             $gray-dark;
-  background-image: url("bg_texture2.png");
+  background-image: image-url("bg_texture2.png");
   border-radius:                4px;
   padding:                      $grid-gutter-width;
   box-shadow:                 0 1px 6px rgba(0,0,0,0.05);
@@ -124,7 +124,7 @@
   @extend .col-xs-6;
   @extend .visible-xl;
   background-color:             $gray-dark;
-  background-image: url("bg_texture2.png");
+  background-image: image-url("bg_texture2.png");
   border-radius:                4px;
   padding:                      $grid-gutter-width;
   box-shadow:                 0 1px 6px rgba(0,0,0,0.05);
@@ -155,7 +155,7 @@
   @extend .col-xs-12;
   @extend .col-md-9;
   background-color:             $gray-dark;
-  background-image: url("bg_texture2.png");
+  background-image: image-url("bg_texture2.png");
   border-radius:                4px;
   padding:                      $grid-gutter-width;
   box-shadow:                 0 1px 6px rgba(0,0,0,0.05);

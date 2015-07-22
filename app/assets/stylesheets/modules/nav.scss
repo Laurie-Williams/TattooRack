@@ -13,7 +13,7 @@
     height: 45px;
     display: inline-block;
     position: absolute;
-    background-image: url("logo_white.png");
+    background-image: image-url("logo_white.png");
     background-position: 2px 0;
     background-repeat: no-repeat;
     background-size: contain;
@@ -109,7 +109,7 @@
     float: left;
     cursor: pointer;
     border-radius: $nav-pills-border-radius;
-    background-image: url("menu_icon.png");
+    background-image: image-url("menu_icon.png");
     background-size: contain;
     padding: 2px 4px;
     height: 30px;
@@ -167,7 +167,7 @@
         height: 10px;
         width: 10px;
         margin-left: 3px;
-        background-image: url("arrow_down.png");
+        background-image: image-url("arrow_down.png");
         background-size: contain;
       }
     }
@@ -178,7 +178,7 @@
         height: 10px;
         width: 10px;
         margin-left: 3px;
-        background-image: url("arrow_right.png");
+        background-image: image-url("arrow_right.png");
         background-size: contain;
       }
     }
