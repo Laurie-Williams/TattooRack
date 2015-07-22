@@ -9,18 +9,6 @@
 }
 
 //== Index
-.l-user-index-hero {
-  @extend .visible-lg;
-  background-image: url("hero3.jpg");
-  background-position: top;
-  background-size: cover;
-  height: 400px;
-  margin: auto;
-  border-radius: 4px;
-  @media (min-width: $max-width) {
-    width: $max-width;
-  }
-}
 
 .l-user-index-header{
   margin-bottom: $grid-gutter-width;
