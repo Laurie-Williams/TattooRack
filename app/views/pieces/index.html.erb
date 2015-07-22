@@ -1,14 +1,19 @@
-<div class="l-index-hero">
-</div>
+<!--<div class="l-index-hero">-->
+<!--</div>-->
+
 
 <div class="page-content">
-  <div class="l-index-main">
+  <!-- Dropdown -->
+  <%= render partial: "pieces/dropdown" %>
 
+  <div class="l-index-main">
     <!-- List Pieces-->
     <% @pieces.each_with_index do |piece, i| %>
 
       <!-- Single Piece-->
-      <%= render partial: "pieces/piece", locals: {piece: piece, i: i} %>
+      <div class="piece-index-column">
+        <%= render partial: "pieces/piece", locals: {piece: piece, i: i} %>
+      </div>
       <!-- Single Piece End-->
 
     <% end %>

@@ -5,7 +5,8 @@
 
 .notifications_panel{
   position: absolute;
-  top: 34px;
+  top: 39px;
+  right: -75px;
   width: 375px;
   z-index: 100;
   background-color: $gray-dark;
@@ -17,5 +18,17 @@
     padding: 7px;
     border-bottom: 1px solid $gray-dark;
   }
+}
+
+.notifications-count{
+  position: absolute;
+  background-color: $brand-primary;
+  color: $gray;
+  padding: 0 6px;
+  border-radius: 40%;
+  z-index: 999;
+  left: 10px;
+  top: -5px;
+  font-size: 10px;
 }
 

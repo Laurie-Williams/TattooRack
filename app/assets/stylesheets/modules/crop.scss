@@ -1,0 +1,16 @@
+.crop-container-logo{
+    width: 400px;
+    height: 90px;
+    display: inline-block;
+    background-image: url("logo_white.png");
+    background-position: right;
+    background-repeat: no-repeat;
+    background-size: contain;
+    position: absolute;
+  right: 60px;
+  top: 570px;
+}
+
+.cropper-container{
+  margin-bottom: $grid-gutter-width;
+}

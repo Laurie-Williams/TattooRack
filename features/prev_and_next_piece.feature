@@ -38,8 +38,8 @@ Feature: Previous and Next Piece
 
   Scenario: View the last piece for user
     When I visit the Home page
-    And I follow "Artists"
-    And I follow "John"
+    And I follow "Artists" number "1"
+    And I follow "John" number "1"
     And I follow "Piece" number "2"
     Then I can see the "1" piece image in "#more_from_user"
     And I can see the "3" piece image in "#more_from_user"

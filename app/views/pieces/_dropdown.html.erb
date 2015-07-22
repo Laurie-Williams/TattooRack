@@ -1,0 +1,49 @@
+<div class="dropdown-container">
+  <div id="category-dropdown" class="dropdown">
+    <ul>
+      <li class="dropdown-item dropdown-sublist" id="category_dropdown">
+        <a href=""><%= @list ? @list.capitalize.pluralize : "All" %></a>
+        <ul>
+          <li class="dropdown-item">
+            <%= link_to "All", pieces_path(sort: @sort) %>
+          </li>
+          <li class="dropdown-item">
+            <%= link_to "Tattoos", pieces_path(list: "tattoo", sort: @sort) %>
+          </li>
+          <li class="dropdown-item">
+            <%= link_to "Flash", pieces_path(list: "flash", sort: @sort) %>
+          </li>
+          <li class="dropdown-item">
+            <%= link_to "Artwork", pieces_path(list: "artwork", sort: @sort) %>
+          </li>
+          <li class="dropdown-item">
+            <%= link_to "Inspiration", pieces_path(list: "inspiration", sort: @sort) %>
+          </li>
+        </ul>
+      </li>
+      <li class="dropdown-item dropdown-sublist" id="category_dropdown">
+        <a href=""><%= @sort? @sort.capitalize.pluralize : "Popular" %></a>
+        <ul>
+          <li class="dropdown-item">
+            <%= link_to "Popular", pieces_path(sort: "popular", list: @list) %>
+          </li>
+          <li class="dropdown-item">
+            <%= link_to "Views", pieces_path(sort: "views", list: @list) %>
+          </li>
+          <li class="dropdown-item">
+            <%= link_to "Date", pieces_path(sort: "date", list: @list) %>
+          </li>
+          <li class="dropdown-item">
+            <%= link_to "Comments", pieces_path(sort: "comments", list: @list) %>
+          </li>
+        </ul>
+      </li>
+    </ul>
+
+    <script>
+      $(function(){
+        $('#category-dropdown').pulldown();
+      });
+    </script>
+  </div>
+</div>

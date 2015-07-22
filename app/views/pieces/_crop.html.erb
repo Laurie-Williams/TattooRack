@@ -1,14 +1,33 @@
-<div id="crop_area">
+<div class="page-content">
+  <div class="l-crop-header">
+    <a href="<%= root_path %>"><div class="crop-container-logo"></div></a>
+  </div>
+  <div class="l-crop-main">
+    <div class="preview-lg-container">
+      <div class="img-preview preview-lg"></div>
+    </div>
+    <div class="preview-sm-container">
+      <div class="img-preview preview-sm"></div>
+    </div>
+
+    <div class="preview-info">
+      <p>Bushwick stumptown Odd Future, dreamcatcher bespoke asymmetrical sriracha ethical semiotics craft beer occupy. Fanny pack wayfarers street art, tofu YOLO gluten-free Helvetica Neutra</p>
+    </div>
+
+  </div>
+
+  <div class="l-crop-side">
+    <div id="crop_area"></div>
+    <%= button_tag "Upload", id: "upload", class: "btn btn-default btn-x2"%>
+    <a href="<%= new_piece_path %>"><button class="btn btn-cancel btn-x2">Cancel</button></a>
+
+  </div>
 </div>
 
-TEST AJAX
 
-x - <%= text_field_tag(:crop_x) %>
-y - <%= text_field_tag(:crop_y) %>
-height - <%= text_field_tag(:crop_height) %>
-width - <%= text_field_tag(:crop_width) %>
-
-<div class="img-preview preview-lg"></div>
-<div class="img-preview preview-sm"></div>
-
-<%= button_tag "Upload", id: "upload"%>
+<div class="hidden">
+  x - <%= text_field_tag(:crop_x) %>
+  y - <%= text_field_tag(:crop_y) %>
+  height - <%= text_field_tag(:crop_height) %>
+  width - <%= text_field_tag(:crop_width) %>
+</div>

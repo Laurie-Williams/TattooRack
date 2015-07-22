@@ -1,5 +1,3 @@
-
-
 Then(/^show me the page$/) do
   save_and_open_page
 end
@@ -224,10 +222,10 @@ And /^I drop a file into the drop area/ do
 end
 
 And(/^I select a crop area$/) do
-  step "I fill in \"crop_x\" with \"100\""
-  step "I fill in \"crop_y\" with \"100\""
-  step "I fill in \"crop_width\" with \"100\""
-  step "I fill in \"crop_height\" with \"100\""
+  fill_in("crop_x", :with => "100", visible: false)
+  fill_in("crop_y", :with => "100", visible: false)
+  fill_in("crop_width", :with => "100", visible: false)
+  fill_in("crop_height", :with => "100", visible: false)
 end
 
 And(/^I fill in the Edit Piece form correctly$/) do
@@ -249,7 +247,7 @@ end
 # Click
 
 And /^I hover over user dropdown/ do
-  find("#user_dropdown").hover
+  page.execute_script("$('#user_dropdown>ul').css('display','block')");
 end
 
 When /^(?:|I )follow "([^"]*)"$/ do |link|
@@ -409,11 +407,11 @@ end
 # Notifications
 
 And(/^I can see a Notice Flash$/) do
-  within("#Flash"){ expect(page).to have_css('.notice')}
+  within("#flash"){ expect(page).to have_css('.notice')}
 end
 
 And(/^I can see an Error Flash$/) do
-  within("#Flash"){ expect(page).to have_css('.alert')}
+  within("#flash"){ expect(page).to have_css('.alert')}
 end
 
 And(/^I can see Form Errors$/) do

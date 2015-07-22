@@ -29,7 +29,8 @@ a{
 }
 
 img{
-  @extend .img-responsive
+  @extend .img-responsive;
+  background-color: white;
 }
 
 html, body{

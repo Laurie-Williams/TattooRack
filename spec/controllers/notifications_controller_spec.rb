@@ -5,7 +5,7 @@ RSpec.describe NotificationsController, type: :controller do
 
     before :each do
       @user = double "User"
-      allow(PublicActivity::Activity).to receive_message_chain(:all, :order, :where, :where, :not ).and_return(@tags)
+      allow(PublicActivity::Activity).to receive_message_chain(:all, :order, :where, :where, :not, :limit ).and_return(@tags)
       allow(subject).to receive(:current_user).and_return(@user)
     end
 

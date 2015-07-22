@@ -7,7 +7,7 @@ var tagReplace = {
             $("#tag").val("");
         });
 
-        //Replace "#tags" with new updated tags html on comment delete
+        //Replace "#tags" with new updated tags html on teg delete
         $("#tags a[data-remote]").on("ajax:success", function(e, data, status, xhr){
             $("#tags").html(data);
             tagReplace.init();

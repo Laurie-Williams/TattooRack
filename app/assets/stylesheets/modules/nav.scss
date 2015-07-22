@@ -1,17 +1,20 @@
 //== Site Nav =================
 .nav-container{
   @extend .clearfix;
-  padding: 0;
+  @extend .hidden-xs;
+  @extend .hidden-sm;
+  @extend .hidden-md;
   background-color: $navbar-default-bg;
   border: 1px solid #24272b;
   border-top: none;
+  padding: 5px 0;
   &-logo{
     width: 200px;
     height: 45px;
     display: inline-block;
     position: absolute;
     background-image: url("logo_white.png");
-    background-position: left;
+    background-position: 2px 0;
     background-repeat: no-repeat;
     background-size: contain;
   }
@@ -54,7 +57,7 @@
     position: absolute;
     width: 100%;
     left: 0px;
-    top: 10px;
+    top: 18px;
     display: none;
     z-index: 1;
 
@@ -78,6 +81,7 @@
     text-align: left;
     border-bottom: 3px solid $gray;
     margin-right: 20px;
+    transition:           border 0.13s linear;
     &:hover{
       border-bottom: 4px solid $brand-primary;
     }
@@ -99,7 +103,7 @@
   @extend .visible-sm;
   @extend .visible-md;
   background: $navbar-default-bg;
-  padding: 10px;
+  padding: 12px;
 
   .mobile_btn {
     float: left;

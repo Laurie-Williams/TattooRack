@@ -6,4 +6,5 @@ Before do #Execute only once for all features
   Category.create(name: "Artwork")
   Category.create(name: "Inspiration")
   @dunit = true                            # don't do it again.
+
 end

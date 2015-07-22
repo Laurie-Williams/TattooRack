@@ -1,6 +1,6 @@
 <nav class="nav-container">
   <div id="site-nav" class="sitenav">
-    <div class="nav-container-logo"></div>
+    <a href="<%= root_path %>"><div class="nav-container-logo"></div></a>
     <ul>
       <span class="public-nav">
         <li class="sitenav-item sitenav-sublist" id="pieces_dropdown">
@@ -29,7 +29,7 @@
           <li class="sitenav-item sitenav-sublist" id="user_dropdown">
             <a href=<%=user_path(current_user)%>>
               <%= current_user.name %>
-              <ul class="">
+              <ul>
                 <li class="sitenav-item">
                   <%= link_to "Account Settings", edit_user_path(current_user) %>              </li>
                 <li class="sitenav-item">
@@ -38,11 +38,11 @@
               </ul>
             </a>
           </li>
-          <li class="sitenav-item notification_button">
-            <a href="#" id="notifications_button">Notifications</a>
+          <li class="sitenav-item notification_button" id="notifications_button">
+            <span class="icon icon-notifications"><span id="notifications-count" class="notifications-count"></span></span>
             <div id="notifications_panel" class="notifications_panel"></div>
           </li>
-          <li class="sitenav-item"><%= link_to "Create", new_piece_path %></li>
+          <li class="sitenav-item"><a id="create" href="<%= new_piece_path %>"><span class="icon icon-upload"></span></a></li>
         <% else %>
           <li class="sitenav-item"><%= link_to "Sign Up", new_user_registration_path %></li>
           <li class="sitenav-item">  <%= link_to "Sign In", new_user_session_path %></li>

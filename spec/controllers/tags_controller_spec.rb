@@ -36,7 +36,7 @@ RSpec.describe TagsController, type: :controller do
 
     it "returns http success" do
       get :show, tag: "tag"
-      expect(response).to render_template("pieces/index")
+      expect(response).to render_template("tags/show")
     end
 
     it "assigns @pieces variable" do

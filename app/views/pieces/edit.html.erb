@@ -1,33 +1,51 @@
-<h1>Pieces#edit</h1>
-
-<%= image_tag @piece.image_url %>
-
-<hr>
-
-<%= simple_form_for @piece do |f| %>
-
-  <%= f.input :published, as: :hidden, input_html: {value: true} %>
-  <%= f.input :title %>
-  <%= f.input :description %>
-  <%= f.association :category, include_blank: false %>
-
-  <div class="actions">
-    <%= f.button :submit, "Publish" %>
-    <%= link_to "Delete", piece_path(@piece), method: :delete %>
+<div class="page-content">
+  <div class="l-edit-header">
+    <h1>Edit</h1>
+    <div class="piece-header">
+      <%= image_tag @piece.user.avatar_url(:small), class: "avatar-small" %>
+      <div class="piece-header-info">
+        <h1><a href="<%= piece_path @piece %>"><%= @piece.title %></a></h1>
+        <em>
+          By <%= link_to @piece.user.username, user_path(@piece.user) %>
+          <%= @piece.created_at.strftime("%B %d, %Y") %>
+        </em>
+      </div>
+    </div>
   </div>
 
+  <div class="l-edit-main">
 
-<% end %>
+    <div class="piece-main">
+      <%= image_tag @piece.image_url %>
+      <p id="piece-description" class="piece-main-description"><%= @piece.description %></p>
+      <div class="piece-main-links">
+        <%= link_to "Delete", piece_path(@piece), method: :delete if current_user == @piece.user %>
+      </div>
+    </div>
+  </div>
 
-<hr>
+  <div class="l-edit-side">
+    <div class="form-container">
+      <%= form_tag piece_tags_path(@piece), id: "new_tag", remote: true do  %>
+        <%= label_tag :noew_tag, "New Tag"%>
+        <%= text_field_tag :tag, "", data: {autocomplete_source: tags_url}, placeholder: "Add a tag and press Enter" %>
+        <div id="tags" class="piece-tags">
+          <%= render partial: "tags/delete_tag_list", locals: {piece: @piece, method: :delete} %>
+        </div>
+      <% end %>
+    </div>
 
-<div id="tags">
-  <%= render partial: "tags/delete_tag_list", locals: {piece: @piece, method: :delete} %>
+    <div class="form-container">
+      <%= simple_form_for @piece do |f| %>
+        <%= f.association :category, include_blank: false %>
+        <%= f.input :published, as: :hidden, input_html: {value: true} %>
+        <%= f.input :title %>
+        <%= f.input :description %>
+
+        <div class="form-submit">
+          <%= f.button :submit, "Publish" %>
+        </div>
+      <% end %>
+    </div>
+  </div>
 </div>
-
-<%= form_tag piece_tags_path(@piece), id: "new_tag", remote: true do  %>
-
-  <%= label_tag :tag%>
-  <%= text_field_tag :tag, "Add a tag and press Enter", data: {autocomplete_source: tags_url} %>
-
-<% end %>

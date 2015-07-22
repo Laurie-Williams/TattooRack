@@ -56,7 +56,7 @@ class PiecesController < ApplicationController
   def update
     if @piece.update_attributes(piece_params)
       flash[:notice] = "Your piece has been updated"
-      redirect_to piece_path @piece
+      redirect_to edit_piece_path @piece
     else
       flash.now[:alert] = "Your piece was not updated"
       render :edit

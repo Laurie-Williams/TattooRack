@@ -10,20 +10,29 @@
       margin: auto;
     }
     color:                  $gray-light;
-    padding:                50px 0;
+    padding:                40px 0;
     &-tagline{
       @extend               .col-xs-12;
       @extend               .col-lg-4;
+      h4{
+        margin-bottom:      $grid-gutter-width;
+      }
     }
     &-navigate{
       @extend               .col-xs-6;
       @extend               .col-lg-4;
       text-align: center;
+      h4{
+        margin-bottom:      $grid-gutter-width;
+      }
     }
     &-company{
       @extend               .col-xs-6;
       @extend               .col-lg-4;
       text-align: right;
+      h4{
+        margin-bottom:      $grid-gutter-width;
+      }
     }
   }
   &-subfooter{

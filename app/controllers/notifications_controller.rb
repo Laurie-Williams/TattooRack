@@ -4,7 +4,7 @@ class NotificationsController < ApplicationController
   before_action :authorize_user, except: [:index, :count]
 
   def index
-    @activities = PublicActivity::Activity.all.order("created_at desc").where(recipient_id: current_user).where.not(owner_id: current_user)
+    @activities = PublicActivity::Activity.all.order("created_at desc").where(recipient_id: current_user).where.not(owner_id: current_user).limit(10)
     render partial: "notifications/notifications"
   end
 

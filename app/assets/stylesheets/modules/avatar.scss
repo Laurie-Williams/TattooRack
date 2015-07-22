@@ -1,20 +1,18 @@
 .avatar-tiny{
   height: 23px;
   width: 23px;
-  border-radius: 50%;
+  border-radius: 4px;
   display: inline-block;
   position: relative;
   bottom: 2px;
   margin-right: 7.5px;
-  border: 1px solid $gray;
 }
 
 .avatar-small{
   height: 45px;
   width: 45px;
-  border-radius: 50%;
+  border-radius: 4px;
   display: inline-block;
   margin-right: 7.5px;
-  border: 1px solid $gray;
   vertical-align: bottom;
 }

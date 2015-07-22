@@ -1,23 +1,25 @@
 <div class="page-content">
   <h1>Sign up</h1>
-  <div class="form-container">
-    <div class="form-header">
-      <h3>Tattoo RAck is a show and tell community for designers</h3>
-      <em>Sign up to find, follow and hire members of our small but vibrant community of designers, icon artists, illustrators, interface designers, typographers, and other creative folks.designers</em>
-    </div>
-    <%= simple_form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
-      <%= devise_error_messages! %>
-
-        <%= f.input :name, autofocus: true %>
-        <%= f.input :username %>
-        <%= f.input :email%>
-
-        <%= f.input :password, autocomplete: "off", hint: "Passwords must be at least #{@minimum_password_length} characters" %>
-        <%= f.input :password_confirmation, autocomplete: "off" %>
-
-      <div class="form-submit">
-        <%= f.button :submit, "Create Account" %>
+  <div class="l-signup-main">
+    <div class="form-container">
+      <div class="form-header">
+        <h3>Tattoo RAck is a show and tell community for designers</h3>
+        <em>Sign up to find, follow and hire members of our small but vibrant community of designers, icon artists, illustrators, interface designers, typographers, and other creative folks.designers</em>
       </div>
-  <% end %>
+      <%= simple_form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+        <%= devise_error_messages! %>
+
+          <%= f.input :name, autofocus: true %>
+          <%= f.input :username %>
+          <%= f.input :email%>
+
+          <%= f.input :password, autocomplete: "off", hint: "Passwords must be at least #{@minimum_password_length} characters" %>
+          <%= f.input :password_confirmation, autocomplete: "off" %>
+
+        <div class="form-submit">
+          <%= f.button :submit, "Create Account" %>
+        </div>
+    <% end %>
+    </div>
   </div>
 </div>

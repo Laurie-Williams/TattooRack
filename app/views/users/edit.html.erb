@@ -1,7 +1,6 @@
 <div class="page-content">
+  <h1 class="form-header">User Profile</h1>
   <div class="user-edit">
-    <h1 class="form-header">User Profile</h1>
-
     <div class="form-container">
       <div class="user-edit-form">
         <%= simple_form_for @user  do |f| %>
@@ -16,8 +15,10 @@
       </div>
 
       <div class="user-edit-form-avatar">
-        <h3>Your Avatar:</h3>
-        <%= image_tag @user.avatar_url :small %>
+        <!--<h3>Your Avatar:</h3>-->
+        <div class="img-container">
+          <%= image_tag @user.avatar_url :small %>
+        </div>
         <%= simple_form_for @user, html: { multipart: true } do |f| %>
           <%= f.input :avatar, label: false %>
           <div class="form-submit">

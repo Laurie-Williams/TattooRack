@@ -67,3 +67,5 @@ Cucumber::Rails::Database.javascript_strategy = :truncation
 require 'capybara-webkit'
 Capybara.javascript_driver = :webkit
 
+
+

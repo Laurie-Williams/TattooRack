@@ -1,12 +1,9 @@
-<div class="l-user-show-hero">
-  <div class="user-hero">
-    <%= image_tag @user.avatar_url(:small)%>
-    <h1><%= @user.name %></h1>
-    <h4><%= @user.bio %></h4>
-  </div>
-</div>
 
 <div class="page-content">
+  <div class="l-index-header">
+    <h1>Tagged with <%= link_to @tag, pieces_tag_path(@tag) %></h1>
+  </div>
+
   <div class="l-index-main">
 
     <!-- List Pieces-->

@@ -11,12 +11,13 @@ var notifications = {
     setClickCallback: function(){
         var $notifications_panel = $("#notifications_panel");
         var $notifications_button = $("#notifications_button");
+        var $notifications_count = $("#notifications-count");
         $notifications_button.on("click", function(e){
             if ($notifications_panel.css('display') == 'none') {
                 notifications.getNotifications();
             } else {
-                $notifications_button.text("Notifications (0)");
-                $notifications_panel.slideUp();
+                $notifications_count.text("");
+                $notifications_panel.slideUp("fast");
             }
             e.preventDefault();
         })
@@ -29,7 +30,7 @@ var notifications = {
             success: function(data){
                 var $notifications_panel = $("#notifications_panel");
                 $notifications_panel.html(data);
-                $notifications_panel.slideDown();
+                $notifications_panel.slideDown("fast");
             }
         });
     },
@@ -39,8 +40,12 @@ var notifications = {
             type: 'GET',
             url: "/notifications/count",
             success: function(data){
-                var $notifications_button = $("#notifications_button");
-                $notifications_button.text("Notifications" + " (" + data + ")");
+                var $notifications_count = $("#notifications-count");
+                if (data == "0") {
+                    $notifications_count.text("");
+                } else {
+                    $notifications_count.text(data);
+                }
             }
         });
     }

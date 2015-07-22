@@ -11,14 +11,14 @@ $bootstrap-sass-asset-helper: false !default;
 //
 //## Gray and brand colors for use across Bootstrap.
 
-$gray-base:              #000 !default;
-$gray-darker:            #292c30 !default; // #222
-$gray-dark:              #36393f !default;   // #333
-$gray:                   #3b3e45 !default; // #555
-$gray-light:             #979aa1 !default; // #777
-$gray-lighter:           #e4e5e7 !default; // #eee
+$gray-base:              #3b3e45 !default; // #3b3e45
+$gray-darker:            darken($gray-base, 7.2%) !default; // #292c30, darken(#3b3e45, 7.2%);
+$gray-dark:              darken($gray-base, 2%); // #36393f, darken(#3b3e45, 2%);
+$gray:                   $gray-base !default; // #3b3e45
+$gray-light:             lighten($gray-base, 36.5%) !default; // #979aa1, lighten(#3b3e45, 36.5%)
+$gray-lighter:           lighten($gray-base, 65%) !default; // #e4e5e7, lighten(#3b3e45, 65%)
 
-$brand-primary:         #35bb8e !default; // #337ab7
+$brand-primary:         #35bb8e !default; //
 $brand-success:         #5cb85c !default;
 $brand-info:            #5bc0de !default;
 $brand-warning:         #f0ad4e !default;
@@ -30,7 +30,7 @@ $brand-danger:          #d9534f !default;
 //## Settings for some of the most global styles.
 
 //** Background color for `<body>`.
-$body-bg:               #2f3136 !default;
+$body-bg:               darken($gray-base, 5.3%) !default; // #2f3136, darken(#3b3e45, 5.3%)
 //** Global text color on `<body>`.
 $text-color:            $gray-light !default;
 
@@ -327,7 +327,7 @@ $screen-xl-desktop:          $screen-xl-min !default;
 
 
 //Global max width
-$max-width:                   1500px;
+$max-width:                   1200px;
 
 // So media queries don't overlap when required, provide a maximum
 $screen-xs-max:              ($screen-sm-min - 1) !default;

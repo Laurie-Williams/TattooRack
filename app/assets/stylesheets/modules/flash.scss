@@ -1,0 +1,11 @@
+.notice, .alert{
+  position: absolute;
+  top: 0px;
+  width: 100%;
+  z-index: 999;
+  background-color: $brand-primary;
+  opacity: 0.85;
+  padding: $grid-gutter-width;
+  text-align: center;
+  color: white;
+}

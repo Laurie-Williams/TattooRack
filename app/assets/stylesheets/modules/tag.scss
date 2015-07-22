@@ -15,15 +15,15 @@
 
 
 .tag {
-  background: $btn-default-bg;
+  background: $gray-lighter;
   border-radius: 3px 0 0 3px;
-  color: $navbar-default-link-color;
+  color: $gray-darker;
   display: inline-block;
   height: 26px;
   line-height: 26px;
   padding: 0 23px 0 20px;
   position: relative;
-  -webkit-transition: color 0.2s;
+  -webkit-transition: 0.2s;
   margin: 4px 2px;
 
   &::after {
@@ -36,25 +36,27 @@
     position: absolute;
     top: 10px;
     right: 10px;
+    -webkit-transition: 0.2s;
   }
 
   &::before {
     background: $body-bg;
     border-bottom: 13px solid transparent;
-    border-right: 10px solid $btn-default-bg;
+    border-right: 10px solid $gray-lighter;
     border-top: 13px solid transparent;
     content: '';
     position: absolute;
     left: 0;
     top: 0;
+    -webkit-transition: 0.2s;
   }
 
   &:hover {
-    background-color: $navbar-default-link-active-bg;
-    color: $navbar-default-link-hover-color;
+    background-color: $brand-primary;
+    color: $gray-lighter;
 
     &::before {
-      border-right-color: $navbar-default-link-active-bg;
+      border-right-color: $brand-primary;
     }
   }
 
@@ -62,13 +64,20 @@
 
 .tag-delete{
   &::after {
-    background-image: url("Speech_bubble_32.png");
+    background-image: url("start.png");
+    background-size: contain;
+    background-color: $gray-lighter;
     border-radius: 0;
     box-shadow: none;
     height: 10px;
     width: 10px;
     top: 8px;
     right: 8px;
+  }
+  &:hover {
+    &::after {
+      background-color: $brand-primary;
+    }
   }
 }
 

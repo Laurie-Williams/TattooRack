@@ -8,7 +8,7 @@ Feature: Creat Piece
   Scenario: Upload Picture and Publish Piece
     Given I am logged in as "John"
     When I visit the Home page
-    And I follow "Create"
+    And I follow "create"
     And I drop a file into the drop area
     And I select a crop area
     And I press "Upload"
@@ -20,7 +20,7 @@ Feature: Creat Piece
   Scenario: Upload Picture but dont Publish Piece
     Given I am logged in as "John"
     When I visit the Home page
-    And I follow "Create"
+    And I follow "create"
     And I drop a file into the drop area
     And I select a crop area
     And I press "Upload"
@@ -30,7 +30,7 @@ Feature: Creat Piece
   Scenario: Upload Picture and cancel
     Given I am logged in as "John"
     When I visit the Home page
-    And I follow "Create"
+    And I follow "create"
     And I drop a file into the drop area
     And I select a crop area
     And I press "Upload"

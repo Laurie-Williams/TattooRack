@@ -6,7 +6,13 @@
   @extend                     .col-lg-3;
   @extend                     .col-xl-5ths;
   margin-bottom:              $grid-gutter-width;
+}
 
+.piece-search-column{
+  @extend                     .col-xs-12;
+  @extend                     .col-sm-6;
+  @extend                     .col-lg-3;
+  margin-bottom:              $grid-gutter-width;
 }
 
 .card{
@@ -41,7 +47,6 @@
           opacity:            0;
         }
         > p {
-          margin-top:         10px;
           font-weight:        300;
         }
         &-footer {
@@ -54,7 +59,7 @@
       }
     }
     &-footer {
-      padding:                1px 6%;
+      padding:                1px 7.5%;
       text-align:             right;
       font-weight:            200;
       background-color:       $gray;
@@ -72,58 +77,54 @@
   }
 }
 
-.icon{
-  margin-left:                8px;
-  margin-right:               0px;
-  font-weight:                600;
-  color:                      $gray-light;
-  background-repeat:          no-repeat;
-  background-size:            contain;
-  background-position:        0px 0px;
-  padding-left:               23px;
-  &-views{
-    background-image:         url("Eye_outline_32.png");
-  }
-  &-comments{
-    background-image:         url("Speech_bubble_32.png");
-  }
-  &-likes{
-    background-image:         url("Favourite_Heart_32.png");
-  }
-  &:hover{
-    color:                      $gray-lighter;
-  }
-}
 
 .piece{
   &-header{
-    margin:                   40px 0 10px 0;
+    margin:                   20px 0 10px 0;
     &-info{
       display:                inline-block;
       >h1{
         font-size:            $font-size-h3;
+        a{
+          color:              $gray-light;
+          &:hover{
+            color:            $brand-primary;
+          }
+        }
       }
     }
   }
   &-main{
+    background-color:             $gray-dark;
+    border-radius:                4px;
+    box-shadow:                 0 1px 6px rgba(0,0,0,0.07);
+    overflow:                   hidden;
     &-links{
-      @extend                 .col-xs-12;
-      text-align:             right;
+      text-align:               right;
+      padding:                  0 20px 20px 20px;
     }
     &-description{
-      margin:                 20px;
+      @extend                   .clearfix;
+      padding:                  $grid-gutter-width;
+      border-top: 6px solid $gray;
     }
   }
   &-stats{
-    border-bottom:            1px solid $input-border;
+    border-bottom:            2px solid $gray-light;
     padding:                  5px 10px;
     a{
       margin-right:           150px;
     }
   }
   &-more{
-    margin-top:               20px;
     @extend                   .clearfix;
+    margin-top:               $grid-gutter-width;
+    img{
+      border-radius: 3px;
+      border: 3px solid $gray;
+      box-shadow:                 0 1px 6px rgba(0,0,0,0.09);
+
+    }
     h4{
       @extend                 .col-xs-12;
     }
@@ -137,8 +138,10 @@
     }
     &-overlay {
       position: absolute;
-      top: 0;  bottom: 0;  left: 0;  right: 0;
-      background-color:       white;
+      top: 0;  bottom: 0;  left: 10px;  right: 10px;
+      border-radius: 2px;
+      box-shadow:                 0 1px 6px rgba(0,0,0,0.01);
+      background-color:     $gray;
       background-image:       url("Eye_outline_32.png");
       background-repeat:      no-repeat;
       background-position:    center;
@@ -148,6 +151,13 @@
       &:hover {
         opacity:              0.95;
       }
+    }
+  }
+  &-tags{
+    @extend                   .col-xs-12;
+    margin:               $grid-gutter-width/2 0;
+    h4{
+      margin: 10px 0;
     }
   }
 }

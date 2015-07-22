@@ -23,10 +23,20 @@
   float: left;
 }
 
+@media (min-width: 0) {
+  .visible-xl{
+    display: none;
+  }
+}
+
 @media (min-width: $screen-sm-min) {
   .col-sm-5ths {
     width: 20%;
     float: left;
+  }
+
+  .visible-xl{
+    display: none;
   }
 }
 
@@ -35,12 +45,20 @@
     width: 20%;
     float: left;
   }
+
+  .visible-xl{
+    display: none;
+  }
 }
 
 @media (min-width: $screen-lg-min) {
   .col-lg-5ths {
     width: 20%;
     float: left;
+  }
+
+  .visible-xl{
+    display: none;
   }
 }
 
@@ -49,7 +67,19 @@
     width: 20%;
     float: left;
   }
+
+  .visible-xl{
+    display: inherit;
+  }
 }
+
+
+// xl bootstrap grid
+
+@media (min-width: $screen-xl-min) {
+  @include make-grid(xl);
+}
+
 
 // xl breakpoint
 

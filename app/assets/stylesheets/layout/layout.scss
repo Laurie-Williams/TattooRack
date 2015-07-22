@@ -5,30 +5,48 @@
   }
   @extend                       .container-fluid;
   padding:                      20px 0;
+  position:                     relative;
 }
 
 //== Index
-.l-index-hero{
+.l-user-index-hero {
   @extend .visible-lg;
-  background-image:             url("hero3.jpg");
-  background-position:          top;
-  background-size:              cover;
-  height:                       300px;
-  margin:                       auto;
-  border-radius:                4px;
-  @media (min-width: $max-width){
-    width:                      $max-width;
-  }
-  &-user{
-    background-image:           none;
-    background-position:        center;
-    background-size:            auto;
-    background-repeat:          no-repeat;
-    background-color: $gray-darker;
-    border: 1px solid #24272b;
-    border-top: none;
+  background-image: url("hero3.jpg");
+  background-position: top;
+  background-size: cover;
+  height: 400px;
+  margin: auto;
+  border-radius: 4px;
+  @media (min-width: $max-width) {
+    width: $max-width;
   }
 }
+
+.l-user-index-header{
+  margin-bottom: $grid-gutter-width;
+}
+
+.l-user-show-hero{
+  @extend .visible-lg;
+  @media (min-width: $max-width) {
+    width: $max-width;
+  }
+  margin: auto;
+  border-radius: 4px;
+  background-image:           none;
+  background-position:        center;
+  background-size:            auto;
+  background-repeat:          no-repeat;
+  background-color: $gray-darker;
+  border: 1px solid #24272b;
+  border-top: none;
+  height:                       300px;
+}
+
+.l-index-header{
+    margin-bottom: $grid-gutter-width;
+}
+
 .l-index-main{
   @extend                       .col-xs-12;
   background-color:             $gray-dark;
@@ -49,11 +67,120 @@
   @extend                       .col-xs-12;
   @extend                       .col-lg-7;
   @extend                       .col-lg-offset-1;
-  padding-right:                2%;
+  background-color:             $gray-dark;
+  background-image: url("bg_texture2.png");
+  border-radius:                4px;
+  padding:                      $grid-gutter-width;
+  box-shadow:                 0 1px 6px rgba(0,0,0,0.05);
+  z-index: 10;
 }
 
 .l-show-side{
   @extend                       .col-xs-12;
   @extend                       .col-lg-3;
+  background-color: $gray-darker;
+  border-radius: 0 4px 4px 0;
+  margin-top: $grid-gutter-width;
+  box-shadow:                 0 1px 6px rgba(0,0,0,0.09);
+  padding: $grid-gutter-width;
 }
 
+
+//== edit
+.l-edit-header{
+  @extend                       .col-lg-10;
+  @extend                       .col-lg-offset-1;
+  @extend                       .visible-lg;
+
+}
+
+.l-edit-main{
+  @extend                       .col-lg-5;
+  @extend                       .col-lg-offset-1;
+  @extend                       .visible-lg;
+  background-color:             $gray-dark;
+  background-image: url("bg_texture2.png");
+  border-radius:                4px;
+  padding:                      $grid-gutter-width;
+  box-shadow:                 0 1px 6px rgba(0,0,0,0.05);
+  z-index: 10;
+}
+
+.l-edit-side{
+  @extend                       .col-xs-10;
+  @extend                       .col-xs-offset-1;
+  @extend                       .col-lg-5;
+  @extend                       .col-lg-offset-0;
+  background-color: $gray-darker;
+  border-radius: 0 4px 4px 0;
+  margin-top: 2*$grid-gutter-width;
+  box-shadow:                 0 1px 6px rgba(0,0,0,0.09);
+  padding: $grid-gutter-width;
+}
+
+
+//== Signup
+
+.l-signup-main{
+  @extend                       .col-xs-6;
+  @extend                       .col-xs-offset-3;
+  background-color:             $gray-dark;
+  background-image: url("bg_texture2.png");
+  border-radius:                4px;
+  padding:                      $grid-gutter-width;
+  box-shadow:                 0 1px 6px rgba(0,0,0,0.05);
+}
+
+//== Crop
+.l-crop-main{
+  @extend .col-xs-6;
+  @extend .visible-xl;
+  background-color:             $gray-dark;
+  background-image: url("bg_texture2.png");
+  border-radius:                4px;
+  padding:                      $grid-gutter-width;
+  box-shadow:                 0 1px 6px rgba(0,0,0,0.05);
+}
+
+.l-crop-side{
+  @extend .col-xs-12;
+  @extend .col-md-9;
+  @extend .col-md-offset-1;
+  @extend .col-lg-8;
+  @extend .col-lg-offset-2;
+  @extend .col-xl-6;
+  @extend .col-xl-offset-0;
+  background-color: $gray-darker;
+  border-radius: 0 4px 4px 0;
+  margin-top: 2*$grid-gutter-width;
+  box-shadow:                 0 1px 6px rgba(0,0,0,0.09);
+  padding: $grid-gutter-width;
+}
+
+.l-crop-header{
+  text-align: right;
+}
+
+//== Search
+
+.l-search-main{
+  @extend .col-xs-12;
+  @extend .col-md-9;
+  background-color:             $gray-dark;
+  background-image: url("bg_texture2.png");
+  border-radius:                4px;
+  padding:                      $grid-gutter-width;
+  box-shadow:                 0 1px 6px rgba(0,0,0,0.05);
+}
+
+.l-search-side{
+  @extend .col-xs-10;
+  @extend .col-xs-offset-1;
+  @extend .col-md-3;
+  @extend .col-md-offset-0;
+  background-color: $gray-darker;
+  border-radius: 0 4px 4px 0;
+  margin-top: 2*$grid-gutter-width;
+  box-shadow:                 0 1px 6px rgba(0,0,0,0.09);
+  padding: $grid-gutter-width;
+}

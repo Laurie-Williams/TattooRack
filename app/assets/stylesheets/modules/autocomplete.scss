@@ -1,0 +1,12 @@
+.ui-autocomplete{
+  background-color: white;
+  border-radius: 4px;
+  .ui-menu-item{
+    padding: 5px;
+    border-radius: inherit;
+  }
+
+  .ui-state-focus{
+    background-color: $gray-lighter;
+  }
+}
