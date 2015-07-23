@@ -9,7 +9,7 @@ CarrierWave.configure do |config|
     config.storage = :file
   end
 
-  if Rails.env.environment?
+  if Rails.env.production?
     config.storage = :fog
   end
 

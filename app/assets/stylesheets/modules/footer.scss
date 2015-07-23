@@ -12,14 +12,14 @@
     color:                  $gray-light;
     padding:                40px 0;
     &-tagline{
-      @extend               .col-xs-12;
+      @extend               .col-xs-6;
       @extend               .col-lg-4;
       h4{
         margin-bottom:      $grid-gutter-width;
       }
     }
     &-navigate{
-      @extend               .col-xs-6;
+      @extend               .visible-lg;
       @extend               .col-lg-4;
       text-align: center;
       h4{
