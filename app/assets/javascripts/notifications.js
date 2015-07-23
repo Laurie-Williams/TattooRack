@@ -23,16 +23,20 @@ var notifications = {
         })
     },
     getNotifications: function(){
-        $.ajax({
-            async: true,
-            type: 'GET',
-            url: "/notifications",
-            success: function(data){
-                var $notifications_panel = $("#notifications_panel");
-                $notifications_panel.html(data);
-                $notifications_panel.slideDown("fast");
-            }
-        });
+        var $notifications_button = $("#notifications_button");
+        if ($notifications_button.is(":visible")) {
+            $.ajax({
+                async: true,
+                type: 'GET',
+                url: "/notifications",
+                success: function(data){
+                    var $notifications_panel = $("#notifications_panel");
+                    $notifications_panel.html(data);
+                    $notifications_panel.slideDown("fast");
+                }
+            });
+        }
+
     },
     getNotificationsCount: function(){
         $.ajax({
