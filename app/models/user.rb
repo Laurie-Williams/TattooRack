@@ -1,6 +1,6 @@
 class User < ActiveRecord::Base
   # validations
-  validates :username,  presence: true, length: {minimum: 5, maximum: 14}, uniqueness: true
+  validates :username,  presence: true, length: {minimum: 5, maximum: 24}, uniqueness: true
   validates :name,      presence: true, length: {minimum: 2, maximum: 24}
 
   # Include default devise modules. Others available are:
