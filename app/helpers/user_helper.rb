@@ -3,7 +3,7 @@ module UserHelper
     if user.avatar_url(size)
       user.avatar_url(size)
     else
-      image_url("start.png")
+      image_url("user.png")
     end
   end
 end
