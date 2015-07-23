@@ -1,0 +1,14 @@
+# config/chewy.yml
+# separate environment configs
+test:
+  host: 'localhost:9200'
+  prefix: 'test'
+cucumber:
+  host: 'localhost:9200'
+  prefix: 'cucumber'
+development:
+  host: 'localhost:9200'
+  prefix: 'development'
+production:
+  host: <%= ENV["SEARCHBOX_URL"] %>
+  prefix: 'production'
