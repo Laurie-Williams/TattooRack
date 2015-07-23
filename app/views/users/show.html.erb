@@ -1,6 +1,6 @@
 <div class="l-user-show-hero">
   <div class="user-hero">
-    <%= image_tag @user.avatar_url(:small)%>
+    <%= image_tag avatar_url(@user, :small)%>
     <h1><%= @user.name %></h1>
     <h4><%= @user.bio %></h4>
   </div>

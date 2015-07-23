@@ -1,7 +1,7 @@
 <div class="user-index-column">
   <div class="card card-user">
     <div class="card-user-main" >
-      <a href="<%=user_path user%>"><%= image_tag user.avatar_url(:small)%></a>
+      <a href="<%=user_path user%>"><%= image_tag avatar_url(user, :small)%></a>
       <%= link_to "#{user.pieces.count}", user_path(user), class: "icon icon-comments card-user-main-info" %>
     </div>
 

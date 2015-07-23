@@ -11,7 +11,7 @@
       <p><%= truncate(piece.description, length: 60) %></p>
       <div class="card-piece-main-overlay-footer">
         <em class="card-user">
-          <%= image_tag piece.user.avatar_url(:small), class: "avatar-tiny"%><!--
+          <%= image_tag avatar_url(piece.user, :small), class: "avatar-tiny"%><!--
        --><%= link_to piece.user.username, user_path(piece.user) %>
         </em>
       </div>

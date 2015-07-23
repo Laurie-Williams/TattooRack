@@ -1,5 +1,5 @@
 <div class="comment">
-  <%= image_tag comment.user.avatar_url, class: "avatar-tiny" %>
+  <%= image_tag avatar_url(comment.user, :small), class: "avatar-tiny" %>
   <div class="comment-content">
     <%= link_to comment.user.name, user_path(comment.user) %>
     <p><%= comment.comment %></p>
