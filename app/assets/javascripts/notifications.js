@@ -39,19 +39,22 @@ var notifications = {
 
     },
     getNotificationsCount: function(){
-        $.ajax({
-            async: true,
-            type: 'GET',
-            url: "/notifications/count",
-            success: function(data){
-                var $notifications_count = $("#notifications-count");
-                if (data == "0") {
-                    $notifications_count.text("");
-                } else {
-                    $notifications_count.text(data);
+        var $notifications_button = $("#notifications_button");
+        if ($notifications_button.is(":visible")) {
+            $.ajax({
+                async: true,
+                type: 'GET',
+                url: "/notifications/count",
+                success: function (data) {
+                    var $notifications_count = $("#notifications-count");
+                    if (data == "0") {
+                        $notifications_count.text("");
+                    } else {
+                        $notifications_count.text(data);
+                    }
                 }
-            }
-        });
+            });
+        }
     }
 };
         //Initalize
