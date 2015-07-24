@@ -10,6 +10,7 @@ ActiveAdmin.register User do
     column :created_at
     column :last_sign_in_at
     column :current_sign_in_ip
+    actions
   end
 
   # See permitted parameters documentation:
