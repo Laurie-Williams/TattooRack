@@ -8,7 +8,7 @@ class PiecesController < ApplicationController
   def index
     @list = params[:list]
     @sort = params[:sort]
-    @pieces = Piece.includes(:user).all_in_category(@list, @sort).page(params[:page]).per(15)
+    @pieces = Piece.includes(:user).all_in_category(@list, @sort).page(params[:page]).per(20)
   end
 
   # GET /pieces/:id
