@@ -14,7 +14,7 @@ var tagReplace = {
         });
 
         //Add autocomplete to tags field
-        $("#tag").on("focus", tagReplace.getTags);
+        //$("#tag").on("focus", tagReplace.getTags); //Removed Temporarily for performance
 
         //Submit form on enter
         $("#tag").on("keypress", function(e){
