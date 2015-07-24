@@ -3,31 +3,31 @@ var tagReplace = {
         //Replace "#tags" with new updated tags html on tag create
         $("#new_tag").on("ajax:success", function(e, data, status, xhr){
             $("#tags").html(data);
-            tagReplace.init();
             $("#tag").val("");
         });
 
         //Replace "#tags" with new updated tags html on teg delete
         $("#tags a[data-remote]").on("ajax:success", function(e, data, status, xhr){
             $("#tags").html(data);
-            tagReplace.init();
         });
 
         //Add autocomplete to tags field
-        //$("#tag").on("focus", tagReplace.getTags); //Removed Temporarily for performance
+        $("#tag").on("focus", tagReplace.getTags); //Removed Temporarily for performance
 
-        //Submit form on enter
-        $("#tag").on("keypress", function(e){
+
+        $("#new_tag").on("keydown", function(e){
             if (e.which == 13){
-                $("#new_tag").submit();
+                event.preventDefault();
             }
         });
 
-        $("#tag #ui-id-1").on("keypress", function(e){
+        $("#tag").on("keyup", function(e){
             if (e.which == 13){
                 $("#new_tag").submit();
+                console.log("pressed enter on new tag");
             }
         });
+
     },
     getTags: function(){
         $.get( $("#tag").data("autocomplete-source"), tagReplace.initAutocomplete);
@@ -41,5 +41,5 @@ var tagReplace = {
 
 //Initalize
 $(document).on('ready page:load', function () {
-    tagReplace.init()
+    tagReplace.init();
 });

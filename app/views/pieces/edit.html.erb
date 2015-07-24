@@ -27,7 +27,7 @@
   <div class="l-edit-side">
     <div class="form-container">
       <%= form_tag piece_tags_path(@piece), id: "new_tag", remote: true do  %>
-        <%= label_tag :noew_tag, "New Tag"%>
+        <%= label_tag :new_tag, "New Tag"%>
         <%= text_field_tag :tag, "", data: {autocomplete_source: tags_url}, placeholder: "Add a tag and press Enter" %>
         <div id="tags" class="piece-tags">
           <%= render partial: "tags/delete_tag_list", locals: {piece: @piece, method: :delete} %>
