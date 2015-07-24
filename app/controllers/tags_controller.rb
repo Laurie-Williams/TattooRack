@@ -5,7 +5,7 @@ class TagsController < ApplicationController
 
   def index
     if request.xhr?
-      @tags = ActsAsTaggableOn::Tag.where("name like ?", "%#{params[:term]}%").pluck(:name)
+      @tags = ActsAsTaggableOn::Tag.all.pluck(:name)
       render json: @tags
     end
   end

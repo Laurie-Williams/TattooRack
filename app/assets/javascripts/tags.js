@@ -14,9 +14,7 @@ var tagReplace = {
         });
 
         //Add autocomplete to tags field
-        $("#tag").autocomplete({
-            source: $("#tag").data("autocomplete-source")
-        });
+        $("#tag").on("focus", tagReplace.getTags);
 
         //Submit form on enter
         $("#tag").on("keypress", function(e){
@@ -29,6 +27,14 @@ var tagReplace = {
             if (e.which == 13){
                 $("#new_tag").submit();
             }
+        });
+    },
+    getTags: function(){
+        $.get( $("#tag").data("autocomplete-source"), tagReplace.initAutocomplete);
+    },
+    initAutocomplete: function(tagsArray){
+        $("#tag").autocomplete({
+            source: tagsArray
         });
     }
 };
