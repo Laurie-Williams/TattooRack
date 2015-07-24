@@ -21,7 +21,7 @@ class UsersController < ApplicationController
   end
 
   def show
-    @pieces = @user.pieces.all_by_created_at.page(params[:page]).per(15)
+    @pieces = @user.pieces.all_by_created_at.page(params[:page]).per(20)
   end
 
   def destroy
