@@ -17,7 +17,7 @@
       <div class="user-edit-form-avatar">
         <!--<h3>Your Avatar:</h3>-->
         <div class="img-container">
-          <%= image_tag @user.avatar_url :small %>
+          <%= image_tag avatar_url(@user, :small) %>
         </div>
         <%= simple_form_for @user, html: { multipart: true } do |f| %>
           <%= f.input :avatar, label: false %>
