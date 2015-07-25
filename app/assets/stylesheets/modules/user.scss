@@ -22,6 +22,10 @@
     display: inline-block;
     border-bottom: 10px solid $brand-primary;
   }
+  p{
+    margin: 0 200px;
+    margin-top: $grid-gutter-width;
+  }
   img{
     margin: auto;
     border-radius: 4px;
