@@ -37,7 +37,7 @@
   @extend .col-xs-8;
   @extend .col-xs-offset-2;
   background-color:             $gray-dark;
-  background-image: url("bg_texture2.png");
+  background-image: image-url("bg_texture2.png");
   border-radius:                4px;
   padding:                      $grid-gutter-width;
   box-shadow:                 0 1px 6px rgba(0,0,0,0.05);
@@ -145,7 +145,7 @@
         position:             absolute;
         top: 0; bottom: 0; left: 0px; right: 0px;
         background-color:     $gray;
-        background-image:     url("Eye_outline_32.png");
+        background-image:     image-url("Eye_outline_32.png");
         background-repeat:    no-repeat;
         background-position:  center;
         // Fade in
