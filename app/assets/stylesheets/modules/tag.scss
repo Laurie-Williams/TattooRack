@@ -64,7 +64,7 @@
 
 .tag-delete{
   &::after {
-    background-image: image-url("start.png");
+    background-image: image-url("cross.png");
     background-size: contain;
     background-color: $gray-lighter;
     border-radius: 0;
@@ -77,6 +77,7 @@
   &:hover {
     &::after {
       background-color: $brand-primary;
+      background-image: image-url("cross-active.png");
     }
   }
 }
