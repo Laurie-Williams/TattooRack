@@ -74,7 +74,7 @@ class Piece < ActiveRecord::Base
       list_piece_array = Piece.all_in_category(self.list).limit(2)
       list_piece_array.to_a.unshift(nil)
     else
-      list_piece_array = Piece.all_in_category(self.list).offset(offset.to_i - 1).limit(3) #get prev, current and next piece in array
+      list_piece_array = Piece.all_in_category(self.list).offset(offset.to_i> 1 ? offset.to_i - 1 : 0).limit(3) #get prev, current and next piece in array
     end
   end
 
@@ -83,7 +83,7 @@ class Piece < ActiveRecord::Base
   end
 
   def get_user_prev_and_next
-      user_piece_array = Piece.published.where(user_id: user_id).offset(if self.position >2 then self.position - 2 else 0 end).limit(3) #get prev, current and next piece in array
+      user_piece_array = Piece.published.where(user_id: user_id).offset(self.position >2 ? self.position - 2 : 0 ).limit(3) #get prev, current and next piece in array
     if self.first? #if first Piece in list
       user_piece_array.to_a.unshift(nil).pop #add nil to end of array
       user_piece_array.to_a.reverse
