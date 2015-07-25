@@ -83,16 +83,7 @@ class Piece < ActiveRecord::Base
   end
 
   def get_user_prev_and_next
-      user_piece_array = Piece.published.where(user_id: user_id).offset(self.position >2 ? self.position - 2 : 0 ).limit(3) #get prev, current and next piece in array
-    if self.first? #if first Piece in list
-      user_piece_array.to_a.unshift(nil).pop #add nil to end of array
-      user_piece_array.to_a.reverse
-    elsif self.last?
-      user_piece_array.to_a.push(nil).reverse #add nil to start of array
-    else
-
-      user_piece_array.to_a.reverse
-    end
+      Piece.published.where(user_id: user_id).where.not(id: id).order("RANDOM()").limit(3) #get prev, current and next piece in array
   end
 
   def image_exists?
