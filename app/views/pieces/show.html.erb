@@ -55,7 +55,7 @@
     <div id="more_from_user" class="piece-more">
       <h4><b>More</b> pieces by <%= link_to @piece.user.username, user_path(@piece.user) %></h4>
       <%= render partial: "pieces/more_pieces",
-                 locals: {prev_piece: @piece.prev_user_piece, next_piece: @piece.next_user_piece, list: nil, offset: nil}%>
+                 locals: {prev_piece: @piece.prev_user_piece, next_piece: @piece.next_user_piece, list: nil, offset: @piece.offset}%>
 
     </div>
 

@@ -1,7 +1,7 @@
 <div class="piece-more-prev">
   <% if prev_piece.present? %>
-    <a href=<%= piece_path(prev_piece, list: list, offset: offset.to_i-1) %>><div class="piece-more-overlay"></div></a>
-    <a href=<%= piece_path(prev_piece, list: list, offset: offset.to_i-1) %>><%= image_tag prev_piece.image_url %></a>
+    <a href=<%= piece_path(prev_piece, list: list, offset: offset ? offset.to_i-1 : nil) %>><div class="piece-more-overlay"></div></a>
+    <a href=<%= piece_path(prev_piece, list: list, offset: offset ? offset.to_i-1 : nil) %>><%= image_tag prev_piece.image_url %></a>
   <% else %>
     <%= image_tag "start.png" %>
   <% end %>
@@ -9,8 +9,8 @@
 
 <div class="piece-more-next">
   <% if next_piece.present? %>
-    <a href=<%= piece_path(next_piece, list: list, offset: offset.to_i+1) %>><div class="piece-more-overlay"></div></a>
-    <a href=<%= piece_path(next_piece, list: list, offset: offset.to_i+1) %>><%= image_tag next_piece.image_url %></a>
+    <a href=<%= piece_path(next_piece, list: list, offset: offset ? offset.to_i+1 : nil) %>><div class="piece-more-overlay"></div></a>
+    <a href=<%= piece_path(next_piece, list: list, offset: offset ? offset.to_i+1 : nil) %>><%= image_tag next_piece.image_url %></a>
   <% else %>
     <%= image_tag "end.png" %>
   <% end %>
