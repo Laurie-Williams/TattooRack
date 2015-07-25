@@ -48,14 +48,14 @@
       <div id="more_from_list" class="piece-more">
         <h4><b>More</b> pieces from <%= piece_list_link %></h4>
         <%= render partial: "pieces/more_pieces",
-                   locals: {prev_piece: @piece.prev_list_piece, next_piece: @piece.next_list_piece, list: @piece.list, offset: @piece.offset}%>
+                   locals: {prev_piece: @piece.prev_list_piece, next_piece: @piece.next_list_piece, list: @piece.list, offset: @piece.offset, user: false}%>
       </div>
     <% end %>
 
     <div id="more_from_user" class="piece-more">
       <h4><b>More</b> pieces by <%= link_to @piece.user.username, user_path(@piece.user) %></h4>
       <%= render partial: "pieces/more_pieces",
-                 locals: {prev_piece: @piece.prev_user_piece, next_piece: @piece.next_user_piece, list: nil, offset: @piece.offset}%>
+                 locals: {prev_piece: @piece.prev_user_piece, next_piece: @piece.next_user_piece, list: nil, offset: @piece.offset, user: true}%>
 
     </div>
 
