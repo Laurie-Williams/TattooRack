@@ -2,6 +2,7 @@ ActiveAdmin.register Piece do
   scope :published
 
   index do
+    column :id
     column :image do |piece|
       image_tag piece.image_url
     end
