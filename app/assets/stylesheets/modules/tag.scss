@@ -64,7 +64,7 @@
 
 .tag-delete{
   &::after {
-    background-image: url("start.png");
+    background-image: image-url("start.png");
     background-size: contain;
     background-color: $gray-lighter;
     border-radius: 0;

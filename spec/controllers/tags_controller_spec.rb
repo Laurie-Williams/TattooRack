@@ -6,7 +6,7 @@ RSpec.describe TagsController, type: :controller do
 
     before :each do
       @tags = ["Tag1", "Tag2"]
-      allow(ActsAsTaggableOn::Tag).to receive_message_chain(:where, :pluck).and_return(@tags)
+      allow(ActsAsTaggableOn::Tag).to receive_message_chain(:all, :pluck).and_return(@tags)
     end
 
     it "returns http success" do

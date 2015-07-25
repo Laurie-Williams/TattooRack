@@ -9,7 +9,7 @@ RSpec.describe User, type: :model do
     # :usernams
     specify { expect(subject).to validate_presence_of(:username)}
     specify { expect(subject).to validate_length_of(:username).is_at_least(5)}
-    specify { expect(subject).to validate_length_of(:username).is_at_most(14)}
+    specify { expect(subject).to validate_length_of(:username).is_at_most(24)}
     specify { expect(subject).to validate_uniqueness_of(:username)}
     # :email
     specify { expect(subject).to validate_presence_of(:email)}

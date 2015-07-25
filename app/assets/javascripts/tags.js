@@ -24,7 +24,6 @@ var tagReplace = {
         $("#tag").on("keyup", function(e){
             if (e.which == 13){
                 $("#new_tag").submit();
-                console.log("pressed enter on new tag");
             }
         });
 
