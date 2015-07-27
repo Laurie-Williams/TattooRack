@@ -13,7 +13,9 @@
             <div class="card-user-piece-overlay"></div>
             <%= image_tag piece.image_url() %>
           </a>
-        <% end %>
+        <% else %>
+          <%= image_tag "end.png", class: "card-user-piece"%>
+    <% end %>
       <% end %>
     </div>
   </div>
