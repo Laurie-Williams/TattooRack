@@ -12,6 +12,7 @@
     margin-top: 15px;
     img {
       position: absolute;
+      border: 4px solid $gray-dark;
     }
   }
 
@@ -44,6 +45,7 @@
     position: absolute;
     left: 0;
     top: 9px;
+    border: 1px solid $gray-dark;
   }
   &-content{
     display: inline-block;
