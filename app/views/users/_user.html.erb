@@ -11,7 +11,7 @@
         <% if piece.present? %>
           <a href="<%=piece_path piece%>" class="card-user-piece">
             <div class="card-user-piece-overlay"></div>
-            <%= image_tag piece.image_url() %>
+            <%= image_tag piece.image_url(:small) %>
           </a>
         <% else %>
           <%= image_tag "end.png", class: "card-user-piece"%>

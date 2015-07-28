@@ -14,7 +14,7 @@
 
   <div class="l-show-main">
     <div class="piece-main">
-      <%= image_tag @piece.image_url %>
+      <%= image_tag @piece.image_url(:large) %>
       <p class="piece-main-description"><%= @piece.description %></p>
       <div class="piece-main-links">
         <%= link_to "Edit", edit_piece_path(@piece) if current_user == @piece.user %>

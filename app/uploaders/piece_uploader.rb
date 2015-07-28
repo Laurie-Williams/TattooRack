@@ -59,7 +59,15 @@ class PieceUploader < CarrierWave::Uploader::Base
 
   # Create different versions of your uploaded files:
   version :small do
-    process :resize_to_fit => [100, 75]
+    process :resize_to_fit => [140, 105]
+  end
+
+  version :med do
+    process :resize_to_fit => [300, 225]
+  end
+
+  version :large do
+    process :resize_to_fit => [700, 525]
   end
 
   # Add a white list of extensions which are allowed to be uploaded.
