@@ -1,4 +1,4 @@
-ActiveAdmin.register Activity do
+ActiveAdmin.register PublicActivity::Activity, as: "Activity" do
 
 
 end
