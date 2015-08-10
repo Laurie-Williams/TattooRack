@@ -1,28 +1,23 @@
-== README
+Tattoo Rack is a community for Tattoo Artists and enthusiasts to discover and share work.
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+A live version of the site is available at {www.tattoorack.co.uk}[www.tattoorack.co.uk].
 
-Things you may want to cover:
+Features include:
 
-* Ruby version
+* Drag and Drop image Upload
 
-* System dependencies
+* Image Cropping
 
-* Configuration
+* Tagging
 
-* Database creation
+* Autocomplete Tags
 
-* Database initialization
+* Full Text Search
 
-* How to run the test suite
+* Comments
 
-* Services (job queues, cache servers, search engines, etc.)
+* Voting
 
-* Deployment instructions
+* Piece Categories
 
-* ...
-
-
-Please feel free to use a different markup language if you do not plan to run
-<tt>rake doc:app</tt>.
+* Piece Sorting
